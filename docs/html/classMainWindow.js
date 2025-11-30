@@ -1,0 +1,26 @@
+var classMainWindow =
+[
+    [ "MainWindow", "classMainWindow.html#a996c5a2b6f77944776856f08ec30858d", null ],
+    [ "~MainWindow", "classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7", null ],
+    [ "clearForm", "classMainWindow.html#aa98c34025c53d523c1581d39caaf46ac", null ],
+    [ "onAddButtonClicked", "classMainWindow.html#a21ef75eba70ede6f72d07ba0e4687bbb", null ],
+    [ "onDeleteButtonClicked", "classMainWindow.html#af309049d419909943ec196cc87f9aa0a", null ],
+    [ "onGenerateReportClicked", "classMainWindow.html#a4ef5565b73a7a4f4dd2407b378ca89e6", null ],
+    [ "onSearchTextChanged", "classMainWindow.html#a2723f6e19d4af680629f93de3825a894", null ],
+    [ "onTableSelectionChanged", "classMainWindow.html#a60b2b3b38afa81232ad81a30c592caea", null ],
+    [ "refreshTable", "classMainWindow.html#a36f4b8cdb66bfe8365359935cb7f7fdc", null ],
+    [ "setupUI", "classMainWindow.html#a3a304253c9e7caeef028f75358bf1fd5", null ],
+    [ "showLowStockAlert", "classMainWindow.html#ab85526eb9e1dc48c58e441a63cbd67d7", null ],
+    [ "addButton", "classMainWindow.html#a88426182160bfc200ad67e302053c88a", null ],
+    [ "dateEdit", "classMainWindow.html#a4f3603a351496b6bb0040d6262032db4", null ],
+    [ "deleteButton", "classMainWindow.html#afe1d6b7411d8566c4fb20192a101bf6d", null ],
+    [ "inventoryManager", "classMainWindow.html#ac3af24499a5348312dfbfe81c1ed20c1", null ],
+    [ "locationEdit", "classMainWindow.html#acd0c5d834d0e91ea5fbb81cec45ddc80", null ],
+    [ "nameEdit", "classMainWindow.html#acb93ba9ef6d5162b7882592517a237a8", null ],
+    [ "quantitySpin", "classMainWindow.html#a8619b3932028635f961d1f9397980685", null ],
+    [ "reportButton", "classMainWindow.html#a69dedbf6433476b53633a7fe9ccec560", null ],
+    [ "searchEdit", "classMainWindow.html#a91bcb8c81d8c2174422dd044c346a1d7", null ],
+    [ "tableWidget", "classMainWindow.html#ab66cb4b82c7dd914c104b27fecf5d815", null ],
+    [ "typeEdit", "classMainWindow.html#a7012c4914ec38d6ac07c4d86cb2b1d79", null ],
+    [ "ui", "classMainWindow.html#a35466a70ed47252a0191168126a352a5", null ]
+];

@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestor de Inventario: Fichero Fuente src/DatabaseManager.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Gestor de Inventario
+   </div>
+   <div id="projectbrief">Sistema de inventario para componentes electrónicos</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('DatabaseManager_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">DatabaseManager.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="DatabaseManager_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef DATABASEMANAGER_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define DATABASEMANAGER_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Component_8h.html">Component.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;sqlite3.h&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classDatabaseManager.html">    9</a></span>&#160;<span class="keyword">class </span><a class="code" href="classDatabaseManager.html">DatabaseManager</a> {</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classDatabaseManager.html#a5341532377ae75614a5e9ccf81e18355">   11</a></span>&#160;    sqlite3* <a class="code" href="classDatabaseManager.html#a5341532377ae75614a5e9ccf81e18355">db</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classDatabaseManager.html#a2973954fb8d72a5bc1e0e8dc82d825c0">   12</a></span>&#160;    std::string <a class="code" href="classDatabaseManager.html#a2973954fb8d72a5bc1e0e8dc82d825c0">dbPath</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="classDatabaseManager.html#ad30427087c5f294073f8bc369b4a0a02">DatabaseManager</a>(std::string path = <span class="stringliteral">&quot;inventory.db&quot;</span>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="classDatabaseManager.html#ae9b3a5da1e04fbb00faf8a034da1d063">~DatabaseManager</a>();</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classDatabaseManager.html#abf0518515ed9ec59c91bd4d3a39f7319">openDatabase</a>();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classDatabaseManager.html#ad95de729a1eba5e3dd35a8df0fb87f37">closeDatabase</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classDatabaseManager.html#ad8c802b566ce699996fa1264dc0d79c9">createTable</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classDatabaseManager.html#a075daa937e364098e1e490b28fb9a8ee">insertComponent</a>(<span class="keyword">const</span> <a class="code" href="classComponent.html">Component</a>&amp; component);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classDatabaseManager.html#ab5e6986d9d1317af0fe8d90d8ab3ecdb">deleteComponent</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classDatabaseManager.html#ade951f0e1c52117ce0bc510427a0b52e">updateComponent</a>(<span class="keyword">const</span> <a class="code" href="classComponent.html">Component</a>&amp; component);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    std::vector&lt;Component&gt; <a class="code" href="classDatabaseManager.html#a025bb3a8df0f002b5fba04e713742ade">selectAllComponents</a>();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classComponent.html">Component</a> <a class="code" href="classDatabaseManager.html#a48e397d0dea2e34121e4317e0f2dec67">selectComponentById</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    std::vector&lt;Component&gt; <a class="code" href="classDatabaseManager.html#ab4c4c07e09facf5335142d580df00054">searchComponents</a>(std::string keyword);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<div class="ttc" id="aclassDatabaseManager_html_a025bb3a8df0f002b5fba04e713742ade"><div class="ttname"><a href="classDatabaseManager.html#a025bb3a8df0f002b5fba04e713742ade">DatabaseManager::selectAllComponents</a></div><div class="ttdeci">std::vector&lt; Component &gt; selectAllComponents()</div><div class="ttdef"><b>Definition:</b> DatabaseManager.cpp:86</div></div>
+<div class="ttc" id="aclassDatabaseManager_html_ad95de729a1eba5e3dd35a8df0fb87f37"><div class="ttname"><a href="classDatabaseManager.html#ad95de729a1eba5e3dd35a8df0fb87f37">DatabaseManager::closeDatabase</a></div><div class="ttdeci">void closeDatabase()</div><div class="ttdef"><b>Definition:</b> DatabaseManager.cpp:35</div></div>
+<div class="ttc" id="aclassDatabaseManager_html_ade951f0e1c52117ce0bc510427a0b52e"><div class="ttname"><a href="classDatabaseManager.html#ade951f0e1c52117ce0bc510427a0b52e">DatabaseManager::updateComponent</a></div><div class="ttdeci">bool updateComponent(const Component &amp;component)</div></div>
+<div class="ttc" id="aclassDatabaseManager_html_a2973954fb8d72a5bc1e0e8dc82d825c0"><div class="ttname"><a href="classDatabaseManager.html#a2973954fb8d72a5bc1e0e8dc82d825c0">DatabaseManager::dbPath</a></div><div class="ttdeci">std::string dbPath</div><div class="ttdef"><b>Definition:</b> DatabaseManager.h:12</div></div>
+<div class="ttc" id="aclassDatabaseManager_html_ad8c802b566ce699996fa1264dc0d79c9"><div class="ttname"><a href="classDatabaseManager.html#ad8c802b566ce699996fa1264dc0d79c9">DatabaseManager::createTable</a></div><div class="ttdeci">bool createTable()</div><div class="ttdef"><b>Definition:</b> DatabaseManager.cpp:42</div></div>
+<div class="ttc" id="aclassDatabaseManager_html_ab4c4c07e09facf5335142d580df00054"><div class="ttname"><a href="classDatabaseManager.html#ab4c4c07e09facf5335142d580df00054">DatabaseManager::searchComponents</a></div><div class="ttdeci">std::vector&lt; Component &gt; searchComponents(std::string keyword)</div></div>
+<div class="ttc" id="aclassDatabaseManager_html_ae9b3a5da1e04fbb00faf8a034da1d063"><div class="ttname"><a href="classDatabaseManager.html#ae9b3a5da1e04fbb00faf8a034da1d063">DatabaseManager::~DatabaseManager</a></div><div class="ttdeci">~DatabaseManager()</div><div class="ttdef"><b>Definition:</b> DatabaseManager.cpp:22</div></div>
+<div class="ttc" id="aclassDatabaseManager_html_ad30427087c5f294073f8bc369b4a0a02"><div class="ttname"><a href="classDatabaseManager.html#ad30427087c5f294073f8bc369b4a0a02">DatabaseManager::DatabaseManager</a></div><div class="ttdeci">DatabaseManager(std::string path=&quot;inventory.db&quot;)</div><div class="ttdef"><b>Definition:</b> DatabaseManager.cpp:20</div></div>
+<div class="ttc" id="aComponent_8h_html"><div class="ttname"><a href="Component_8h.html">Component.h</a></div></div>
+<div class="ttc" id="aclassDatabaseManager_html"><div class="ttname"><a href="classDatabaseManager.html">DatabaseManager</a></div><div class="ttdef"><b>Definition:</b> DatabaseManager.h:9</div></div>
+<div class="ttc" id="aclassComponent_html"><div class="ttname"><a href="classComponent.html">Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:7</div></div>
+<div class="ttc" id="aclassDatabaseManager_html_ab5e6986d9d1317af0fe8d90d8ab3ecdb"><div class="ttname"><a href="classDatabaseManager.html#ab5e6986d9d1317af0fe8d90d8ab3ecdb">DatabaseManager::deleteComponent</a></div><div class="ttdeci">bool deleteComponent(int id)</div></div>
+<div class="ttc" id="aclassDatabaseManager_html_abf0518515ed9ec59c91bd4d3a39f7319"><div class="ttname"><a href="classDatabaseManager.html#abf0518515ed9ec59c91bd4d3a39f7319">DatabaseManager::openDatabase</a></div><div class="ttdeci">bool openDatabase()</div><div class="ttdef"><b>Definition:</b> DatabaseManager.cpp:26</div></div>
+<div class="ttc" id="aclassDatabaseManager_html_a48e397d0dea2e34121e4317e0f2dec67"><div class="ttname"><a href="classDatabaseManager.html#a48e397d0dea2e34121e4317e0f2dec67">DatabaseManager::selectComponentById</a></div><div class="ttdeci">Component selectComponentById(int id)</div></div>
+<div class="ttc" id="aclassDatabaseManager_html_a075daa937e364098e1e490b28fb9a8ee"><div class="ttname"><a href="classDatabaseManager.html#a075daa937e364098e1e490b28fb9a8ee">DatabaseManager::insertComponent</a></div><div class="ttdeci">bool insertComponent(const Component &amp;component)</div><div class="ttdef"><b>Definition:</b> DatabaseManager.cpp:62</div></div>
+<div class="ttc" id="aclassDatabaseManager_html_a5341532377ae75614a5e9ccf81e18355"><div class="ttname"><a href="classDatabaseManager.html#a5341532377ae75614a5e9ccf81e18355">DatabaseManager::db</a></div><div class="ttdeci">sqlite3 * db</div><div class="ttdef"><b>Definition:</b> DatabaseManager.h:11</div></div>
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="DatabaseManager_8h.html">DatabaseManager.h</a></li>
+    <li class="footer">Generado por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
+</body>
+</html>
