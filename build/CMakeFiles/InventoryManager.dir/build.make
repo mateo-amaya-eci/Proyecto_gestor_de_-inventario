@@ -70,22 +70,9 @@ CMakeFiles/InventoryManager.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/InventoryManager.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mateo_amaya/alse/ProyectoInventario/src/main.cpp -o CMakeFiles/InventoryManager.dir/src/main.cpp.s
 
-CMakeFiles/InventoryManager.dir/src/MainWindow.cpp.o: CMakeFiles/InventoryManager.dir/flags.make
-CMakeFiles/InventoryManager.dir/src/MainWindow.cpp.o: ../src/MainWindow.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mateo_amaya/alse/ProyectoInventario/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/InventoryManager.dir/src/MainWindow.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/InventoryManager.dir/src/MainWindow.cpp.o -c /home/mateo_amaya/alse/ProyectoInventario/src/MainWindow.cpp
-
-CMakeFiles/InventoryManager.dir/src/MainWindow.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/InventoryManager.dir/src/MainWindow.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mateo_amaya/alse/ProyectoInventario/src/MainWindow.cpp > CMakeFiles/InventoryManager.dir/src/MainWindow.cpp.i
-
-CMakeFiles/InventoryManager.dir/src/MainWindow.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/InventoryManager.dir/src/MainWindow.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mateo_amaya/alse/ProyectoInventario/src/MainWindow.cpp -o CMakeFiles/InventoryManager.dir/src/MainWindow.cpp.s
-
 CMakeFiles/InventoryManager.dir/src/Component.cpp.o: CMakeFiles/InventoryManager.dir/flags.make
 CMakeFiles/InventoryManager.dir/src/Component.cpp.o: ../src/Component.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mateo_amaya/alse/ProyectoInventario/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/InventoryManager.dir/src/Component.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mateo_amaya/alse/ProyectoInventario/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/InventoryManager.dir/src/Component.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/InventoryManager.dir/src/Component.cpp.o -c /home/mateo_amaya/alse/ProyectoInventario/src/Component.cpp
 
 CMakeFiles/InventoryManager.dir/src/Component.cpp.i: cmake_force
@@ -98,7 +85,7 @@ CMakeFiles/InventoryManager.dir/src/Component.cpp.s: cmake_force
 
 CMakeFiles/InventoryManager.dir/src/InventoryManager.cpp.o: CMakeFiles/InventoryManager.dir/flags.make
 CMakeFiles/InventoryManager.dir/src/InventoryManager.cpp.o: ../src/InventoryManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mateo_amaya/alse/ProyectoInventario/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/InventoryManager.dir/src/InventoryManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mateo_amaya/alse/ProyectoInventario/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/InventoryManager.dir/src/InventoryManager.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/InventoryManager.dir/src/InventoryManager.cpp.o -c /home/mateo_amaya/alse/ProyectoInventario/src/InventoryManager.cpp
 
 CMakeFiles/InventoryManager.dir/src/InventoryManager.cpp.i: cmake_force
@@ -111,7 +98,7 @@ CMakeFiles/InventoryManager.dir/src/InventoryManager.cpp.s: cmake_force
 
 CMakeFiles/InventoryManager.dir/src/DatabaseManager.cpp.o: CMakeFiles/InventoryManager.dir/flags.make
 CMakeFiles/InventoryManager.dir/src/DatabaseManager.cpp.o: ../src/DatabaseManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mateo_amaya/alse/ProyectoInventario/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/InventoryManager.dir/src/DatabaseManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mateo_amaya/alse/ProyectoInventario/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/InventoryManager.dir/src/DatabaseManager.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/InventoryManager.dir/src/DatabaseManager.cpp.o -c /home/mateo_amaya/alse/ProyectoInventario/src/DatabaseManager.cpp
 
 CMakeFiles/InventoryManager.dir/src/DatabaseManager.cpp.i: cmake_force
@@ -122,43 +109,24 @@ CMakeFiles/InventoryManager.dir/src/DatabaseManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/InventoryManager.dir/src/DatabaseManager.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mateo_amaya/alse/ProyectoInventario/src/DatabaseManager.cpp -o CMakeFiles/InventoryManager.dir/src/DatabaseManager.cpp.s
 
-CMakeFiles/InventoryManager.dir/src/ReportGenerator.cpp.o: CMakeFiles/InventoryManager.dir/flags.make
-CMakeFiles/InventoryManager.dir/src/ReportGenerator.cpp.o: ../src/ReportGenerator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mateo_amaya/alse/ProyectoInventario/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/InventoryManager.dir/src/ReportGenerator.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/InventoryManager.dir/src/ReportGenerator.cpp.o -c /home/mateo_amaya/alse/ProyectoInventario/src/ReportGenerator.cpp
-
-CMakeFiles/InventoryManager.dir/src/ReportGenerator.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/InventoryManager.dir/src/ReportGenerator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mateo_amaya/alse/ProyectoInventario/src/ReportGenerator.cpp > CMakeFiles/InventoryManager.dir/src/ReportGenerator.cpp.i
-
-CMakeFiles/InventoryManager.dir/src/ReportGenerator.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/InventoryManager.dir/src/ReportGenerator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mateo_amaya/alse/ProyectoInventario/src/ReportGenerator.cpp -o CMakeFiles/InventoryManager.dir/src/ReportGenerator.cpp.s
-
 # Object files for target InventoryManager
 InventoryManager_OBJECTS = \
 "CMakeFiles/InventoryManager.dir/src/main.cpp.o" \
-"CMakeFiles/InventoryManager.dir/src/MainWindow.cpp.o" \
 "CMakeFiles/InventoryManager.dir/src/Component.cpp.o" \
 "CMakeFiles/InventoryManager.dir/src/InventoryManager.cpp.o" \
-"CMakeFiles/InventoryManager.dir/src/DatabaseManager.cpp.o" \
-"CMakeFiles/InventoryManager.dir/src/ReportGenerator.cpp.o"
+"CMakeFiles/InventoryManager.dir/src/DatabaseManager.cpp.o"
 
 # External object files for target InventoryManager
 InventoryManager_EXTERNAL_OBJECTS =
 
 InventoryManager: CMakeFiles/InventoryManager.dir/src/main.cpp.o
-InventoryManager: CMakeFiles/InventoryManager.dir/src/MainWindow.cpp.o
 InventoryManager: CMakeFiles/InventoryManager.dir/src/Component.cpp.o
 InventoryManager: CMakeFiles/InventoryManager.dir/src/InventoryManager.cpp.o
 InventoryManager: CMakeFiles/InventoryManager.dir/src/DatabaseManager.cpp.o
-InventoryManager: CMakeFiles/InventoryManager.dir/src/ReportGenerator.cpp.o
 InventoryManager: CMakeFiles/InventoryManager.dir/build.make
-InventoryManager: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.12.8
-InventoryManager: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.12.8
-InventoryManager: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.8
+InventoryManager: /usr/lib/x86_64-linux-gnu/libsqlite3.so
 InventoryManager: CMakeFiles/InventoryManager.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mateo_amaya/alse/ProyectoInventario/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable InventoryManager"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mateo_amaya/alse/ProyectoInventario/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable InventoryManager"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/InventoryManager.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

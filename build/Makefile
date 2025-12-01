@@ -204,60 +204,6 @@ src/InventoryManager.cpp.s:
 	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/InventoryManager.cpp.s
 .PHONY : src/InventoryManager.cpp.s
 
-src/MainWindow.o: src/MainWindow.cpp.o
-
-.PHONY : src/MainWindow.o
-
-# target to build an object file
-src/MainWindow.cpp.o:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/MainWindow.cpp.o
-.PHONY : src/MainWindow.cpp.o
-
-src/MainWindow.i: src/MainWindow.cpp.i
-
-.PHONY : src/MainWindow.i
-
-# target to preprocess a source file
-src/MainWindow.cpp.i:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/MainWindow.cpp.i
-.PHONY : src/MainWindow.cpp.i
-
-src/MainWindow.s: src/MainWindow.cpp.s
-
-.PHONY : src/MainWindow.s
-
-# target to generate assembly for a file
-src/MainWindow.cpp.s:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/MainWindow.cpp.s
-.PHONY : src/MainWindow.cpp.s
-
-src/ReportGenerator.o: src/ReportGenerator.cpp.o
-
-.PHONY : src/ReportGenerator.o
-
-# target to build an object file
-src/ReportGenerator.cpp.o:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/ReportGenerator.cpp.o
-.PHONY : src/ReportGenerator.cpp.o
-
-src/ReportGenerator.i: src/ReportGenerator.cpp.i
-
-.PHONY : src/ReportGenerator.i
-
-# target to preprocess a source file
-src/ReportGenerator.cpp.i:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/ReportGenerator.cpp.i
-.PHONY : src/ReportGenerator.cpp.i
-
-src/ReportGenerator.s: src/ReportGenerator.cpp.s
-
-.PHONY : src/ReportGenerator.s
-
-# target to generate assembly for a file
-src/ReportGenerator.cpp.s:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/ReportGenerator.cpp.s
-.PHONY : src/ReportGenerator.cpp.s
-
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -303,12 +249,6 @@ help:
 	@echo "... src/InventoryManager.o"
 	@echo "... src/InventoryManager.i"
 	@echo "... src/InventoryManager.s"
-	@echo "... src/MainWindow.o"
-	@echo "... src/MainWindow.i"
-	@echo "... src/MainWindow.s"
-	@echo "... src/ReportGenerator.o"
-	@echo "... src/ReportGenerator.i"
-	@echo "... src/ReportGenerator.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
