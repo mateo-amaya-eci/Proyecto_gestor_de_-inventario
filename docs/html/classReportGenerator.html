@@ -90,18 +90,27 @@ $(document).ready(function(){initNavTree('classReportGenerator.html',''); initRe
 </div><!--header-->
 <div class="contents">
 
+<p>Genera diferentes tipos de reportes para los componentes del inventario.  
+ <a href="classReportGenerator.html#details">Más...</a></p>
+
 <p><code>#include &lt;<a class="el" href="ReportGenerator_8h_source.html">ReportGenerator.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Métodos públicos estáticos</h2></td></tr>
 <tr class="memitem:a26dc740cd71731e5f56028509ce25900"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportGenerator.html#a26dc740cd71731e5f56028509ce25900">generateCSVReport</a> (const std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt; &amp;components, const std::string &amp;filename)</td></tr>
+<tr class="memdesc:a26dc740cd71731e5f56028509ce25900"><td class="mdescLeft">&#160;</td><td class="mdescRight">Genera un reporte en formato CSV con los componentes proporcionados.  <a href="classReportGenerator.html#a26dc740cd71731e5f56028509ce25900">Más...</a><br /></td></tr>
 <tr class="separator:a26dc740cd71731e5f56028509ce25900"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed04c6da51e6c432adbfe43f0398c1e7"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportGenerator.html#aed04c6da51e6c432adbfe43f0398c1e7">generateHTMLReport</a> (const std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt; &amp;components, const std::string &amp;filename)</td></tr>
+<tr class="memdesc:aed04c6da51e6c432adbfe43f0398c1e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Genera un reporte en formato HTML con los componentes proporcionados.  <a href="classReportGenerator.html#aed04c6da51e6c432adbfe43f0398c1e7">Más...</a><br /></td></tr>
 <tr class="separator:aed04c6da51e6c432adbfe43f0398c1e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77e4a84ff188988cdb33c87b4ed54a01"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportGenerator.html#a77e4a84ff188988cdb33c87b4ed54a01">generateLowStockReport</a> (const std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt; &amp;components, const std::string &amp;filename, int threshold=5)</td></tr>
+<tr class="memdesc:a77e4a84ff188988cdb33c87b4ed54a01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Genera un reporte de componentes con bajo stock en formato CSV.  <a href="classReportGenerator.html#a77e4a84ff188988cdb33c87b4ed54a01">Más...</a><br /></td></tr>
 <tr class="separator:a77e4a84ff188988cdb33c87b4ed54a01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Documentación de las funciones miembro</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Genera diferentes tipos de reportes para los componentes del inventario. </p>
+<p>La clase <a class="el" href="classReportGenerator.html" title="Genera diferentes tipos de reportes para los componentes del inventario.">ReportGenerator</a> proporciona métodos estáticos para generar reportes en formatos CSV, HTML, y reportes específicos de bajo stock. </p>
+</div><h2 class="groupheader">Documentación de las funciones miembro</h2>
 <a id="a26dc740cd71731e5f56028509ce25900"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a26dc740cd71731e5f56028509ce25900">&#9670;&nbsp;</a></span>generateCSVReport()</h2>
 
@@ -135,6 +144,16 @@ Métodos públicos estáticos</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Genera un reporte en formato CSV con los componentes proporcionados. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">components</td><td>Vector de componentes a incluir en el reporte. </td></tr>
+    <tr><td class="paramname">filename</td><td>Nombre del archivo donde se guardará el reporte. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si el reporte se genera correctamente, false en caso contrario. </dd></dl>
 
 </div>
 </div>
@@ -171,6 +190,16 @@ Métodos públicos estáticos</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Genera un reporte en formato HTML con los componentes proporcionados. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">components</td><td>Vector de componentes a incluir en el reporte. </td></tr>
+    <tr><td class="paramname">filename</td><td>Nombre del archivo donde se guardará el reporte. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si el reporte se genera correctamente, false en caso contrario. </dd></dl>
 
 </div>
 </div>
@@ -213,6 +242,17 @@ Métodos públicos estáticos</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Genera un reporte de componentes con bajo stock en formato CSV. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">components</td><td>Vector de componentes a analizar. </td></tr>
+    <tr><td class="paramname">filename</td><td>Nombre del archivo donde se guardará el reporte. </td></tr>
+    <tr><td class="paramname">threshold</td><td>Umbral de stock bajo (por defecto es 5). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si el reporte se genera correctamente, false en caso contrario. </dd></dl>
 
 </div>
 </div>

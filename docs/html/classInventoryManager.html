@@ -91,42 +91,57 @@ $(document).ready(function(){initNavTree('classInventoryManager.html',''); initR
 </div><!--header-->
 <div class="contents">
 
+<p>Gestiona el inventario de componentes y su interacción con la base de datos.  
+ <a href="classInventoryManager.html#details">Más...</a></p>
+
 <p><code>#include &lt;<a class="el" href="InventoryManager_8h_source.html">InventoryManager.h</a>&gt;</code></p>
 <div class="dynheader">
 Diagrama de colaboración para InventoryManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="classInventoryManager__coll__graph.png" border="0" usemap="#InventoryManager_coll__map" alt="Collaboration graph"/></div>
 <map name="InventoryManager_coll__map" id="InventoryManager_coll__map">
-<area shape="rect" title=" " alt="" coords="5,95,147,121"/>
-<area shape="rect" href="classDatabaseManager.html" title=" " alt="" coords="5,5,147,32"/>
+<area shape="rect" title="Gestiona el inventario de componentes y su interacción con la base de datos." alt="" coords="5,95,147,121"/>
+<area shape="rect" href="classDatabaseManager.html" title="Gestiona la conexión y operaciones con la base de datos SQLite." alt="" coords="5,5,147,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">significado de colores y flechas</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Métodos públicos</h2></td></tr>
 <tr class="memitem:ad962e4282b5a2c6521f1268ac018bd50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#ad962e4282b5a2c6521f1268ac018bd50">InventoryManager</a> ()</td></tr>
+<tr class="memdesc:ad962e4282b5a2c6521f1268ac018bd50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor de la clase <a class="el" href="classInventoryManager.html" title="Gestiona el inventario de componentes y su interacción con la base de datos.">InventoryManager</a>.  <a href="classInventoryManager.html#ad962e4282b5a2c6521f1268ac018bd50">Más...</a><br /></td></tr>
 <tr class="separator:ad962e4282b5a2c6521f1268ac018bd50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab577116c3c234997fc05af6c6689c4d0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#ab577116c3c234997fc05af6c6689c4d0">addComponent</a> (const <a class="el" href="classComponent.html">Component</a> &amp;component)</td></tr>
+<tr class="memdesc:ab577116c3c234997fc05af6c6689c4d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Agrega un componente al inventario.  <a href="classInventoryManager.html#ab577116c3c234997fc05af6c6689c4d0">Más...</a><br /></td></tr>
 <tr class="separator:ab577116c3c234997fc05af6c6689c4d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82d3d3afd939e7ccc62db45865a8ca00"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#a82d3d3afd939e7ccc62db45865a8ca00">removeComponent</a> (int id)</td></tr>
+<tr class="memdesc:a82d3d3afd939e7ccc62db45865a8ca00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elimina un componente del inventario por su ID.  <a href="classInventoryManager.html#a82d3d3afd939e7ccc62db45865a8ca00">Más...</a><br /></td></tr>
 <tr class="separator:a82d3d3afd939e7ccc62db45865a8ca00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd306b8e4f3166620d9b23687cc38ca7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#acd306b8e4f3166620d9b23687cc38ca7">updateComponent</a> (int id, const <a class="el" href="classComponent.html">Component</a> &amp;component)</td></tr>
+<tr class="memdesc:acd306b8e4f3166620d9b23687cc38ca7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza un componente en el inventario.  <a href="classInventoryManager.html#acd306b8e4f3166620d9b23687cc38ca7">Más...</a><br /></td></tr>
 <tr class="separator:acd306b8e4f3166620d9b23687cc38ca7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c40450392e097cd28a5e65710147109"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#a6c40450392e097cd28a5e65710147109">getAllComponents</a> ()</td></tr>
+<tr class="memdesc:a6c40450392e097cd28a5e65710147109"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene todos los componentes del inventario.  <a href="classInventoryManager.html#a6c40450392e097cd28a5e65710147109">Más...</a><br /></td></tr>
 <tr class="separator:a6c40450392e097cd28a5e65710147109"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a531ceb0d6572476fdd7c177d0fc92ca9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classComponent.html">Component</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#a531ceb0d6572476fdd7c177d0fc92ca9">findComponentById</a> (int id)</td></tr>
+<tr class="memdesc:a531ceb0d6572476fdd7c177d0fc92ca9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busca un componente en el inventario por su ID.  <a href="classInventoryManager.html#a531ceb0d6572476fdd7c177d0fc92ca9">Más...</a><br /></td></tr>
 <tr class="separator:a531ceb0d6572476fdd7c177d0fc92ca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ee264f0fef051f2d4dd412f040d177c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#a1ee264f0fef051f2d4dd412f040d177c">findComponentsByName</a> (std::string name)</td></tr>
+<tr class="memdesc:a1ee264f0fef051f2d4dd412f040d177c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busca componentes en el inventario por su nombre.  <a href="classInventoryManager.html#a1ee264f0fef051f2d4dd412f040d177c">Más...</a><br /></td></tr>
 <tr class="separator:a1ee264f0fef051f2d4dd412f040d177c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8b0ed4b72037008013f54d7be2efe6d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#ae8b0ed4b72037008013f54d7be2efe6d">findComponentsByType</a> (std::string type)</td></tr>
+<tr class="memdesc:ae8b0ed4b72037008013f54d7be2efe6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busca componentes en el inventario por su tipo.  <a href="classInventoryManager.html#ae8b0ed4b72037008013f54d7be2efe6d">Más...</a><br /></td></tr>
 <tr class="separator:ae8b0ed4b72037008013f54d7be2efe6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fc06b1d140f109f8ac1d4b6734b2612"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#a3fc06b1d140f109f8ac1d4b6734b2612">findComponentsByLocation</a> (std::string location)</td></tr>
+<tr class="memdesc:a3fc06b1d140f109f8ac1d4b6734b2612"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busca componentes en el inventario por su ubicación.  <a href="classInventoryManager.html#a3fc06b1d140f109f8ac1d4b6734b2612">Más...</a><br /></td></tr>
 <tr class="separator:a3fc06b1d140f109f8ac1d4b6734b2612"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ef2c19695b2016a55be4029e2a4b026"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#a7ef2c19695b2016a55be4029e2a4b026">getLowStockComponents</a> (int threshold=5)</td></tr>
+<tr class="memdesc:a7ef2c19695b2016a55be4029e2a4b026"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene los componentes con bajo stock.  <a href="classInventoryManager.html#a7ef2c19695b2016a55be4029e2a4b026">Más...</a><br /></td></tr>
 <tr class="separator:a7ef2c19695b2016a55be4029e2a4b026"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c29938c363e94cbcc3d8520127b1d8d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#a5c29938c363e94cbcc3d8520127b1d8d">loadFromDatabase</a> ()</td></tr>
+<tr class="memdesc:a5c29938c363e94cbcc3d8520127b1d8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carga los componentes desde la base de datos al inventario.  <a href="classInventoryManager.html#a5c29938c363e94cbcc3d8520127b1d8d">Más...</a><br /></td></tr>
 <tr class="separator:a5c29938c363e94cbcc3d8520127b1d8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f45f89751b37418e8b116ab51b0ac68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#a8f45f89751b37418e8b116ab51b0ac68">saveToDatabase</a> ()</td></tr>
+<tr class="memdesc:a8f45f89751b37418e8b116ab51b0ac68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Guarda los componentes del inventario en la base de datos.  <a href="classInventoryManager.html#a8f45f89751b37418e8b116ab51b0ac68">Más...</a><br /></td></tr>
 <tr class="separator:a8f45f89751b37418e8b116ab51b0ac68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -136,7 +151,10 @@ Atributos privados</h2></td></tr>
 <tr class="memitem:a5e115ffb9983c91cff46e1638874ef75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDatabaseManager.html">DatabaseManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#a5e115ffb9983c91cff46e1638874ef75">dbManager</a></td></tr>
 <tr class="separator:a5e115ffb9983c91cff46e1638874ef75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Documentación del constructor y destructor</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Gestiona el inventario de componentes y su interacción con la base de datos. </p>
+<p>La clase <a class="el" href="classInventoryManager.html" title="Gestiona el inventario de componentes y su interacción con la base de datos.">InventoryManager</a> proporciona métodos para gestionar componentes en memoria, realizar búsquedas y consultas, y sincronizar los datos con la base de datos. </p>
+</div><h2 class="groupheader">Documentación del constructor y destructor</h2>
 <a id="ad962e4282b5a2c6521f1268ac018bd50"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad962e4282b5a2c6521f1268ac018bd50">&#9670;&nbsp;</a></span>InventoryManager()</h2>
 
@@ -151,6 +169,9 @@ Atributos privados</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Constructor de la clase <a class="el" href="classInventoryManager.html" title="Gestiona el inventario de componentes y su interacción con la base de datos.">InventoryManager</a>. </p>
+<p>Inicializa el gestor de inventario y la conexión con la base de datos. </p>
 
 </div>
 </div>
@@ -171,6 +192,15 @@ Atributos privados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Agrega un componente al inventario. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component</td><td>Componente a agregar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si el componente se agrega correctamente, false en caso contrario. </dd></dl>
+
 </div>
 </div>
 <a id="a531ceb0d6572476fdd7c177d0fc92ca9"></a>
@@ -188,6 +218,15 @@ Atributos privados</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Busca un componente en el inventario por su ID. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID del componente a buscar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Puntero al componente encontrado, o nullptr si no existe. </dd></dl>
 
 </div>
 </div>
@@ -207,6 +246,15 @@ Atributos privados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Busca componentes en el inventario por su ubicación. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">location</td><td>Ubicación del componente a buscar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Vector con los componentes que coinciden con la ubicación. </dd></dl>
+
 </div>
 </div>
 <a id="a1ee264f0fef051f2d4dd412f040d177c"></a>
@@ -224,6 +272,15 @@ Atributos privados</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Busca componentes en el inventario por su nombre. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Nombre del componente a buscar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Vector con los componentes que coinciden con el nombre. </dd></dl>
 
 </div>
 </div>
@@ -243,6 +300,15 @@ Atributos privados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Busca componentes en el inventario por su tipo. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>Tipo del componente a buscar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Vector con los componentes que coinciden con el tipo. </dd></dl>
+
 </div>
 </div>
 <a id="a6c40450392e097cd28a5e65710147109"></a>
@@ -259,6 +325,9 @@ Atributos privados</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Obtiene todos los componentes del inventario. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Vector con todos los componentes en memoria. </dd></dl>
 
 </div>
 </div>
@@ -278,6 +347,15 @@ Atributos privados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Obtiene los componentes con bajo stock. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">threshold</td><td>Umbral de stock bajo (por defecto es 5). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Vector con los componentes cuyo stock es menor o igual al umbral. </dd></dl>
+
 </div>
 </div>
 <a id="a5c29938c363e94cbcc3d8520127b1d8d"></a>
@@ -294,6 +372,9 @@ Atributos privados</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Carga los componentes desde la base de datos al inventario. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>true si los componentes se cargan correctamente, false en caso contrario. </dd></dl>
 
 </div>
 </div>
@@ -313,6 +394,15 @@ Atributos privados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Elimina un componente del inventario por su ID. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID del componente a eliminar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si el componente se elimina correctamente, false en caso contrario. </dd></dl>
+
 </div>
 </div>
 <a id="a8f45f89751b37418e8b116ab51b0ac68"></a>
@@ -329,6 +419,9 @@ Atributos privados</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Guarda los componentes del inventario en la base de datos. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>true si los componentes se guardan correctamente, false en caso contrario. </dd></dl>
 
 </div>
 </div>
@@ -358,6 +451,16 @@ Atributos privados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Actualiza un componente en el inventario. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID del componente a actualizar. </td></tr>
+    <tr><td class="paramname">component</td><td>Componente con los datos actualizados. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si el componente se actualiza correctamente, false en caso contrario. </dd></dl>
+
 </div>
 </div>
 <h2 class="groupheader">Documentación de los datos miembro</h2>
@@ -380,6 +483,7 @@ Atributos privados</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Vector que almacena los componentes en memoria. </p>
 
 </div>
 </div>
@@ -402,6 +506,7 @@ Atributos privados</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Gestor de la base de datos para operaciones de persistencia. </p>
 
 </div>
 </div>

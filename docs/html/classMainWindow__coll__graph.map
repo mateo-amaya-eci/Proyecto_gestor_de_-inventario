@@ -1,6 +1,6 @@
 <map id="MainWindow" name="MainWindow">
-<area shape="rect" id="node1" title=" " alt="" coords="31,184,138,211"/>
+<area shape="rect" id="node1" title="Representa la ventana principal de la aplicación de gestión de inventario." alt="" coords="31,184,138,211"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,95,121,121"/>
-<area shape="rect" id="node3" href="$classInventoryManager.html" title=" " alt="" coords="146,95,287,121"/>
-<area shape="rect" id="node4" href="$classDatabaseManager.html" title=" " alt="" coords="146,5,287,32"/>
+<area shape="rect" id="node3" href="$classInventoryManager.html" title="Gestiona el inventario de componentes y su interacción con la base de datos." alt="" coords="146,95,287,121"/>
+<area shape="rect" id="node4" href="$classDatabaseManager.html" title="Gestiona la conexión y operaciones con la base de datos SQLite." alt="" coords="146,5,287,32"/>
 </map>

@@ -91,31 +91,45 @@ $(document).ready(function(){initNavTree('classDatabaseManager.html',''); initRe
 </div><!--header-->
 <div class="contents">
 
+<p>Gestiona la conexión y operaciones con la base de datos SQLite.  
+ <a href="classDatabaseManager.html#details">Más...</a></p>
+
 <p><code>#include &lt;<a class="el" href="DatabaseManager_8h_source.html">DatabaseManager.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Métodos públicos</h2></td></tr>
 <tr class="memitem:ad30427087c5f294073f8bc369b4a0a02"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ad30427087c5f294073f8bc369b4a0a02">DatabaseManager</a> (std::string path=&quot;inventory.db&quot;)</td></tr>
+<tr class="memdesc:ad30427087c5f294073f8bc369b4a0a02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor de la clase <a class="el" href="classDatabaseManager.html" title="Gestiona la conexión y operaciones con la base de datos SQLite.">DatabaseManager</a>.  <a href="classDatabaseManager.html#ad30427087c5f294073f8bc369b4a0a02">Más...</a><br /></td></tr>
 <tr class="separator:ad30427087c5f294073f8bc369b4a0a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9b3a5da1e04fbb00faf8a034da1d063"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ae9b3a5da1e04fbb00faf8a034da1d063">~DatabaseManager</a> ()</td></tr>
+<tr class="memdesc:ae9b3a5da1e04fbb00faf8a034da1d063"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor de la clase <a class="el" href="classDatabaseManager.html" title="Gestiona la conexión y operaciones con la base de datos SQLite.">DatabaseManager</a>.  <a href="classDatabaseManager.html#ae9b3a5da1e04fbb00faf8a034da1d063">Más...</a><br /></td></tr>
 <tr class="separator:ae9b3a5da1e04fbb00faf8a034da1d063"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf0518515ed9ec59c91bd4d3a39f7319"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#abf0518515ed9ec59c91bd4d3a39f7319">openDatabase</a> ()</td></tr>
+<tr class="memdesc:abf0518515ed9ec59c91bd4d3a39f7319"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abre la conexión con la base de datos.  <a href="classDatabaseManager.html#abf0518515ed9ec59c91bd4d3a39f7319">Más...</a><br /></td></tr>
 <tr class="separator:abf0518515ed9ec59c91bd4d3a39f7319"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad95de729a1eba5e3dd35a8df0fb87f37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ad95de729a1eba5e3dd35a8df0fb87f37">closeDatabase</a> ()</td></tr>
+<tr class="memdesc:ad95de729a1eba5e3dd35a8df0fb87f37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cierra la conexión con la base de datos.  <a href="classDatabaseManager.html#ad95de729a1eba5e3dd35a8df0fb87f37">Más...</a><br /></td></tr>
 <tr class="separator:ad95de729a1eba5e3dd35a8df0fb87f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8c802b566ce699996fa1264dc0d79c9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ad8c802b566ce699996fa1264dc0d79c9">createTable</a> ()</td></tr>
+<tr class="memdesc:ad8c802b566ce699996fa1264dc0d79c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea la tabla de componentes en la base de datos.  <a href="classDatabaseManager.html#ad8c802b566ce699996fa1264dc0d79c9">Más...</a><br /></td></tr>
 <tr class="separator:ad8c802b566ce699996fa1264dc0d79c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a075daa937e364098e1e490b28fb9a8ee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a075daa937e364098e1e490b28fb9a8ee">insertComponent</a> (const <a class="el" href="classComponent.html">Component</a> &amp;component)</td></tr>
+<tr class="memdesc:a075daa937e364098e1e490b28fb9a8ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserta un componente en la base de datos.  <a href="classDatabaseManager.html#a075daa937e364098e1e490b28fb9a8ee">Más...</a><br /></td></tr>
 <tr class="separator:a075daa937e364098e1e490b28fb9a8ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5e6986d9d1317af0fe8d90d8ab3ecdb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ab5e6986d9d1317af0fe8d90d8ab3ecdb">deleteComponent</a> (int id)</td></tr>
+<tr class="memdesc:ab5e6986d9d1317af0fe8d90d8ab3ecdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elimina un componente de la base de datos por su ID.  <a href="classDatabaseManager.html#ab5e6986d9d1317af0fe8d90d8ab3ecdb">Más...</a><br /></td></tr>
 <tr class="separator:ab5e6986d9d1317af0fe8d90d8ab3ecdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade951f0e1c52117ce0bc510427a0b52e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ade951f0e1c52117ce0bc510427a0b52e">updateComponent</a> (const <a class="el" href="classComponent.html">Component</a> &amp;component)</td></tr>
+<tr class="memdesc:ade951f0e1c52117ce0bc510427a0b52e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza un componente en la base de datos.  <a href="classDatabaseManager.html#ade951f0e1c52117ce0bc510427a0b52e">Más...</a><br /></td></tr>
 <tr class="separator:ade951f0e1c52117ce0bc510427a0b52e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a025bb3a8df0f002b5fba04e713742ade"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a025bb3a8df0f002b5fba04e713742ade">selectAllComponents</a> ()</td></tr>
+<tr class="memdesc:a025bb3a8df0f002b5fba04e713742ade"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selecciona todos los componentes de la base de datos.  <a href="classDatabaseManager.html#a025bb3a8df0f002b5fba04e713742ade">Más...</a><br /></td></tr>
 <tr class="separator:a025bb3a8df0f002b5fba04e713742ade"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48e397d0dea2e34121e4317e0f2dec67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classComponent.html">Component</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a48e397d0dea2e34121e4317e0f2dec67">selectComponentById</a> (int id)</td></tr>
+<tr class="memdesc:a48e397d0dea2e34121e4317e0f2dec67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selecciona un componente de la base de datos por su ID.  <a href="classDatabaseManager.html#a48e397d0dea2e34121e4317e0f2dec67">Más...</a><br /></td></tr>
 <tr class="separator:a48e397d0dea2e34121e4317e0f2dec67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4c4c07e09facf5335142d580df00054"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ab4c4c07e09facf5335142d580df00054">searchComponents</a> (std::string keyword)</td></tr>
+<tr class="memdesc:ab4c4c07e09facf5335142d580df00054"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busca componentes en la base de datos que coincidan con una palabra clave.  <a href="classDatabaseManager.html#ab4c4c07e09facf5335142d580df00054">Más...</a><br /></td></tr>
 <tr class="separator:ab4c4c07e09facf5335142d580df00054"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -125,7 +139,10 @@ Atributos privados</h2></td></tr>
 <tr class="memitem:a2973954fb8d72a5bc1e0e8dc82d825c0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a2973954fb8d72a5bc1e0e8dc82d825c0">dbPath</a></td></tr>
 <tr class="separator:a2973954fb8d72a5bc1e0e8dc82d825c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Documentación del constructor y destructor</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Gestiona la conexión y operaciones con la base de datos SQLite. </p>
+<p>La clase <a class="el" href="classDatabaseManager.html" title="Gestiona la conexión y operaciones con la base de datos SQLite.">DatabaseManager</a> proporciona métodos para interactuar con la base de datos, incluyendo operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para los componentes. </p>
+</div><h2 class="groupheader">Documentación del constructor y destructor</h2>
 <a id="ad30427087c5f294073f8bc369b4a0a02"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad30427087c5f294073f8bc369b4a0a02">&#9670;&nbsp;</a></span>DatabaseManager()</h2>
 
@@ -141,6 +158,15 @@ Atributos privados</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Constructor de la clase <a class="el" href="classDatabaseManager.html" title="Gestiona la conexión y operaciones con la base de datos SQLite.">DatabaseManager</a>. </p>
+<p>Inicializa el gestor de base de datos con la ruta especificada.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Ruta del archivo de la base de datos. Por defecto es "inventory.db". </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -158,6 +184,9 @@ Atributos privados</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Destructor de la clase <a class="el" href="classDatabaseManager.html" title="Gestiona la conexión y operaciones con la base de datos SQLite.">DatabaseManager</a>. </p>
+<p>Cierra la conexión con la base de datos si está abierta. </p>
 
 </div>
 </div>
@@ -177,6 +206,8 @@ Atributos privados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Cierra la conexión con la base de datos. </p>
+
 </div>
 </div>
 <a id="ad8c802b566ce699996fa1264dc0d79c9"></a>
@@ -193,6 +224,9 @@ Atributos privados</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Crea la tabla de componentes en la base de datos. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>true si la tabla se crea correctamente, false en caso contrario. </dd></dl>
 
 </div>
 </div>
@@ -212,6 +246,15 @@ Atributos privados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Elimina un componente de la base de datos por su ID. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID del componente a eliminar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si el componente se elimina correctamente, false en caso contrario. </dd></dl>
+
 </div>
 </div>
 <a id="a075daa937e364098e1e490b28fb9a8ee"></a>
@@ -230,6 +273,15 @@ Atributos privados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Inserta un componente en la base de datos. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component</td><td>Componente a insertar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si el componente se inserta correctamente, false en caso contrario. </dd></dl>
+
 </div>
 </div>
 <a id="abf0518515ed9ec59c91bd4d3a39f7319"></a>
@@ -246,6 +298,9 @@ Atributos privados</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Abre la conexión con la base de datos. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>true si la conexión se abre correctamente, false en caso contrario. </dd></dl>
 
 </div>
 </div>
@@ -265,6 +320,15 @@ Atributos privados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Busca componentes en la base de datos que coincidan con una palabra clave. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">keyword</td><td>Palabra clave para buscar en los componentes. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Vector con los componentes que coinciden con la palabra clave. </dd></dl>
+
 </div>
 </div>
 <a id="a025bb3a8df0f002b5fba04e713742ade"></a>
@@ -281,6 +345,9 @@ Atributos privados</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Selecciona todos los componentes de la base de datos. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Vector con todos los componentes almacenados en la base de datos. </dd></dl>
 
 </div>
 </div>
@@ -300,6 +367,15 @@ Atributos privados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Selecciona un componente de la base de datos por su ID. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID del componente a seleccionar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Componente con el ID especificado, o un objeto vacío si no se encuentra. </dd></dl>
+
 </div>
 </div>
 <a id="ade951f0e1c52117ce0bc510427a0b52e"></a>
@@ -317,6 +393,15 @@ Atributos privados</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Actualiza un componente en la base de datos. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component</td><td>Componente con los datos actualizados. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si el componente se actualiza correctamente, false en caso contrario. </dd></dl>
 
 </div>
 </div>
@@ -340,6 +425,7 @@ Atributos privados</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Puntero a la base de datos SQLite. </p>
 
 </div>
 </div>
@@ -362,6 +448,7 @@ Atributos privados</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Ruta del archivo de la base de datos. </p>
 
 </div>
 </div>

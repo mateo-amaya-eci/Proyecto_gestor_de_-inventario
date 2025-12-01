@@ -1,4 +1,4 @@
 <map id="InventoryManager" name="InventoryManager">
-<area shape="rect" id="node1" title=" " alt="" coords="5,95,147,121"/>
-<area shape="rect" id="node2" href="$classDatabaseManager.html" title=" " alt="" coords="5,5,147,32"/>
+<area shape="rect" id="node1" title="Gestiona el inventario de componentes y su interacción con la base de datos." alt="" coords="5,95,147,121"/>
+<area shape="rect" id="node2" href="$classDatabaseManager.html" title="Gestiona la conexión y operaciones con la base de datos SQLite." alt="" coords="5,5,147,32"/>
 </map>
