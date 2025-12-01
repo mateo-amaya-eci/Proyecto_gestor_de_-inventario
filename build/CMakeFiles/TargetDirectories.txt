@@ -1,0 +1,3 @@
+/home/mateo_amaya/alse/ProyectoInventario/build/CMakeFiles/rebuild_cache.dir
+/home/mateo_amaya/alse/ProyectoInventario/build/CMakeFiles/edit_cache.dir
+/home/mateo_amaya/alse/ProyectoInventario/build/CMakeFiles/InventoryManager.dir
