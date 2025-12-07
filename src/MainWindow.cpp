@@ -18,7 +18,9 @@
 #include <QSpinBox>
 #include <QDesktopServices>
 #include <QUrl>
-
+#include <QDialog>
+#include <QVBoxLayout>
+#include <QMessageBox>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), selectedId(-1), dbManager(nullptr), inventoryManager(nullptr)
 {

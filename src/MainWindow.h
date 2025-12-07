@@ -15,7 +15,9 @@
 #include "Component.h"
 #include "DatabaseManager.h"
 #include "InventoryManager.h"
-
+#include <QDialog>
+#include <QVBoxLayout>
+#include <QMessageBox>
 class MainWindow : public QMainWindow
 {
     Q_OBJECT  // Macro necesaria para señales y slots de Qt
