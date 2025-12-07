@@ -1,49 +1,48 @@
 #include "InventoryManager.h"
-#include <algorithm>
 
-InventoryManager::InventoryManager() : dbManager("inventory.db") {
-    dbManager.openDatabase();
-    loadFromDatabase();
+InventoryManager::InventoryManager() : dbManager(nullptr) {}
+
+InventoryManager::InventoryManager(DatabaseManager* dbManager) 
+    : dbManager(dbManager) {}
+
+InventoryManager::~InventoryManager() {
+    // No eliminamos dbManager aquí, ya que es manejado externamente
 }
 
 bool InventoryManager::addComponent(const Component& component) {
-    // Agregar a la base de datos
-    if (dbManager.insertComponent(component)) {
-        // Recargar desde BD para obtener el ID correcto
-        loadFromDatabase();
-        return true;
-    }
-    return false;
+    if (!dbManager) return false;
+    return dbManager->addComponent(component);
 }
 
-bool InventoryManager::removeComponent(int id) {
-    if (dbManager.deleteComponent(id)) {
-        // Eliminar del vector local
-        components.erase(
-            std::remove_if(components.begin(), components.end(),
-                [id](const Component& comp) { return comp.getId() == id; }),
-            components.end()
-        );
-        return true;
-    }
-    return false;
+bool InventoryManager::updateComponent(const Component& component) {
+    if (!dbManager) return false;
+    return dbManager->updateComponent(component);
+}
+
+bool InventoryManager::deleteComponent(int id) {
+    if (!dbManager) return false;
+    return dbManager->deleteComponent(id);
 }
 
 std::vector<Component> InventoryManager::getAllComponents() {
-    return components;
+    if (!dbManager) return {};
+    return dbManager->getAllComponents();
+}
+
+std::vector<Component> InventoryManager::searchComponents(const std::string& keyword) {
+    if (!dbManager) return {};
+    return dbManager->searchComponents(keyword);
 }
 
 std::vector<Component> InventoryManager::getLowStockComponents(int threshold) {
-    std::vector<Component> lowStock;
-    for (const auto& comp : components) {
-        if (comp.getQuantity() <= threshold) {
-            lowStock.push_back(comp);
-        }
-    }
-    return lowStock;
+    if (!dbManager) return {};
+    return dbManager->getLowStockComponents(threshold);
 }
 
-bool InventoryManager::loadFromDatabase() {
-    components = dbManager.selectAllComponents();
-    return true;
+void InventoryManager::setDatabaseManager(DatabaseManager* dbManager) {
+    this->dbManager = dbManager;
+}
+
+DatabaseManager* InventoryManager::getDatabaseManager() const {
+    return dbManager;
 }

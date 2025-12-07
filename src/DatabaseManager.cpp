@@ -1,73 +1,95 @@
 #include "DatabaseManager.h"
 #include <iostream>
+#include <algorithm>
 
-// Callback para consultas SELECT
-static int selectCallback(void* data, int argc, char** argv, char** azColName) {
-    std::vector<Component>* components = static_cast<std::vector<Component>*>(data);
-    
-    Component comp;
-    comp.setId(std::stoi(argv[0]));
-    comp.setName(argv[1] ? argv[1] : "");
-    comp.setType(argv[2] ? argv[2] : "");
-    comp.setQuantity(std::stoi(argv[3]));
-    comp.setLocation(argv[4] ? argv[4] : "");
-    comp.setPurchaseDate(argv[5] ? argv[5] : "");
-    
-    components->push_back(comp);
-    return 0;
-}
+DatabaseManager::DatabaseManager() : db(nullptr), databasePath("inventory.db") {}
 
-DatabaseManager::DatabaseManager(std::string path) : db(nullptr), dbPath(path) {}
+DatabaseManager::DatabaseManager(const std::string& path) 
+    : db(nullptr), databasePath(path) {}
 
 DatabaseManager::~DatabaseManager() {
-    closeDatabase();
+    disconnect();
 }
 
-bool DatabaseManager::openDatabase() {
-    int rc = sqlite3_open(dbPath.c_str(), &db);
-    if (rc) {
-        std::cerr << "Error abriendo BD: " << sqlite3_errmsg(db) << std::endl;
+bool DatabaseManager::connect() {
+    return connect(databasePath);
+}
+
+bool DatabaseManager::connect(const std::string& path) {
+    if (isConnected()) {
+        disconnect();
+    }
+    
+    int rc = sqlite3_open(path.c_str(), &db);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error al abrir la base de datos: " << sqlite3_errmsg(db) << std::endl;
         return false;
     }
-    return createTable();
+    
+    // Inicializar la base de datos
+    return initializeDatabase();
 }
 
-void DatabaseManager::closeDatabase() {
+void DatabaseManager::disconnect() {
     if (db) {
         sqlite3_close(db);
         db = nullptr;
     }
 }
 
-bool DatabaseManager::createTable() {
-    const char* sql = "CREATE TABLE IF NOT EXISTS componentes ("
-                      "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                      "name TEXT NOT NULL, "
-                      "type TEXT NOT NULL, "
-                      "quantity INTEGER NOT NULL, "
-                      "location TEXT NOT NULL, "
-                      "purchase_date TEXT NOT NULL);";
+bool DatabaseManager::isConnected() const {
+    return db != nullptr;
+}
+
+bool DatabaseManager::initializeDatabase() {
+    if (!isConnected()) return false;
     
-    char* errorMsg = nullptr;
-    int rc = sqlite3_exec(db, sql, nullptr, nullptr, &errorMsg);
+    std::string createTableSQL = R"(
+        CREATE TABLE IF NOT EXISTS components (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            type TEXT NOT NULL,
+            quantity INTEGER NOT NULL DEFAULT 0,
+            location TEXT,
+            purchase_date INTEGER
+        );
+        
+        CREATE INDEX IF NOT EXISTS idx_name ON components(name);
+        CREATE INDEX IF NOT EXISTS idx_type ON components(type);
+        CREATE INDEX IF NOT EXISTS idx_location ON components(location);
+    )";
+    
+    return executeQuery(createTableSQL);
+}
+
+bool DatabaseManager::executeQuery(const std::string& query) {
+    if (!isConnected()) return false;
+    
+    char* errorMessage = nullptr;
+    int rc = sqlite3_exec(db, query.c_str(), nullptr, nullptr, &errorMessage);
     
     if (rc != SQLITE_OK) {
-        std::cerr << "Error creando tabla: " << errorMsg << std::endl;
-        sqlite3_free(errorMsg);
+        std::cerr << "Error en consulta SQL: " << errorMessage << std::endl;
+        sqlite3_free(errorMessage);
         return false;
     }
+    
     return true;
 }
 
-bool DatabaseManager::insertComponent(const Component& component) {
-    const char* sql = "INSERT INTO componentes (name, type, quantity, location, purchase_date) "
-                      "VALUES (?, ?, ?, ?, ?);";
+bool DatabaseManager::addComponent(const Component& component) {
+    if (!isConnected()) return false;
+    
+    std::string sql = R"(
+        INSERT INTO components (name, type, quantity, location, purchase_date)
+        VALUES (?, ?, ?, ?, ?)
+    )";
     
     sqlite3_stmt* stmt;
-    int rc = sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr);
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
     
     if (rc != SQLITE_OK) {
-        std::cerr << "Error preparando statement: " << sqlite3_errmsg(db) << std::endl;
+        std::cerr << "Error al preparar consulta: " << sqlite3_errmsg(db) << std::endl;
         return false;
     }
     
@@ -75,7 +97,7 @@ bool DatabaseManager::insertComponent(const Component& component) {
     sqlite3_bind_text(stmt, 2, component.getType().c_str(), -1, SQLITE_STATIC);
     sqlite3_bind_int(stmt, 3, component.getQuantity());
     sqlite3_bind_text(stmt, 4, component.getLocation().c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_text(stmt, 5, component.getPurchaseDate().c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_int64(stmt, 5, static_cast<sqlite3_int64>(component.getPurchaseDate()));
     
     rc = sqlite3_step(stmt);
     sqlite3_finalize(stmt);
@@ -83,17 +105,4 @@ bool DatabaseManager::insertComponent(const Component& component) {
     return rc == SQLITE_DONE;
 }
 
-std::vector<Component> DatabaseManager::selectAllComponents() {
-    std::vector<Component> components;
-    const char* sql = "SELECT * FROM componentes;";
-    
-    char* errorMsg = nullptr;
-    int rc = sqlite3_exec(db, sql, selectCallback, &components, &errorMsg);
-    
-    if (rc != SQLITE_OK) {
-        std::cerr << "Error en SELECT: " << errorMsg << std::endl;
-        sqlite3_free(errorMsg);
-    }
-    
-    return components;
-}
+// Los demás métodos los implementaremos después

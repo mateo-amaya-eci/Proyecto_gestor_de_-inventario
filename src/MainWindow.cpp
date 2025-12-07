@@ -4,13 +4,18 @@
 #include <QFormLayout>
 #include <QHeaderView>
 #include <QFileDialog>
+#include <QGroupBox>
 #include <ctime>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), selectedId(-1)
+    : QMainWindow(parent), selectedId(-1), dbManager(nullptr), inventoryManager(nullptr)
 {
     // Inicializar managers
     dbManager = new DatabaseManager();
+    if (!dbManager->connect()) {
+        QMessageBox::critical(this, "Error", "No se pudo conectar a la base de datos");
+    }
+    
     inventoryManager = new InventoryManager(dbManager);
     
     setupUI();
@@ -27,178 +32,162 @@ MainWindow::~MainWindow()
     delete dbManager;
 }
 
-void MainWindow::setupUI()
-{
-    // Crear widget central y layout principal
-    QWidget *centralWidget = new QWidget(this);
-    QVBoxLayout *mainLayout = new QVBoxLayout(centralWidget);
-    
-    // Crear tabla
-    tableWidget = new QTableWidget(this);
-    tableWidget->setColumnCount(6);
-    QStringList headers = {"ID", "Nombre", "Tipo", "Cantidad", "Ubicación", "Fecha Compra"};
-    tableWidget->setHorizontalHeaderLabels(headers);
-    tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
-    tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
-    
-    // Formulario
-    QGroupBox *formGroup = new QGroupBox("Componente", this);
-    QFormLayout *formLayout = new QFormLayout(formGroup);
-    
-    nameEdit = new QLineEdit(this);
-    typeCombo = new QComboBox(this);
-    typeCombo->addItems({"Resistor", "Capacitor", "Transistor", "LED", "Microcontrolador", "Sensor", "Cable", "Otro"});
-    quantitySpin = new QSpinBox(this);
-    quantitySpin->setMinimum(0);
-    quantitySpin->setMaximum(10000);
-    locationEdit = new QLineEdit(this);
-    dateEdit = new QDateEdit(this);
-    dateEdit->setDate(QDate::currentDate());
-    dateEdit->setCalendarPopup(true);
-    
-    formLayout->addRow("Nombre:", nameEdit);
-    formLayout->addRow("Tipo:", typeCombo);
-    formLayout->addRow("Cantidad:", quantitySpin);
-    formLayout->addRow("Ubicación:", locationEdit);
-    formLayout->addRow("Fecha Compra:", dateEdit);
-    
-    // Botones
-    QHBoxLayout *buttonLayout = new QHBoxLayout();
-    
-    addButton = new QPushButton("Agregar", this);
-    updateButton = new QPushButton("Actualizar", this);
-    deleteButton = new QPushButton("Eliminar", this);
-    reportButton = new QPushButton("Generar Reporte", this);
-    
-    updateButton->setEnabled(false);
-    deleteButton->setEnabled(false);
-    
-    buttonLayout->addWidget(addButton);
-    buttonLayout->addWidget(updateButton);
-    buttonLayout->addWidget(deleteButton);
-    buttonLayout->addWidget(reportButton);
-    buttonLayout->addStretch();
-    
-    // Búsqueda
-    QHBoxLayout *searchLayout = new QHBoxLayout();
-    searchEdit = new QLineEdit(this);
-    searchEdit->setPlaceholderText("Buscar por nombre...");
-    searchButton = new QPushButton("Buscar", this);
-    
-    searchLayout->addWidget(new QLabel("Buscar:", this));
-    searchLayout->addWidget(searchEdit);
-    searchLayout->addWidget(searchButton);
-    
-    // Estado
-    statusLabel = new QLabel("Listo", this);
-    
-    // Conectar botones
-    connect(addButton, &QPushButton::clicked, this, &MainWindow::addComponent);
-    connect(updateButton, &QPushButton::clicked, this, &MainWindow::updateComponent);
-    connect(deleteButton, &QPushButton::clicked, this, &MainWindow::deleteComponent);
-    connect(searchButton, &QPushButton::clicked, this, &MainWindow::searchComponents);
-    connect(reportButton, &QPushButton::clicked, this, &MainWindow::generateReport);
-    
-    // Agregar widgets al layout principal
-    mainLayout->addWidget(tableWidget);
-    mainLayout->addWidget(formGroup);
-    mainLayout->addLayout(buttonLayout);
-    mainLayout->addLayout(searchLayout);
-    mainLayout->addWidget(statusLabel);
-    
-    setCentralWidget(centralWidget);
-    setWindowTitle("Gestor de Inventario - Hogar/Laboratorio");
-    resize(800, 600);
-}
-
 void MainWindow::loadComponents()
 {
-    // Implementar carga de componentes desde InventoryManager
+    tableWidget->setRowCount(0);
+    
+    auto components = inventoryManager->getAllComponents();
+    for (const auto& component : components) {
+        int row = tableWidget->rowCount();
+        tableWidget->insertRow(row);
+        
+        tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(component.getId())));
+        tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(component.getName())));
+        tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(component.getType())));
+        tableWidget->setItem(row, 3, new QTableWidgetItem(QString::number(component.getQuantity())));
+        tableWidget->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(component.getLocation())));
+        tableWidget->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(component.getPurchaseDateString())));
+    }
+    
+    statusLabel->setText(QString("Cargados %1 componentes").arg(components.size()));
+    checkLowStock();
 }
 
 void MainWindow::addComponent()
 {
-    // Implementar agregar componente
+    Component component = getFormData();
+    if (component.getName().empty()) {
+        QMessageBox::warning(this, "Advertencia", "El nombre es requerido");
+        return;
+    }
+    
+    if (inventoryManager->addComponent(component)) {
+        clearForm();
+        loadComponents();
+        statusLabel->setText("Componente agregado exitosamente");
+    } else {
+        QMessageBox::critical(this, "Error", "No se pudo agregar el componente");
+    }
 }
 
 void MainWindow::updateComponent()
 {
-    // Implementar actualizar componente
+    if (selectedId == -1) return;
+    
+    Component component = getFormData();
+    component.setId(selectedId);
+    
+    if (inventoryManager->updateComponent(component)) {
+        loadComponents();
+        statusLabel->setText("Componente actualizado exitosamente");
+    } else {
+        QMessageBox::critical(this, "Error", "No se pudo actualizar el componente");
+    }
 }
 
 void MainWindow::deleteComponent()
 {
-    // Implementar eliminar componente
+    if (selectedId == -1) return;
+    
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Confirmar", 
+                                  "¿Está seguro de eliminar este componente?",
+                                  QMessageBox::Yes | QMessageBox::No);
+    
+    if (reply == QMessageBox::Yes) {
+        if (inventoryManager->deleteComponent(selectedId)) {
+            clearForm();
+            loadComponents();
+            statusLabel->setText("Componente eliminado exitosamente");
+        } else {
+            QMessageBox::critical(this, "Error", "No se pudo eliminar el componente");
+        }
+    }
 }
 
 void MainWindow::searchComponents()
 {
-    // Implementar búsqueda
+    std::string keyword = searchEdit->text().toStdString();
+    if (keyword.empty()) {
+        loadComponents();
+        return;
+    }
+    
+    tableWidget->setRowCount(0);
+    auto components = inventoryManager->searchComponents(keyword);
+    
+    for (const auto& component : components) {
+        int row = tableWidget->rowCount();
+        tableWidget->insertRow(row);
+        
+        tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(component.getId())));
+        tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(component.getName())));
+        tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(component.getType())));
+        tableWidget->setItem(row, 3, new QTableWidgetItem(QString::number(component.getQuantity())));
+        tableWidget->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(component.getLocation())));
+        tableWidget->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(component.getPurchaseDateString())));
+    }
+    
+    statusLabel->setText(QString("Encontrados %1 componentes").arg(components.size()));
 }
 
 void MainWindow::onTableSelectionChanged()
 {
-    // Implementar manejo de selección
+    QList<QTableWidgetItem*> selectedItems = tableWidget->selectedItems();
+    if (selectedItems.isEmpty()) return;
+    
+    int row = selectedItems.first()->row();
+    int id = tableWidget->item(row, 0)->text().toInt();
+    
+    // Buscar el componente por ID
+    auto components = inventoryManager->getAllComponents();
+    auto it = std::find_if(components.begin(), components.end(),
+                          [id](const Component& c) { return c.getId() == id; });
+    
+    if (it != components.end()) {
+        populateForm(*it);
+    }
 }
 
 void MainWindow::generateReport()
 {
-    // Implementar generación de reportes
+    QString fileName = QFileDialog::getSaveFileName(this,
+                                                    "Guardar Reporte",
+                                                    QDir::homePath() + "/reporte_inventario.csv",
+                                                    "CSV Files (*.csv);;All Files (*)");
+    
+    if (fileName.isEmpty()) return;
+    
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QMessageBox::critical(this, "Error", "No se pudo abrir el archivo para escritura");
+        return;
+    }
+    
+    QTextStream stream(&file);
+    stream << "ID,Nombre,Tipo,Cantidad,Ubicacion,Fecha Compra\n";
+    
+    auto components = inventoryManager->getAllComponents();
+    for (const auto& component : components) {
+        stream << component.getId() << ","
+               << QString::fromStdString(component.getName()) << ","
+               << QString::fromStdString(component.getType()) << ","
+               << component.getQuantity() << ","
+               << QString::fromStdString(component.getLocation()) << ","
+               << QString::fromStdString(component.getPurchaseDateString()) << "\n";
+    }
+    
+    file.close();
+    statusLabel->setText(QString("Reporte generado: %1").arg(fileName));
 }
 
 void MainWindow::checkLowStock()
 {
-    // Implementar verificación de stock bajo
-}
-
-void MainWindow::clearForm()
-{
-    nameEdit->clear();
-    typeCombo->setCurrentIndex(0);
-    quantitySpin->setValue(0);
-    locationEdit->clear();
-    dateEdit->setDate(QDate::currentDate());
-    selectedId = -1;
-    updateButton->setEnabled(false);
-    deleteButton->setEnabled(false);
-}
-
-void MainWindow::populateForm(const Component& component)
-{
-    nameEdit->setText(QString::fromStdString(component.getName()));
-    
-    // Buscar el tipo en el combo
-    int index = typeCombo->findText(QString::fromStdString(component.getType()));
-    if (index != -1) typeCombo->setCurrentIndex(index);
-    
-    quantitySpin->setValue(component.getQuantity());
-    locationEdit->setText(QString::fromStdString(component.getLocation()));
-    
-    // Convertir time_t a QDate
-    std::time_t purchaseTime = component.getPurchaseDate();
-    std::tm* timeInfo = std::localtime(&purchaseTime);
-    QDate date(timeInfo->tm_year + 1900, timeInfo->tm_mon + 1, timeInfo->tm_mday);
-    dateEdit->setDate(date);
-    
-    selectedId = component.getId();
-    updateButton->setEnabled(true);
-    deleteButton->setEnabled(true);
-}
-
-Component MainWindow::getFormData() const
-{
-    std::string name = nameEdit->text().toStdString();
-    std::string type = typeCombo->currentText().toStdString();
-    int quantity = quantitySpin->value();
-    std::string location = locationEdit->text().toStdString();
-    
-    // Convertir QDate a time_t
-    QDate qDate = dateEdit->date();
-    std::tm timeInfo = {};
-    timeInfo.tm_year = qDate.year() - 1900;
-    timeInfo.tm_mon = qDate.month() - 1;
-    timeInfo.tm_mday = qDate.day();
-    std::time_t purchaseDate = std::mktime(&timeInfo);
-    
-    return Component(selectedId, name, type, quantity, location, purchaseDate);
+    auto lowStock = inventoryManager->getLowStockComponents();
+    if (!lowStock.empty()) {
+        statusLabel->setText(QString("¡ATENCIÓN! Hay %1 componentes con stock bajo").arg(lowStock.size()));
+        statusLabel->setStyleSheet("color: red; font-weight: bold;");
+    } else {
+        statusLabel->setStyleSheet("");
+    }
 }
