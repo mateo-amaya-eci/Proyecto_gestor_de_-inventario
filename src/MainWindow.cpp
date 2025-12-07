@@ -20,6 +20,11 @@ MainWindow::MainWindow(QWidget *parent)
     dbManager = new DatabaseManager();
     if (!dbManager->connect()) {
         QMessageBox::critical(this, "Error", "No se pudo conectar a la base de datos");
+    } else {
+        // DEPURACIÓN: Ver información de la tabla
+        std::cout << "\n=== INICIO DEPURACIÓN ===" << std::endl;
+        dbManager->debugTableInfo();
+        std::cout << "=== FIN DEPURACIÓN INICIAL ===\n" << std::endl;
     }
     
     inventoryManager = new InventoryManager(dbManager);

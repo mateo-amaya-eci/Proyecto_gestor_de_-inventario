@@ -2,6 +2,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cstring>
+#include <iomanip> 
 
 DatabaseManager::DatabaseManager() : db(nullptr), databasePath("inventory.db") {}
 
@@ -188,7 +189,8 @@ std::vector<Component> DatabaseManager::getAllComponents() {
     
     if (!isConnected()) return components;
     
-    std::string sql = "SELECT * FROM components ORDER BY name";
+    // Ser explícito sobre el orden de las columnas
+    std::string sql = "SELECT id, name, type, quantity, location, purchase_date FROM components ORDER BY name";
     
     sqlite3_stmt* stmt;
     int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
@@ -312,7 +314,204 @@ std::vector<std::string> DatabaseManager::getComponentTypes() const {
     sqlite3_finalize(stmt);
     return types;
 }
-
+void DatabaseManager::debugTableInfo() {
+    if (!isConnected()) {
+        std::cout << "DEBUG: No hay conexión a la base de datos" << std::endl;
+        return;
+    }
+    
+    std::cout << "\n=== DEBUG: Información de la tabla components ===" << std::endl;
+    
+    // 1. Ver estructura con PRAGMA table_info
+    std::cout << "\n1. Estructura de la tabla (PRAGMA table_info):" << std::endl;
+    std::string sql = "PRAGMA table_info(components);";
+    sqlite3_stmt* stmt;
+    
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
+        std::cout << std::left << std::setw(5) << "CID" 
+                  << std::setw(15) << "Nombre" 
+                  << std::setw(15) << "Tipo" 
+                  << std::setw(8) << "NotNULL" 
+                  << std::setw(10) << "Default" 
+                  << "PK" << std::endl;
+        std::cout << std::string(60, '-') << std::endl;
+        
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            int cid = sqlite3_column_int(stmt, 0);
+            const char* name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+            const char* type = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+            int notnull = sqlite3_column_int(stmt, 3);
+            const char* dflt_value = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
+            int pk = sqlite3_column_int(stmt, 5);
+            
+            std::cout << std::left << std::setw(5) << cid
+                      << std::setw(15) << (name ? name : "NULL")
+                      << std::setw(15) << (type ? type : "NULL")
+                      << std::setw(8) << notnull
+                      << std::setw(10) << (dflt_value ? dflt_value : "NULL")
+                      << pk << std::endl;
+        }
+        sqlite3_finalize(stmt);
+    } else {
+        std::cerr << "Error al obtener estructura de la tabla: " << sqlite3_errmsg(db) << std::endl;
+    }
+    
+    // 2. Ver esquema completo
+    std::cout << "\n2. Esquema completo de la tabla:" << std::endl;
+    sql = "SELECT sql FROM sqlite_master WHERE type='table' AND name='components';";
+    
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
+        if (sqlite3_step(stmt) == SQLITE_ROW) {
+            const char* createSql = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
+            if (createSql) {
+                std::cout << createSql << std::endl;
+            }
+        }
+        sqlite3_finalize(stmt);
+    }
+    
+    // 3. Ver nombres de columnas y datos
+    std::cout << "\n3. Datos actuales en la tabla:" << std::endl;
+    sql = "SELECT * FROM components;";
+    
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
+        int colCount = sqlite3_column_count(stmt);
+        std::cout << "Número de columnas: " << colCount << std::endl;
+        
+        // Encabezados de columnas
+        std::cout << "\nNombres de columnas:" << std::endl;
+        for (int i = 0; i < colCount; i++) {
+            const char* colName = sqlite3_column_name(stmt, i);
+            std::cout << "  [" << i << "] " << (colName ? colName : "NULL") << std::endl;
+        }
+        
+        // Contar filas
+        int rowCount = 0;
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            rowCount++;
+        }
+        
+        std::cout << "\nNúmero de filas: " << rowCount << std::endl;
+        
+        // Reiniciar para leer datos
+        sqlite3_reset(stmt);
+        
+        // Mostrar datos
+        if (rowCount > 0) {
+            std::cout << "\nContenido de la tabla:" << std::endl;
+            std::cout << std::string(80, '-') << std::endl;
+            
+            // Encabezados
+            for (int i = 0; i < colCount; i++) {
+                const char* colName = sqlite3_column_name(stmt, i);
+                std::cout << std::left << std::setw(20) << (colName ? colName : "NULL");
+            }
+            std::cout << std::endl << std::string(80, '-') << std::endl;
+            
+            // Datos
+            while (sqlite3_step(stmt) == SQLITE_ROW) {
+                for (int i = 0; i < colCount; i++) {
+                    const char* value = reinterpret_cast<const char*>(sqlite3_column_text(stmt, i));
+                    std::cout << std::left << std::setw(20) << (value ? value : "NULL");
+                }
+                std::cout << std::endl;
+            }
+        }
+        
+        sqlite3_finalize(stmt);
+    }
+    
+    // 4. Ver índices
+    std::cout << "\n4. Índices en la tabla:" << std::endl;
+    sql = "SELECT name, sql FROM sqlite_master WHERE type='index' AND tbl_name='components';";
+    
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
+        bool hasIndexes = false;
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            hasIndexes = true;
+            const char* indexName = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
+            const char* indexSql = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+            
+            std::cout << "  Índice: " << (indexName ? indexName : "NULL") << std::endl;
+            std::cout << "  SQL: " << (indexSql ? indexSql : "NULL") << std::endl;
+        }
+        
+        if (!hasIndexes) {
+            std::cout << "  No hay índices definidos" << std::endl;
+        }
+        
+        sqlite3_finalize(stmt);
+    }
+    
+    std::cout << "=== FIN DEBUG ===\n" << std::endl;
+}
+bool DatabaseManager::recreateTable() {
+    if (!isConnected()) return false;
+    
+    std::cout << "\n=== RECREANDO TABLA COMPONENTS ===" << std::endl;
+    
+    // 1. Hacer backup de datos existentes si los hay
+    std::vector<Component> backup;
+    std::string backupSql = "SELECT * FROM components;";
+    sqlite3_stmt* stmt;
+    
+    if (sqlite3_prepare_v2(db, backupSql.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            backup.push_back(createComponentFromRow(stmt));
+        }
+        sqlite3_finalize(stmt);
+        std::cout << "Backup realizado: " << backup.size() << " componentes" << std::endl;
+    }
+    
+    // 2. Eliminar tabla existente
+    if (!executeQuery("DROP TABLE IF EXISTS components;")) {
+        std::cerr << "Error al eliminar tabla" << std::endl;
+        return false;
+    }
+    
+    // 3. Eliminar índices
+    executeQuery("DROP INDEX IF EXISTS idx_name;");
+    executeQuery("DROP INDEX IF EXISTS idx_type;");
+    executeQuery("DROP INDEX IF EXISTS idx_location;");
+    
+    // 4. Crear tabla con orden explícito
+    std::string createTableSQL = R"(
+        CREATE TABLE components (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            type TEXT NOT NULL,
+            quantity INTEGER NOT NULL DEFAULT 0,
+            location TEXT,
+            purchase_date INTEGER
+        );
+    )";
+    
+    if (!executeQuery(createTableSQL)) {
+        std::cerr << "Error al crear tabla" << std::endl;
+        return false;
+    }
+    
+    // 5. Crear índices
+    executeQuery("CREATE INDEX idx_name ON components(name);");
+    executeQuery("CREATE INDEX idx_type ON components(type);");
+    executeQuery("CREATE INDEX idx_location ON components(location);");
+    
+    std::cout << "Tabla recreada exitosamente" << std::endl;
+    
+    // 6. Restaurar datos si los había
+    if (!backup.empty()) {
+        std::cout << "Restaurando " << backup.size() << " componentes..." << std::endl;
+        for (const auto& component : backup) {
+            addComponent(component);
+        }
+        std::cout << "Datos restaurados exitosamente" << std::endl;
+    }
+    
+    // 7. Verificar nueva estructura
+    debugTableInfo();
+    
+    return true;
+}
 Component DatabaseManager::createComponentFromRow(sqlite3_stmt* stmt) {
     // Verificar el orden de las columnas según el CREATE TABLE
     // CREATE TABLE components (

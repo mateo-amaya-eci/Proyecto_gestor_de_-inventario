@@ -36,7 +36,8 @@ public:
     // Métodos utilitarios
     int getComponentCount() const;
     std::vector<std::string> getComponentTypes() const;
-    
+    void debugTableInfo();
+    bool recreateTable(); 
 private:
     Component createComponentFromRow(sqlite3_stmt* stmt);
 };
