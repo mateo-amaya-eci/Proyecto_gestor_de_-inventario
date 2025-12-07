@@ -18,6 +18,7 @@
 #include <QDialog>
 #include <QVBoxLayout>
 #include <QMessageBox>
+#include <QDialogButtonBox>
 class MainWindow : public QMainWindow
 {
     Q_OBJECT  // Macro necesaria para señales y slots de Qt
