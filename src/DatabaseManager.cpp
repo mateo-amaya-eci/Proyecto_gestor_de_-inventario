@@ -314,14 +314,30 @@ std::vector<std::string> DatabaseManager::getComponentTypes() const {
 }
 
 Component DatabaseManager::createComponentFromRow(sqlite3_stmt* stmt) {
-    int id = sqlite3_column_int(stmt, 0);
+    // Verificar el orden de las columnas según el CREATE TABLE
+    // CREATE TABLE components (
+    //     id INTEGER PRIMARY KEY AUTOINCREMENT,        // columna 0
+    //     name TEXT NOT NULL,                         // columna 1  
+    //     type TEXT NOT NULL,                         // columna 2
+    //     quantity INTEGER NOT NULL DEFAULT 0,        // columna 3
+    //     location TEXT,                              // columna 4
+    //     purchase_date INTEGER                       // columna 5
+    // );
     
-    const char* name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-    const char* type = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
-    int quantity = sqlite3_column_int(stmt, 3);
+    int id = sqlite3_column_int(stmt, 0);                    // columna 0: id
     
-    const char* location = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
-    std::time_t purchaseDate = static_cast<std::time_t>(sqlite3_column_int64(stmt, 5));
+    const char* name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));  // columna 1: name
+    const char* type = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));  // columna 2: type
+    int quantity = sqlite3_column_int(stmt, 3);              // columna 3: quantity
+    
+    const char* location = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));  // columna 4: location
+    std::time_t purchaseDate = static_cast<std::time_t>(sqlite3_column_int64(stmt, 5));  // columna 5: purchase_date
+    
+    // DEPURACIÓN: Verificar qué se está leyendo
+    std::cout << "\n=== DEBUG createComponentFromRow ===" << std::endl;
+    std::cout << "Columna 1 (name): " << (name ? std::string(name) : "NULL") << std::endl;
+    std::cout << "Columna 2 (type): " << (type ? std::string(type) : "NULL") << std::endl;
+    std::cout << "Columna 4 (location): " << (location ? std::string(location) : "NULL") << std::endl;
     
     return Component(id,
                      name ? std::string(name) : "",
