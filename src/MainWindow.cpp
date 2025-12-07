@@ -154,37 +154,51 @@ void MainWindow::setupUI()
     timer->start(30000); // Cada 30 segundos
 }
 
+// En la función loadComponents(), modifica la depuración:
 void MainWindow::loadComponents()
 {
     tableWidget->setRowCount(0);
     
     auto components = inventoryManager->getAllComponents();
-    std::cout << "DEBUG - loadComponents: " << components.size() << " componentes" << std::endl;
+    std::cout << "\n=== DEBUG loadComponents ===" << std::endl;
+    std::cout << "Número de componentes: " << components.size() << std::endl;
     
-    for (const auto& component : components) {
+    for (size_t i = 0; i < components.size(); i++) {
+        const auto& component = components[i];
+        std::cout << "\nComponente " << i << ":" << std::endl;
+        std::cout << "  ID: '" << component.getId() << "'" << std::endl;
+        std::cout << "  Nombre: '" << component.getName() << "'" << std::endl;
+        std::cout << "  Tipo: '" << component.getType() << "'" << std::endl;
+        std::cout << "  Cantidad: '" << component.getQuantity() << "'" << std::endl;
+        std::cout << "  Ubicación: '" << component.getLocation() << "'" << std::endl;
+        
         int row = tableWidget->rowCount();
         tableWidget->insertRow(row);
         
-        std::cout << "DEBUG - Component " << row << ":" << std::endl;
-        std::cout << "  ID: " << component.getId() << std::endl;
-        std::cout << "  Nombre: " << component.getName() << std::endl;
-        std::cout << "  Tipo: " << component.getType() << std::endl;
-        std::cout << "  Cantidad: " << component.getQuantity() << std::endl;
-        std::cout << "  Ubicación: " << component.getLocation() << std::endl;
+        // Asegurarnos de que los datos se muestren correctamente
+        QString idStr = QString::number(component.getId());
+        QString nameStr = QString::fromStdString(component.getName());
+        QString typeStr = QString::fromStdString(component.getType());
+        QString quantityStr = QString::number(component.getQuantity());
+        QString locationStr = QString::fromStdString(component.getLocation());
+        QString dateStr = QString::fromStdString(component.getPurchaseDateString());
         
-        // Mostrar datos en la tabla SIN comillas adicionales
-        tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(component.getId())));
-        tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(component.getName())));
-        tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(component.getType())));
+        std::cout << "  Para tabla:" << std::endl;
+        std::cout << "    ID string: '" << idStr.toStdString() << "'" << std::endl;
+        std::cout << "    Nombre string: '" << nameStr.toStdString() << "'" << std::endl;
         
-        QTableWidgetItem *quantityItem = new QTableWidgetItem(QString::number(component.getQuantity()));
+        tableWidget->setItem(row, 0, new QTableWidgetItem(idStr));
+        tableWidget->setItem(row, 1, new QTableWidgetItem(nameStr));
+        tableWidget->setItem(row, 2, new QTableWidgetItem(typeStr));
+        
+        QTableWidgetItem *quantityItem = new QTableWidgetItem(quantityStr);
         if (component.isLowStock()) {
             quantityItem->setBackground(QColor(255, 200, 200));
         }
         tableWidget->setItem(row, 3, quantityItem);
         
-        tableWidget->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(component.getLocation())));
-        tableWidget->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(component.getPurchaseDateString())));
+        tableWidget->setItem(row, 4, new QTableWidgetItem(locationStr));
+        tableWidget->setItem(row, 5, new QTableWidgetItem(dateStr));
     }
     
     statusLabel->setText(QString("Cargados %1 componentes").arg(components.size()));
@@ -455,31 +469,25 @@ void MainWindow::populateForm(const Component& component)
 
 Component MainWindow::getFormData() const
 {
-    std::cout << "DEBUG - getFormData():" << std::endl;
-    std::cout << "  nameEdit text: " << nameEdit->text().toStdString() << std::endl;
-    std::cout << "  typeCombo text: " << typeCombo->currentText().toStdString() << std::endl;
-    std::cout << "  location text: " << locationEdit->text().toStdString() << std::endl;
+    // Obtener valores limpios
+    QString name = nameEdit->text().trimmed();
+    QString type = typeCombo->currentText().trimmed();
+    QString location = locationEdit->text().trimmed();
     
-    // Obtener texto SIN comillas
-    QString nameQStr = nameEdit->text().trimmed();
-    QString typeQStr = typeCombo->currentText().trimmed();
-    QString locationQStr = locationEdit->text().trimmed();
+    // Debug detallado
+    std::cout << "\n=== DEBUG getFormData ===" << std::endl;
+    std::cout << "Campo Nombre (raw): '" << nameEdit->text().toStdString() << "'" << std::endl;
+    std::cout << "Campo Nombre (trimmed): '" << name.toStdString() << "'" << std::endl;
+    std::cout << "Campo Tipo (raw): '" << typeCombo->currentText().toStdString() << "'" << std::endl;
+    std::cout << "Campo Tipo (trimmed): '" << type.toStdString() << "'" << std::endl;
+    std::cout << "Campo Ubicación (raw): '" << locationEdit->text().toStdString() << "'" << std::endl;
+    std::cout << "Campo Ubicación (trimmed): '" << location.toStdString() << "'" << std::endl;
+    std::cout << "Cantidad: " << quantitySpin->value() << std::endl;
     
-    // Eliminar comillas dobles si las hay
-    nameQStr = nameQStr.replace("\"", "");
-    typeQStr = typeQStr.replace("\"", "");
-    locationQStr = locationQStr.replace("\"", "");
-    
-    std::string name = nameQStr.toStdString();
-    std::string type = typeQStr.toStdString();
-    int quantity = quantitySpin->value();
-    std::string location = locationQStr.toStdString();
-    
-    std::cout << "  After processing:" << std::endl;
-    std::cout << "    name: " << name << std::endl;
-    std::cout << "    type: " << type << std::endl;
-    std::cout << "    quantity: " << quantity << std::endl;
-    std::cout << "    location: " << location << std::endl;
+    // Convertir a std::string
+    std::string nameStr = name.toStdString();
+    std::string typeStr = type.toStdString();
+    std::string locationStr = location.toStdString();
     
     // Convertir QDate a time_t
     QDate qDate = dateEdit->date();
@@ -494,5 +502,5 @@ Component MainWindow::getFormData() const
     
     std::time_t purchaseDate = std::mktime(&timeInfo);
     
-    return Component(selectedId, name, type, quantity, location, purchaseDate);
+    return Component(selectedId, nameStr, typeStr, quantitySpin->value(), locationStr, purchaseDate);
 }
