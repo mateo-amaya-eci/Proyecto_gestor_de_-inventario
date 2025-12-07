@@ -38,6 +38,7 @@ public:
     std::vector<std::string> getComponentTypes() const;
     void debugTableInfo();
     bool recreateTable(); 
+    void verifyLastInsert();
 private:
     Component createComponentFromRow(sqlite3_stmt* stmt);
 };
