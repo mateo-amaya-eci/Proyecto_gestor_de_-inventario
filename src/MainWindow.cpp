@@ -364,128 +364,6 @@ void MainWindow::onTableSelectionChanged()
 
 void MainWindow::generateReport()
 {
-    QString fileName = QFileDialog::getSaveFileName(this,
-                                                    "Guardar Reporte",
-                                                    QDir::homePath() + "/reporte_inventario.csv",
-                                                    "CSV Files (*.csv);;Text Files (*.txt);;All Files (*)");
-    
-    if (fileName.isEmpty()) return;
-    
-    QFile file(fileName);
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        QMessageBox::critical(this, "Error", "No se pudo abrir el archivo para escritura");
-        return;
-    }
-    
-    QTextStream stream(&file);
-    stream.setCodec("UTF-8");
-    
-    // Encabezado
-    stream << "ID,Nombre,Tipo,Cantidad,Ubicacion,Fecha Compra,Stock Bajo\n";
-    
-    auto components = inventoryManager->getAllComponents();
-    for (const auto& component : components) {
-        stream << component.getId() << ","
-               << "\"" << QString::fromStdString(component.getName()).replace("\"", "\"\"") << "\","
-               << "\"" << QString::fromStdString(component.getType()).replace("\"", "\"\"") << "\","
-               << component.getQuantity() << ","
-               << "\"" << QString::fromStdString(component.getLocation()).replace("\"", "\"\"") << "\","
-               << "\"" << QString::fromStdString(component.getPurchaseDateString()) << "\","
-               << (component.isLowStock() ? "SI" : "NO") << "\n";
-    }
-    
-    file.close();
-    statusLabel->setText(QString("Reporte generado: %1").arg(QFileInfo(fileName).fileName()));
-    statusLabel->setStyleSheet("padding: 5px; background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724;");
-    
-    QMessageBox::information(this, "Reporte Generado", 
-                             QString("Reporte guardado exitosamente en:\n%1\n\nTotal de componentes: %2")
-                             .arg(fileName).arg(components.size()));
-}
-
-void MainWindow::checkLowStock()
-{
-    auto lowStock = inventoryManager->getLowStockComponents();
-    if (!lowStock.empty()) {
-        QString warningText = QString("¡ATENCIÓN! Hay %1 componentes con stock bajo").arg(lowStock.size());
-        statusLabel->setText(warningText);
-        statusLabel->setStyleSheet("padding: 5px; background-color: #fff3cd; border: 1px solid #ffeaa7; color: #856404; font-weight: bold;");
-        
-        // Mostrar notificación ocasionalmente
-        static int notificationCount = 0;
-        if (notificationCount % 10 == 0) { // Cada 5 minutos aproximadamente
-            QMessageBox::warning(this, "Stock Bajo", 
-                                QString("Hay %1 componentes con stock bajo.\nRevise el inventario.")
-                                .arg(lowStock.size()));
-        }
-        notificationCount++;
-    } else {
-        // Restaurar estilo normal si no hay stock bajo
-        if (!statusLabel->text().contains("Error") && 
-            !statusLabel->text().contains("generado") &&
-            !statusLabel->text().contains("encontrados")) {
-            statusLabel->setStyleSheet("padding: 5px; background-color: #f0f0f0; border: 1px solid #ccc;");
-        }
-    }
-}
-
-void MainWindow::clearForm()
-{
-    nameEdit->clear();
-    typeCombo->setCurrentIndex(0);
-    quantitySpin->setValue(1);
-    locationEdit->clear();
-    dateEdit->setDate(QDate::currentDate());
-    selectedId = -1;
-    updateButton->setEnabled(false);
-    deleteButton->setEnabled(false);
-    
-    // Deseleccionar en la tabla
-    tableWidget->clearSelection();
-}
-
-void MainWindow::populateForm(const Component& component)
-{
-    std::cout << "DEBUG - populateForm:" << std::endl;
-    std::cout << "  Component name: " << component.getName() << std::endl;
-    std::cout << "  Component type: " << component.getType() << std::endl;
-    std::cout << "  Component location: " << component.getLocation() << std::endl;
-    
-    // Establecer texto directamente, no usar fromStdString
-    nameEdit->setText(QString::fromStdString(component.getName()));
-    
-    // Para el combo, buscar exactamente
-    QString typeStr = QString::fromStdString(component.getType());
-    int index = typeCombo->findText(typeStr, Qt::MatchExactly);
-    
-    std::cout << "  Looking for type: " << typeStr.toStdString() << std::endl;
-    std::cout << "  Found at index: " << index << std::endl;
-    
-    if (index != -1) {
-        typeCombo->setCurrentIndex(index);
-    } else {
-        // Si no está, agregarlo al final
-        typeCombo->addItem(typeStr);
-        typeCombo->setCurrentIndex(typeCombo->count() - 1);
-    }
-    
-    quantitySpin->setValue(component.getQuantity());
-    locationEdit->setText(QString::fromStdString(component.getLocation()));
-    
-    // Convertir time_t a QDate
-    std::time_t purchaseTime = component.getPurchaseDate();
-    if (purchaseTime > 0) {
-        std::tm* timeInfo = std::localtime(&purchaseTime);
-        QDate date(timeInfo->tm_year + 1900, timeInfo->tm_mon + 1, timeInfo->tm_mday);
-        dateEdit->setDate(date);
-    }
-    
-    selectedId = component.getId();
-    updateButton->setEnabled(true);
-    deleteButton->setEnabled(true);
-}
-void MainWindow::generateReport()
-{
     // Obtener componentes actuales
     auto components = inventoryManager->getAllComponents();
     
@@ -634,6 +512,89 @@ void MainWindow::generateReport()
         statusLabel->setStyleSheet("padding: 5px; background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24;");
     }
 }
+
+void MainWindow::checkLowStock()
+{
+    auto lowStock = inventoryManager->getLowStockComponents();
+    if (!lowStock.empty()) {
+        QString warningText = QString("¡ATENCIÓN! Hay %1 componentes con stock bajo").arg(lowStock.size());
+        statusLabel->setText(warningText);
+        statusLabel->setStyleSheet("padding: 5px; background-color: #fff3cd; border: 1px solid #ffeaa7; color: #856404; font-weight: bold;");
+        
+        // Mostrar notificación ocasionalmente
+        static int notificationCount = 0;
+        if (notificationCount % 10 == 0) { // Cada 5 minutos aproximadamente
+            QMessageBox::warning(this, "Stock Bajo", 
+                                QString("Hay %1 componentes con stock bajo.\nRevise el inventario.")
+                                .arg(lowStock.size()));
+        }
+        notificationCount++;
+    } else {
+        // Restaurar estilo normal si no hay stock bajo
+        if (!statusLabel->text().contains("Error") && 
+            !statusLabel->text().contains("generado") &&
+            !statusLabel->text().contains("encontrados")) {
+            statusLabel->setStyleSheet("padding: 5px; background-color: #f0f0f0; border: 1px solid #ccc;");
+        }
+    }
+}
+
+void MainWindow::clearForm()
+{
+    nameEdit->clear();
+    typeCombo->setCurrentIndex(0);
+    quantitySpin->setValue(1);
+    locationEdit->clear();
+    dateEdit->setDate(QDate::currentDate());
+    selectedId = -1;
+    updateButton->setEnabled(false);
+    deleteButton->setEnabled(false);
+    
+    // Deseleccionar en la tabla
+    tableWidget->clearSelection();
+}
+
+void MainWindow::populateForm(const Component& component)
+{
+    std::cout << "DEBUG - populateForm:" << std::endl;
+    std::cout << "  Component name: " << component.getName() << std::endl;
+    std::cout << "  Component type: " << component.getType() << std::endl;
+    std::cout << "  Component location: " << component.getLocation() << std::endl;
+    
+    // Establecer texto directamente, no usar fromStdString
+    nameEdit->setText(QString::fromStdString(component.getName()));
+    
+    // Para el combo, buscar exactamente
+    QString typeStr = QString::fromStdString(component.getType());
+    int index = typeCombo->findText(typeStr, Qt::MatchExactly);
+    
+    std::cout << "  Looking for type: " << typeStr.toStdString() << std::endl;
+    std::cout << "  Found at index: " << index << std::endl;
+    
+    if (index != -1) {
+        typeCombo->setCurrentIndex(index);
+    } else {
+        // Si no está, agregarlo al final
+        typeCombo->addItem(typeStr);
+        typeCombo->setCurrentIndex(typeCombo->count() - 1);
+    }
+    
+    quantitySpin->setValue(component.getQuantity());
+    locationEdit->setText(QString::fromStdString(component.getLocation()));
+    
+    // Convertir time_t a QDate
+    std::time_t purchaseTime = component.getPurchaseDate();
+    if (purchaseTime > 0) {
+        std::tm* timeInfo = std::localtime(&purchaseTime);
+        QDate date(timeInfo->tm_year + 1900, timeInfo->tm_mon + 1, timeInfo->tm_mday);
+        dateEdit->setDate(date);
+    }
+    
+    selectedId = component.getId();
+    updateButton->setEnabled(true);
+    deleteButton->setEnabled(true);
+}
+
 Component MainWindow::getFormData() const
 {
     // Obtener valores limpios
