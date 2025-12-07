@@ -11,7 +11,7 @@
 #include <QFileInfo>   // ¡Agregado!
 #include <ctime>
 #include <algorithm>
-
+#include <iostream>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), selectedId(-1), dbManager(nullptr), inventoryManager(nullptr)
 {
@@ -418,7 +418,7 @@ void MainWindow::populateForm(const Component& component)
 
 Component MainWindow::getFormData() const
 
-   {
+{
     std::string name = nameEdit->text().trimmed().toStdString();
     std::string type = typeCombo->currentText().trimmed().toStdString();
     int quantity = quantitySpin->value();
