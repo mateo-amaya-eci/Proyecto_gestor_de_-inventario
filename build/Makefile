@@ -111,17 +111,57 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named InventoryManager
+# Target rules for targets named GestorInventario
 
 # Build rule for target.
-InventoryManager: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 InventoryManager
-.PHONY : InventoryManager
+GestorInventario: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 GestorInventario
+.PHONY : GestorInventario
 
 # fast build rule for target.
-InventoryManager/fast:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/build
-.PHONY : InventoryManager/fast
+GestorInventario/fast:
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/build
+.PHONY : GestorInventario/fast
+
+#=============================================================================
+# Target rules for targets named GestorInventario_autogen
+
+# Build rule for target.
+GestorInventario_autogen: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 GestorInventario_autogen
+.PHONY : GestorInventario_autogen
+
+# fast build rule for target.
+GestorInventario_autogen/fast:
+	$(MAKE) -f CMakeFiles/GestorInventario_autogen.dir/build.make CMakeFiles/GestorInventario_autogen.dir/build
+.PHONY : GestorInventario_autogen/fast
+
+GestorInventario_autogen/mocs_compilation.o: GestorInventario_autogen/mocs_compilation.cpp.o
+
+.PHONY : GestorInventario_autogen/mocs_compilation.o
+
+# target to build an object file
+GestorInventario_autogen/mocs_compilation.cpp.o:
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/GestorInventario_autogen/mocs_compilation.cpp.o
+.PHONY : GestorInventario_autogen/mocs_compilation.cpp.o
+
+GestorInventario_autogen/mocs_compilation.i: GestorInventario_autogen/mocs_compilation.cpp.i
+
+.PHONY : GestorInventario_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+GestorInventario_autogen/mocs_compilation.cpp.i:
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/GestorInventario_autogen/mocs_compilation.cpp.i
+.PHONY : GestorInventario_autogen/mocs_compilation.cpp.i
+
+GestorInventario_autogen/mocs_compilation.s: GestorInventario_autogen/mocs_compilation.cpp.s
+
+.PHONY : GestorInventario_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+GestorInventario_autogen/mocs_compilation.cpp.s:
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/GestorInventario_autogen/mocs_compilation.cpp.s
+.PHONY : GestorInventario_autogen/mocs_compilation.cpp.s
 
 src/Component.o: src/Component.cpp.o
 
@@ -129,7 +169,7 @@ src/Component.o: src/Component.cpp.o
 
 # target to build an object file
 src/Component.cpp.o:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/Component.cpp.o
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/Component.cpp.o
 .PHONY : src/Component.cpp.o
 
 src/Component.i: src/Component.cpp.i
@@ -138,7 +178,7 @@ src/Component.i: src/Component.cpp.i
 
 # target to preprocess a source file
 src/Component.cpp.i:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/Component.cpp.i
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/Component.cpp.i
 .PHONY : src/Component.cpp.i
 
 src/Component.s: src/Component.cpp.s
@@ -147,7 +187,7 @@ src/Component.s: src/Component.cpp.s
 
 # target to generate assembly for a file
 src/Component.cpp.s:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/Component.cpp.s
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/Component.cpp.s
 .PHONY : src/Component.cpp.s
 
 src/DatabaseManager.o: src/DatabaseManager.cpp.o
@@ -156,7 +196,7 @@ src/DatabaseManager.o: src/DatabaseManager.cpp.o
 
 # target to build an object file
 src/DatabaseManager.cpp.o:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/DatabaseManager.cpp.o
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/DatabaseManager.cpp.o
 .PHONY : src/DatabaseManager.cpp.o
 
 src/DatabaseManager.i: src/DatabaseManager.cpp.i
@@ -165,7 +205,7 @@ src/DatabaseManager.i: src/DatabaseManager.cpp.i
 
 # target to preprocess a source file
 src/DatabaseManager.cpp.i:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/DatabaseManager.cpp.i
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/DatabaseManager.cpp.i
 .PHONY : src/DatabaseManager.cpp.i
 
 src/DatabaseManager.s: src/DatabaseManager.cpp.s
@@ -174,7 +214,7 @@ src/DatabaseManager.s: src/DatabaseManager.cpp.s
 
 # target to generate assembly for a file
 src/DatabaseManager.cpp.s:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/DatabaseManager.cpp.s
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/DatabaseManager.cpp.s
 .PHONY : src/DatabaseManager.cpp.s
 
 src/InventoryManager.o: src/InventoryManager.cpp.o
@@ -183,7 +223,7 @@ src/InventoryManager.o: src/InventoryManager.cpp.o
 
 # target to build an object file
 src/InventoryManager.cpp.o:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/InventoryManager.cpp.o
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/InventoryManager.cpp.o
 .PHONY : src/InventoryManager.cpp.o
 
 src/InventoryManager.i: src/InventoryManager.cpp.i
@@ -192,7 +232,7 @@ src/InventoryManager.i: src/InventoryManager.cpp.i
 
 # target to preprocess a source file
 src/InventoryManager.cpp.i:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/InventoryManager.cpp.i
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/InventoryManager.cpp.i
 .PHONY : src/InventoryManager.cpp.i
 
 src/InventoryManager.s: src/InventoryManager.cpp.s
@@ -201,8 +241,62 @@ src/InventoryManager.s: src/InventoryManager.cpp.s
 
 # target to generate assembly for a file
 src/InventoryManager.cpp.s:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/InventoryManager.cpp.s
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/InventoryManager.cpp.s
 .PHONY : src/InventoryManager.cpp.s
+
+src/MainWindow.o: src/MainWindow.cpp.o
+
+.PHONY : src/MainWindow.o
+
+# target to build an object file
+src/MainWindow.cpp.o:
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/MainWindow.cpp.o
+.PHONY : src/MainWindow.cpp.o
+
+src/MainWindow.i: src/MainWindow.cpp.i
+
+.PHONY : src/MainWindow.i
+
+# target to preprocess a source file
+src/MainWindow.cpp.i:
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/MainWindow.cpp.i
+.PHONY : src/MainWindow.cpp.i
+
+src/MainWindow.s: src/MainWindow.cpp.s
+
+.PHONY : src/MainWindow.s
+
+# target to generate assembly for a file
+src/MainWindow.cpp.s:
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/MainWindow.cpp.s
+.PHONY : src/MainWindow.cpp.s
+
+src/ReportGenerator.o: src/ReportGenerator.cpp.o
+
+.PHONY : src/ReportGenerator.o
+
+# target to build an object file
+src/ReportGenerator.cpp.o:
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/ReportGenerator.cpp.o
+.PHONY : src/ReportGenerator.cpp.o
+
+src/ReportGenerator.i: src/ReportGenerator.cpp.i
+
+.PHONY : src/ReportGenerator.i
+
+# target to preprocess a source file
+src/ReportGenerator.cpp.i:
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/ReportGenerator.cpp.i
+.PHONY : src/ReportGenerator.cpp.i
+
+src/ReportGenerator.s: src/ReportGenerator.cpp.s
+
+.PHONY : src/ReportGenerator.s
+
+# target to generate assembly for a file
+src/ReportGenerator.cpp.s:
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/ReportGenerator.cpp.s
+.PHONY : src/ReportGenerator.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -210,7 +304,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/main.cpp.o
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -219,7 +313,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/main.cpp.i
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -228,7 +322,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/InventoryManager.dir/build.make CMakeFiles/InventoryManager.dir/src/main.cpp.s
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -239,7 +333,11 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... InventoryManager"
+	@echo "... GestorInventario"
+	@echo "... GestorInventario_autogen"
+	@echo "... GestorInventario_autogen/mocs_compilation.o"
+	@echo "... GestorInventario_autogen/mocs_compilation.i"
+	@echo "... GestorInventario_autogen/mocs_compilation.s"
 	@echo "... src/Component.o"
 	@echo "... src/Component.i"
 	@echo "... src/Component.s"
@@ -249,6 +347,12 @@ help:
 	@echo "... src/InventoryManager.o"
 	@echo "... src/InventoryManager.i"
 	@echo "... src/InventoryManager.s"
+	@echo "... src/MainWindow.o"
+	@echo "... src/MainWindow.i"
+	@echo "... src/MainWindow.s"
+	@echo "... src/ReportGenerator.o"
+	@echo "... src/ReportGenerator.i"
+	@echo "... src/ReportGenerator.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

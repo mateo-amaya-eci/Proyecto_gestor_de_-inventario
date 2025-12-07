@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/InventoryManager.dir/src/main.cpp.o CMakeFiles/InventoryManager.dir/src/Component.cpp.o CMakeFiles/InventoryManager.dir/src/InventoryManager.cpp.o CMakeFiles/InventoryManager.dir/src/DatabaseManager.cpp.o  -o InventoryManager  /usr/lib/x86_64-linux-gnu/libsqlite3.so 

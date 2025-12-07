@@ -1,0 +1,39 @@
+# Build directories
+build/
+cmake-build-*/
+bin/
+
+# Qt Creator files
+*.user
+*.user.*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Database files (except structure)
+*.db
+*.sqlite
+*.sqlite3
+
+# Executables
+*.exe
+*.app
+*.dll
+*.so
+
+# OS generated files
+*.orig
+*~
+
+# CMake files
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+compile_commands.json
+
+# Qt generated files
+moc_*.cpp
+qrc_*.cpp
+ui_*.h

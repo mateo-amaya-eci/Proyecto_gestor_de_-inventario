@@ -1,135 +1,204 @@
 #include "MainWindow.h"
-#include "ui_MainWindow.h"
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QFormLayout>
 #include <QHeaderView>
-#include <QMessageBox>
-#include <QDate>
+#include <QFileDialog>
+#include <ctime>
 
-MainWindow::MainWindow(QWidget *parent) : 
-    QMainWindow(parent), ui(new Ui::MainWindow) {
-    ui->setupUi(this);
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent), selectedId(-1)
+{
+    // Inicializar managers
+    dbManager = new DatabaseManager();
+    inventoryManager = new InventoryManager(dbManager);
+    
     setupUI();
-    refreshTable();
-    showLowStockAlert();
+    loadComponents();
+    
+    // Conectar señales y slots
+    connect(tableWidget, &QTableWidget::itemSelectionChanged, 
+            this, &MainWindow::onTableSelectionChanged);
 }
 
-MainWindow::~MainWindow() {
-    delete ui;
+MainWindow::~MainWindow()
+{
+    delete inventoryManager;
+    delete dbManager;
 }
 
-void MainWindow::setupUI() {
-    // Configurar ventana principal
-    setWindowTitle("Gestor de Inventario - Hogar/Laboratorio");
-    setFixedSize(800, 600);
+void MainWindow::setupUI()
+{
+    // Crear widget central y layout principal
+    QWidget *centralWidget = new QWidget(this);
+    QVBoxLayout *mainLayout = new QVBoxLayout(centralWidget);
     
     // Crear tabla
     tableWidget = new QTableWidget(this);
-    tableWidget->setGeometry(10, 10, 780, 300);
     tableWidget->setColumnCount(6);
-    tableWidget->setHorizontalHeaderLabels(
-        {"ID", "Nombre", "Tipo", "Cantidad", "Ubicación", "Fecha Compra"});
-    tableWidget->horizontalHeader()->setStretchLastSection(true);
+    QStringList headers = {"ID", "Nombre", "Tipo", "Cantidad", "Ubicación", "Fecha Compra"};
+    tableWidget->setHorizontalHeaderLabels(headers);
+    tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
     
-    // Campos del formulario
-    QLabel *nameLabel = new QLabel("Nombre:", this);
-    nameLabel->setGeometry(10, 320, 80, 25);
+    // Formulario
+    QGroupBox *formGroup = new QGroupBox("Componente", this);
+    QFormLayout *formLayout = new QFormLayout(formGroup);
+    
     nameEdit = new QLineEdit(this);
-    nameEdit->setGeometry(100, 320, 200, 25);
-    
-    QLabel *typeLabel = new QLabel("Tipo:", this);
-    typeLabel->setGeometry(10, 350, 80, 25);
-    typeEdit = new QLineEdit(this);
-    typeEdit->setGeometry(100, 350, 200, 25);
-    
-    QLabel *quantityLabel = new QLabel("Cantidad:", this);
-    quantityLabel->setGeometry(10, 380, 80, 25);
+    typeCombo = new QComboBox(this);
+    typeCombo->addItems({"Resistor", "Capacitor", "Transistor", "LED", "Microcontrolador", "Sensor", "Cable", "Otro"});
     quantitySpin = new QSpinBox(this);
-    quantitySpin->setGeometry(100, 380, 100, 25);
     quantitySpin->setMinimum(0);
-    quantitySpin->setMaximum(9999);
-    
-    QLabel *locationLabel = new QLabel("Ubicación:", this);
-    locationLabel->setGeometry(10, 410, 80, 25);
+    quantitySpin->setMaximum(10000);
     locationEdit = new QLineEdit(this);
-    locationEdit->setGeometry(100, 410, 200, 25);
-    
-    QLabel *dateLabel = new QLabel("Fecha:", this);
-    dateLabel->setGeometry(10, 440, 80, 25);
     dateEdit = new QDateEdit(this);
-    dateEdit->setGeometry(100, 440, 150, 25);
     dateEdit->setDate(QDate::currentDate());
+    dateEdit->setCalendarPopup(true);
+    
+    formLayout->addRow("Nombre:", nameEdit);
+    formLayout->addRow("Tipo:", typeCombo);
+    formLayout->addRow("Cantidad:", quantitySpin);
+    formLayout->addRow("Ubicación:", locationEdit);
+    formLayout->addRow("Fecha Compra:", dateEdit);
     
     // Botones
-    addButton = new QPushButton("Agregar", this);
-    addButton->setGeometry(320, 320, 80, 30);
-    connect(addButton, &QPushButton::clicked, this, &MainWindow::onAddButtonClicked);
+    QHBoxLayout *buttonLayout = new QHBoxLayout();
     
+    addButton = new QPushButton("Agregar", this);
+    updateButton = new QPushButton("Actualizar", this);
     deleteButton = new QPushButton("Eliminar", this);
-    deleteButton->setGeometry(320, 360, 80, 30);
-    connect(deleteButton, &QPushButton::clicked, this, &MainWindow::onDeleteButtonClicked);
+    reportButton = new QPushButton("Generar Reporte", this);
+    
+    updateButton->setEnabled(false);
+    deleteButton->setEnabled(false);
+    
+    buttonLayout->addWidget(addButton);
+    buttonLayout->addWidget(updateButton);
+    buttonLayout->addWidget(deleteButton);
+    buttonLayout->addWidget(reportButton);
+    buttonLayout->addStretch();
     
     // Búsqueda
-    QLabel *searchLabel = new QLabel("Buscar:", this);
-    searchLabel->setGeometry(450, 320, 80, 25);
+    QHBoxLayout *searchLayout = new QHBoxLayout();
     searchEdit = new QLineEdit(this);
-    searchEdit->setGeometry(520, 320, 200, 25);
-    connect(searchEdit, &QLineEdit::textChanged, this, &MainWindow::onSearchTextChanged);
+    searchEdit->setPlaceholderText("Buscar por nombre...");
+    searchButton = new QPushButton("Buscar", this);
     
-    // Reportes
-    reportButton = new QPushButton("Generar Reporte", this);
-    reportButton->setGeometry(450, 360, 120, 30);
-    connect(reportButton, &QPushButton::clicked, this, &MainWindow::onGenerateReportClicked);
+    searchLayout->addWidget(new QLabel("Buscar:", this));
+    searchLayout->addWidget(searchEdit);
+    searchLayout->addWidget(searchButton);
+    
+    // Estado
+    statusLabel = new QLabel("Listo", this);
+    
+    // Conectar botones
+    connect(addButton, &QPushButton::clicked, this, &MainWindow::addComponent);
+    connect(updateButton, &QPushButton::clicked, this, &MainWindow::updateComponent);
+    connect(deleteButton, &QPushButton::clicked, this, &MainWindow::deleteComponent);
+    connect(searchButton, &QPushButton::clicked, this, &MainWindow::searchComponents);
+    connect(reportButton, &QPushButton::clicked, this, &MainWindow::generateReport);
+    
+    // Agregar widgets al layout principal
+    mainLayout->addWidget(tableWidget);
+    mainLayout->addWidget(formGroup);
+    mainLayout->addLayout(buttonLayout);
+    mainLayout->addLayout(searchLayout);
+    mainLayout->addWidget(statusLabel);
+    
+    setCentralWidget(centralWidget);
+    setWindowTitle("Gestor de Inventario - Hogar/Laboratorio");
+    resize(800, 600);
 }
 
-void MainWindow::refreshTable() {
-    tableWidget->setRowCount(0);
-    auto components = inventoryManager.getAllComponents();
-    
-    for (const auto& comp : components) {
-        int row = tableWidget->rowCount();
-        tableWidget->insertRow(row);
-        
-        tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(comp.getId())));
-        tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(comp.getName())));
-        tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(comp.getType())));
-        tableWidget->setItem(row, 3, new QTableWidgetItem(QString::number(comp.getQuantity())));
-        tableWidget->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(comp.getLocation())));
-        tableWidget->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(comp.getPurchaseDate())));
-    }
+void MainWindow::loadComponents()
+{
+    // Implementar carga de componentes desde InventoryManager
 }
 
-void MainWindow::onAddButtonClicked() {
+void MainWindow::addComponent()
+{
+    // Implementar agregar componente
+}
+
+void MainWindow::updateComponent()
+{
+    // Implementar actualizar componente
+}
+
+void MainWindow::deleteComponent()
+{
+    // Implementar eliminar componente
+}
+
+void MainWindow::searchComponents()
+{
+    // Implementar búsqueda
+}
+
+void MainWindow::onTableSelectionChanged()
+{
+    // Implementar manejo de selección
+}
+
+void MainWindow::generateReport()
+{
+    // Implementar generación de reportes
+}
+
+void MainWindow::checkLowStock()
+{
+    // Implementar verificación de stock bajo
+}
+
+void MainWindow::clearForm()
+{
+    nameEdit->clear();
+    typeCombo->setCurrentIndex(0);
+    quantitySpin->setValue(0);
+    locationEdit->clear();
+    dateEdit->setDate(QDate::currentDate());
+    selectedId = -1;
+    updateButton->setEnabled(false);
+    deleteButton->setEnabled(false);
+}
+
+void MainWindow::populateForm(const Component& component)
+{
+    nameEdit->setText(QString::fromStdString(component.getName()));
+    
+    // Buscar el tipo en el combo
+    int index = typeCombo->findText(QString::fromStdString(component.getType()));
+    if (index != -1) typeCombo->setCurrentIndex(index);
+    
+    quantitySpin->setValue(component.getQuantity());
+    locationEdit->setText(QString::fromStdString(component.getLocation()));
+    
+    // Convertir time_t a QDate
+    std::time_t purchaseTime = component.getPurchaseDate();
+    std::tm* timeInfo = std::localtime(&purchaseTime);
+    QDate date(timeInfo->tm_year + 1900, timeInfo->tm_mon + 1, timeInfo->tm_mday);
+    dateEdit->setDate(date);
+    
+    selectedId = component.getId();
+    updateButton->setEnabled(true);
+    deleteButton->setEnabled(true);
+}
+
+Component MainWindow::getFormData() const
+{
     std::string name = nameEdit->text().toStdString();
-    std::string type = typeEdit->text().toStdString();
+    std::string type = typeCombo->currentText().toStdString();
     int quantity = quantitySpin->value();
     std::string location = locationEdit->text().toStdString();
-    std::string date = dateEdit->date().toString("yyyy-MM-dd").toStdString();
     
-    if (name.empty() || type.empty() || location.empty()) {
-        QMessageBox::warning(this, "Error", "Por favor complete todos los campos");
-        return;
-    }
+    // Convertir QDate a time_t
+    QDate qDate = dateEdit->date();
+    std::tm timeInfo = {};
+    timeInfo.tm_year = qDate.year() - 1900;
+    timeInfo.tm_mon = qDate.month() - 1;
+    timeInfo.tm_mday = qDate.day();
+    std::time_t purchaseDate = std::mktime(&timeInfo);
     
-    Component newComp(name, type, quantity, location, date);
-    if (inventoryManager.addComponent(newComp)) {
-        refreshTable();
-        clearForm();
-        showLowStockAlert();
-        QMessageBox::information(this, "Éxito", "Componente agregado correctamente");
-    } else {
-        QMessageBox::critical(this, "Error", "Error al agregar componente");
-    }
-}
-
-void MainWindow::showLowStockAlert() {
-    auto lowStock = inventoryManager.getLowStockComponents();
-    if (!lowStock.empty()) {
-        QString message = "Componentes con stock bajo:\n";
-        for (const auto& comp : lowStock) {
-            message += QString("- %1 (%2): %3 unidades\n")
-                      .arg(QString::fromStdString(comp.getName()))
-                      .arg(QString::fromStdString(comp.getType()))
-                      .arg(comp.getQuantity());
-        }
-        QMessageBox::warning(this, "Alerta de Stock Bajo", message);
-    }
+    return Component(selectedId, name, type, quantity, location, purchaseDate);
 }

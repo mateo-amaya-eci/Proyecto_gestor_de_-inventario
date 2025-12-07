@@ -1,45 +1,51 @@
 cmake_minimum_required(VERSION 3.10)
-project(InventoryManager)
+project(GestorInventario LANGUAGES CXX)
 
-# Configurar estándar C++
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 
-# Modo Release para evitar warnings
-set(CMAKE_BUILD_TYPE Release)
+# Buscar paquetes necesarios
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(SQLite3 REQUIRED)
 
-# Encontrar SQLite3 de manera simple
-find_library(SQLITE3_LIB sqlite3)
+# Incluir directorios
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-# Archivos fuente básicos (ajusta según tus archivos reales)
+# Archivos del proyecto
 set(SOURCES
     src/main.cpp
+    src/MainWindow.cpp
     src/Component.cpp
-    src/InventoryManager.cpp
     src/DatabaseManager.cpp
+    src/InventoryManager.cpp
+    src/ReportGenerator.cpp
 )
 
-# Archivos de cabecera
 set(HEADERS
+    src/MainWindow.h
     src/Component.h
-    src/InventoryManager.h  
     src/DatabaseManager.h
+    src/InventoryManager.h
+    src/ReportGenerator.h
 )
 
 # Crear ejecutable
-add_executable(InventoryManager ${SOURCES} ${HEADERS})
+add_executable(GestorInventario ${SOURCES} ${HEADERS})
 
-# Incluir directorios
-target_include_directories(InventoryManager PRIVATE 
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
+# Enlazar bibliotecas
+target_link_libraries(GestorInventario PRIVATE 
+    Qt5::Widgets
+    SQLite::SQLite3
 )
 
-# Enlazar SQLite3 si se encontró
-if(SQLITE3_LIB)
-    target_link_libraries(InventoryManager ${SQLITE3_LIB})
-    message(STATUS "SQLite3 encontrado: ${SQLITE3_LIB}")
-else()
-    message(WARNING "SQLite3 no encontrado, compilando sin soporte de base de datos")
+# Configuración para macOS
+if(APPLE)
+    set_target_properties(GestorInventario PROPERTIES
+        MACOSX_BUNDLE TRUE
+        MACOSX_BUNDLE_GUI_IDENTIFIER "com.gestor.inventario"
+        MACOSX_BUNDLE_BUNDLE_NAME "Gestor de Inventario"
+    )
 endif()
-
-message(STATUS "Configuración completada para ${PROJECT_NAME}")
