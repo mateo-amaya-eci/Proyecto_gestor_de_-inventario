@@ -1,6 +1,7 @@
 #include "DatabaseManager.h"
 #include <iostream>
 #include <algorithm>
+#include <cstring>
 
 DatabaseManager::DatabaseManager() : db(nullptr), databasePath("inventory.db") {}
 
@@ -105,4 +106,227 @@ bool DatabaseManager::addComponent(const Component& component) {
     return rc == SQLITE_DONE;
 }
 
-// Los demás métodos los implementaremos después
+bool DatabaseManager::updateComponent(const Component& component) {
+    if (!isConnected()) return false;
+    
+    std::string sql = R"(
+        UPDATE components 
+        SET name = ?, type = ?, quantity = ?, location = ?, purchase_date = ?
+        WHERE id = ?
+    )";
+    
+    sqlite3_stmt* stmt;
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
+    
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error al preparar consulta: " << sqlite3_errmsg(db) << std::endl;
+        return false;
+    }
+    
+    sqlite3_bind_text(stmt, 1, component.getName().c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 2, component.getType().c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_int(stmt, 3, component.getQuantity());
+    sqlite3_bind_text(stmt, 4, component.getLocation().c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_int64(stmt, 5, static_cast<sqlite3_int64>(component.getPurchaseDate()));
+    sqlite3_bind_int(stmt, 6, component.getId());
+    
+    rc = sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+    
+    return rc == SQLITE_DONE;
+}
+
+bool DatabaseManager::deleteComponent(int id) {
+    if (!isConnected()) return false;
+    
+    std::string sql = "DELETE FROM components WHERE id = ?";
+    
+    sqlite3_stmt* stmt;
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
+    
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error al preparar consulta: " << sqlite3_errmsg(db) << std::endl;
+        return false;
+    }
+    
+    sqlite3_bind_int(stmt, 1, id);
+    
+    rc = sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+    
+    return rc == SQLITE_DONE;
+}
+
+Component DatabaseManager::getComponent(int id) {
+    if (!isConnected()) return Component();
+    
+    std::string sql = "SELECT * FROM components WHERE id = ?";
+    
+    sqlite3_stmt* stmt;
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
+    
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error al preparar consulta: " << sqlite3_errmsg(db) << std::endl;
+        return Component();
+    }
+    
+    sqlite3_bind_int(stmt, 1, id);
+    
+    rc = sqlite3_step(stmt);
+    Component component;
+    
+    if (rc == SQLITE_ROW) {
+        component = createComponentFromRow(stmt);
+    }
+    
+    sqlite3_finalize(stmt);
+    return component;
+}
+
+std::vector<Component> DatabaseManager::getAllComponents() {
+    std::vector<Component> components;
+    
+    if (!isConnected()) return components;
+    
+    std::string sql = "SELECT * FROM components ORDER BY name";
+    
+    sqlite3_stmt* stmt;
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
+    
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error al preparar consulta: " << sqlite3_errmsg(db) << std::endl;
+        return components;
+    }
+    
+    while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
+        components.push_back(createComponentFromRow(stmt));
+    }
+    
+    sqlite3_finalize(stmt);
+    return components;
+}
+
+std::vector<Component> DatabaseManager::searchComponents(const std::string& keyword) {
+    std::vector<Component> components;
+    
+    if (!isConnected()) return components;
+    
+    std::string sql = R"(
+        SELECT * FROM components 
+        WHERE name LIKE ? OR type LIKE ? OR location LIKE ?
+        ORDER BY name
+    )";
+    
+    sqlite3_stmt* stmt;
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
+    
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error al preparar consulta: " << sqlite3_errmsg(db) << std::endl;
+        return components;
+    }
+    
+    std::string searchPattern = "%" + keyword + "%";
+    sqlite3_bind_text(stmt, 1, searchPattern.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 2, searchPattern.c_str(), -1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 3, searchPattern.c_str(), -1, SQLITE_STATIC);
+    
+    while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
+        components.push_back(createComponentFromRow(stmt));
+    }
+    
+    sqlite3_finalize(stmt);
+    return components;
+}
+
+std::vector<Component> DatabaseManager::getLowStockComponents(int threshold) {
+    std::vector<Component> components;
+    
+    if (!isConnected()) return components;
+    
+    std::string sql = "SELECT * FROM components WHERE quantity <= ? ORDER BY quantity";
+    
+    sqlite3_stmt* stmt;
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
+    
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error al preparar consulta: " << sqlite3_errmsg(db) << std::endl;
+        return components;
+    }
+    
+    sqlite3_bind_int(stmt, 1, threshold);
+    
+    while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
+        components.push_back(createComponentFromRow(stmt));
+    }
+    
+    sqlite3_finalize(stmt);
+    return components;
+}
+
+int DatabaseManager::getComponentCount() const {
+    if (!isConnected()) return 0;
+    
+    std::string sql = "SELECT COUNT(*) FROM components";
+    
+    sqlite3_stmt* stmt;
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
+    
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error al preparar consulta: " << sqlite3_errmsg(db) << std::endl;
+        return 0;
+    }
+    
+    rc = sqlite3_step(stmt);
+    int count = 0;
+    
+    if (rc == SQLITE_ROW) {
+        count = sqlite3_column_int(stmt, 0);
+    }
+    
+    sqlite3_finalize(stmt);
+    return count;
+}
+
+std::vector<std::string> DatabaseManager::getComponentTypes() const {
+    std::vector<std::string> types;
+    
+    if (!isConnected()) return types;
+    
+    std::string sql = "SELECT DISTINCT type FROM components ORDER BY type";
+    
+    sqlite3_stmt* stmt;
+    int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
+    
+    if (rc != SQLITE_OK) {
+        std::cerr << "Error al preparar consulta: " << sqlite3_errmsg(db) << std::endl;
+        return types;
+    }
+    
+    while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
+        const char* type = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0));
+        if (type) {
+            types.push_back(std::string(type));
+        }
+    }
+    
+    sqlite3_finalize(stmt);
+    return types;
+}
+
+Component DatabaseManager::createComponentFromRow(sqlite3_stmt* stmt) {
+    int id = sqlite3_column_int(stmt, 0);
+    
+    const char* name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+    const char* type = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
+    int quantity = sqlite3_column_int(stmt, 3);
+    
+    const char* location = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
+    std::time_t purchaseDate = static_cast<std::time_t>(sqlite3_column_int64(stmt, 5));
+    
+    return Component(id,
+                     name ? std::string(name) : "",
+                     type ? std::string(type) : "",
+                     quantity,
+                     location ? std::string(location) : "",
+                     purchaseDate);
+}

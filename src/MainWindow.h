@@ -10,6 +10,8 @@
 #include <QLabel>
 #include <QComboBox>
 #include <QMessageBox>
+#include <QGroupBox>
+#include <QTimer>       // ¡Agregado!
 #include "Component.h"
 #include "DatabaseManager.h"
 #include "InventoryManager.h"
