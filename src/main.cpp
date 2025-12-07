@@ -1,9 +1,13 @@
 #include "MainWindow.h"
 #include <QApplication>
 #include <QStyleFactory>
+#include <QTextCodec>
+#include <locale.h>
 
 int main(int argc, char *argv[])
 {
+    setlocale(LC_ALL, "en_US.UTF-8");
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
     QApplication app(argc, argv);
     
     // Configurar estilo para mejor apariencia

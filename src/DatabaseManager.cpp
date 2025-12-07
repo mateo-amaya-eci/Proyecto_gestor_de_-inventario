@@ -46,20 +46,20 @@ bool DatabaseManager::isConnected() const {
 bool DatabaseManager::initializeDatabase() {
     if (!isConnected()) return false;
     
-    std::string createTableSQL = R"(
-        CREATE TABLE IF NOT EXISTS components (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            type TEXT NOT NULL,
-            quantity INTEGER NOT NULL DEFAULT 0,
-            location TEXT,
-            purchase_date INTEGER
-        );
-        
-        CREATE INDEX IF NOT EXISTS idx_name ON components(name);
-        CREATE INDEX IF NOT EXISTS idx_type ON components(type);
-        CREATE INDEX IF NOT EXISTS idx_location ON components(location);
-    )";
+    // Usar SQL simple en lugar de raw string
+    std::string createTableSQL = 
+        "CREATE TABLE IF NOT EXISTS components (\n"
+        "    id INTEGER PRIMARY KEY AUTOINCREMENT,\n"
+        "    name TEXT NOT NULL,\n"
+        "    type TEXT NOT NULL,\n"
+        "    quantity INTEGER NOT NULL DEFAULT 0,\n"
+        "    location TEXT,\n"
+        "    purchase_date INTEGER\n"
+        ");\n"
+        "\n"
+        "CREATE INDEX IF NOT EXISTS idx_name ON components(name);\n"
+        "CREATE INDEX IF NOT EXISTS idx_type ON components(type);\n"
+        "CREATE INDEX IF NOT EXISTS idx_location ON components(location);";
     
     return executeQuery(createTableSQL);
 }
@@ -85,101 +85,149 @@ bool DatabaseManager::addComponent(const Component& component) {
         return false;
     }
     
-    std::cout << "\n=== DEBUG DatabaseManager::addComponent ===" << std::endl;
+    std::cout << "\n=== DEBUG DatabaseManager::addComponent (VERSIÓN CORREGIDA) ===" << std::endl;
     std::cout << "INFORMACIÓN DEL COMPONENTE A GUARDAR:" << std::endl;
-    std::cout << "  ID: " << component.getId() << std::endl;
     std::cout << "  Nombre: '" << component.getName() << "'" << std::endl;
     std::cout << "  Tipo: '" << component.getType() << "'" << std::endl;
     std::cout << "  Cantidad: " << component.getQuantity() << std::endl;
     std::cout << "  Ubicación: '" << component.getLocation() << "'" << std::endl;
-    std::cout << "  Fecha (timestamp): " << component.getPurchaseDate() << std::endl;
-    std::cout << "  Fecha (string): " << component.getPurchaseDateString() << std::endl;
     
-    std::string sql = R"(
-        INSERT INTO components (name, type, quantity, location, purchase_date)
-        VALUES (?, ?, ?, ?, ?)
-    )";
+    // USAR SQL SIMPLE en lugar de raw string
+    std::string sql = "INSERT INTO components (name, type, quantity, location, purchase_date) VALUES (?, ?, ?, ?, ?)";
     
-    std::cout << "\nSQL a ejecutar:" << std::endl;
-    std::cout << sql << std::endl;
+    std::cout << "\nSQL: " << sql << std::endl;
     
     sqlite3_stmt* stmt;
     int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
     
     if (rc != SQLITE_OK) {
-        std::cerr << "ERROR: No se pudo preparar la consulta: " << sqlite3_errmsg(db) << std::endl;
+        std::cerr << "ERROR preparando consulta: " << sqlite3_errmsg(db) << std::endl;
         return false;
     }
     
-    std::cout << "\nVALORES A INSERTAR:" << std::endl;
-    std::cout << "  1. name = '" << component.getName() << "'" << std::endl;
-    std::cout << "  2. type = '" << component.getType() << "'" << std::endl;
-    std::cout << "  3. quantity = " << component.getQuantity() << std::endl;
-    std::cout << "  4. location = '" << component.getLocation() << "'" << std::endl;
-    std::cout << "  5. purchase_date = " << component.getPurchaseDate() << std::endl;
+    // Bind de parámetros con VERIFICACIÓN EXTRA
+    std::cout << "\nRealizando bind de parámetros:" << std::endl;
     
-    // Hacer bind de los parámetros
-    sqlite3_bind_text(stmt, 1, component.getName().c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_text(stmt, 2, component.getType().c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_int(stmt, 3, component.getQuantity());
-    sqlite3_bind_text(stmt, 4, component.getLocation().c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_int64(stmt, 5, static_cast<sqlite3_int64>(component.getPurchaseDate()));
+    // Parámetro 1: name
+    std::string name = component.getName();
+    std::cout << "  Parámetro 1 (name): '" << name << "'" << std::endl;
+    sqlite3_bind_text(stmt, 1, name.c_str(), -1, SQLITE_TRANSIENT);
     
+    // Parámetro 2: type
+    std::string type = component.getType();
+    std::cout << "  Parámetro 2 (type): '" << type << "'" << std::endl;
+    sqlite3_bind_text(stmt, 2, type.c_str(), -1, SQLITE_TRANSIENT);
+    
+    // Parámetro 3: quantity
+    int quantity = component.getQuantity();
+    std::cout << "  Parámetro 3 (quantity): " << quantity << std::endl;
+    sqlite3_bind_int(stmt, 3, quantity);
+    
+    // Parámetro 4: location
+    std::string location = component.getLocation();
+    std::cout << "  Parámetro 4 (location): '" << location << "'" << std::endl;
+    sqlite3_bind_text(stmt, 4, location.c_str(), -1, SQLITE_TRANSIENT);
+    
+    // Parámetro 5: purchase_date
+    std::time_t purchaseDate = component.getPurchaseDate();
+    std::cout << "  Parámetro 5 (purchase_date): " << purchaseDate << std::endl;
+    sqlite3_bind_int64(stmt, 5, static_cast<sqlite3_int64>(purchaseDate));
+    
+    // Ejecutar
     std::cout << "\nEjecutando consulta..." << std::endl;
     rc = sqlite3_step(stmt);
     
-    std::cout << "Resultado de sqlite3_step: " << rc << std::endl;
-    std::cout << "SQLITE_DONE = " << SQLITE_DONE << std::endl;
-    
-    if (rc != SQLITE_DONE) {
-        std::cerr << "ERROR en sqlite3_step: " << sqlite3_errmsg(db) << std::endl;
+    std::cout << "Resultado sqlite3_step: " << rc;
+    if (rc == SQLITE_DONE) {
+        std::cout << " (SQLITE_DONE - ÉXITO)" << std::endl;
+    } else {
+        std::cout << " (ERROR: " << sqlite3_errmsg(db) << ")" << std::endl;
     }
     
     sqlite3_finalize(stmt);
     
     if (rc == SQLITE_DONE) {
-        std::cout << "ÉXITO: Componente insertado correctamente" << std::endl;
         std::cout << "Último ID insertado: " << sqlite3_last_insert_rowid(db) << std::endl;
-        
-        // Verificar inmediatamente qué se guardó
-        verifyLastInsert();
-        
         return true;
-    } else {
-        std::cerr << "FALLO: No se pudo insertar el componente" << std::endl;
-        return false;
     }
+    
+    return false;
 }
 bool DatabaseManager::updateComponent(const Component& component) {
-    if (!isConnected()) return false;
+    if (!isConnected()) {
+        std::cout << "DEBUG updateComponent: No hay conexión a la base de datos" << std::endl;
+        return false;
+    }
     
-    std::string sql = R"(
-        UPDATE components 
-        SET name = ?, type = ?, quantity = ?, location = ?, purchase_date = ?
-        WHERE id = ?
-    )";
+    std::cout << "\n=== DEBUG DatabaseManager::updateComponent ===" << std::endl;
+    std::cout << "ACTUALIZANDO COMPONENTE ID: " << component.getId() << std::endl;
+    std::cout << "Nuevos valores:" << std::endl;
+    std::cout << "  Nombre: '" << component.getName() << "'" << std::endl;
+    std::cout << "  Tipo: '" << component.getType() << "'" << std::endl;
+    std::cout << "  Cantidad: " << component.getQuantity() << std::endl;
+    std::cout << "  Ubicación: '" << component.getLocation() << "'" << std::endl;
+    std::cout << "  Fecha: " << component.getPurchaseDate() << std::endl;
+    
+    // Usar SQL simple (no raw string)
+    std::string sql = "UPDATE components SET name = ?, type = ?, quantity = ?, location = ?, purchase_date = ? WHERE id = ?";
+    
+    std::cout << "\nSQL: " << sql << std::endl;
     
     sqlite3_stmt* stmt;
     int rc = sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
     
     if (rc != SQLITE_OK) {
-        std::cerr << "Error al preparar consulta: " << sqlite3_errmsg(db) << std::endl;
+        std::cerr << "ERROR preparando consulta: " << sqlite3_errmsg(db) << std::endl;
         return false;
     }
     
-    sqlite3_bind_text(stmt, 1, component.getName().c_str(), -1, SQLITE_STATIC);
-    sqlite3_bind_text(stmt, 2, component.getType().c_str(), -1, SQLITE_STATIC);
+    // Crear COPIA de los strings para asegurar que persistan
+    std::string name_copy = component.getName();
+    std::string type_copy = component.getType();
+    std::string location_copy = component.getLocation();
+    
+    std::cout << "\nRealizando bind de parámetros:" << std::endl;
+    
+    // Parámetro 1: name
+    std::cout << "  Parámetro 1 (name): '" << name_copy << "'" << std::endl;
+    sqlite3_bind_text(stmt, 1, name_copy.c_str(), -1, SQLITE_STATIC);
+    
+    // Parámetro 2: type
+    std::cout << "  Parámetro 2 (type): '" << type_copy << "'" << std::endl;
+    sqlite3_bind_text(stmt, 2, type_copy.c_str(), -1, SQLITE_STATIC);
+    
+    // Parámetro 3: quantity
+    std::cout << "  Parámetro 3 (quantity): " << component.getQuantity() << std::endl;
     sqlite3_bind_int(stmt, 3, component.getQuantity());
-    sqlite3_bind_text(stmt, 4, component.getLocation().c_str(), -1, SQLITE_STATIC);
+    
+    // Parámetro 4: location
+    std::cout << "  Parámetro 4 (location): '" << location_copy << "'" << std::endl;
+    sqlite3_bind_text(stmt, 4, location_copy.c_str(), -1, SQLITE_STATIC);
+    
+    // Parámetro 5: purchase_date
+    std::cout << "  Parámetro 5 (purchase_date): " << component.getPurchaseDate() << std::endl;
     sqlite3_bind_int64(stmt, 5, static_cast<sqlite3_int64>(component.getPurchaseDate()));
+    
+    // Parámetro 6: id (WHERE clause)
+    std::cout << "  Parámetro 6 (id): " << component.getId() << std::endl;
     sqlite3_bind_int(stmt, 6, component.getId());
     
+    // Ejecutar
+    std::cout << "\nEjecutando consulta..." << std::endl;
     rc = sqlite3_step(stmt);
+    
+    std::cout << "Resultado sqlite3_step: " << rc;
+    if (rc == SQLITE_DONE) {
+        std::cout << " (SQLITE_DONE - ÉXITO)" << std::endl;
+        std::cout << "Filas afectadas: " << sqlite3_changes(db) << std::endl;
+    } else {
+        std::cout << " (ERROR: " << sqlite3_errmsg(db) << ")" << std::endl;
+    }
+    
     sqlite3_finalize(stmt);
     
     return rc == SQLITE_DONE;
 }
-
 bool DatabaseManager::deleteComponent(int id) {
     if (!isConnected()) return false;
     

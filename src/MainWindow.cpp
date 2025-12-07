@@ -12,6 +12,12 @@
 #include <QFileInfo>
 #include <ctime>
 #include <algorithm>
+#include "ReportGenerator.h"
+#include <QDialog>
+#include <QComboBox>
+#include <QSpinBox>
+#include <QDesktopServices>
+#include <QUrl>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), selectedId(-1), dbManager(nullptr), inventoryManager(nullptr)
@@ -337,15 +343,22 @@ void MainWindow::onTableSelectionChanged()
     }
     
     int row = selectedItems.first()->row();
-    int id = tableWidget->item(row, 0)->text().toInt();
+    selectedId = tableWidget->item(row, 0)->text().toInt();  // Asegúrate de esto
+    
+    std::cout << "\n=== DEBUG onTableSelectionChanged ===" << std::endl;
+    std::cout << "Fila seleccionada: " << row << std::endl;
+    std::cout << "ID seleccionado: " << selectedId << std::endl;
     
     // Buscar el componente por ID
     auto components = inventoryManager->getAllComponents();
     auto it = std::find_if(components.begin(), components.end(),
-                          [id](const Component& c) { return c.getId() == id; });
+                          [this](const Component& c) { return c.getId() == selectedId; });
     
     if (it != components.end()) {
+        std::cout << "Componente encontrado, llenando formulario..." << std::endl;
         populateForm(*it);
+    } else {
+        std::cout << "Componente NO encontrado para ID: " << selectedId << std::endl;
     }
 }
 
@@ -471,7 +484,156 @@ void MainWindow::populateForm(const Component& component)
     updateButton->setEnabled(true);
     deleteButton->setEnabled(true);
 }
-
+void MainWindow::generateReport()
+{
+    // Obtener componentes actuales
+    auto components = inventoryManager->getAllComponents();
+    
+    if (components.empty()) {
+        QMessageBox::information(this, "Información", 
+                                 "No hay componentes en el inventario para generar un reporte.");
+        return;
+    }
+    
+    // Diálogo para seleccionar tipo de reporte
+    QDialog dialog(this);
+    dialog.setWindowTitle("Generar Reporte");
+    dialog.setMinimumWidth(400);
+    
+    QVBoxLayout layout(&dialog);
+    
+    QLabel label("<b>Seleccione el tipo de reporte:</b>", &dialog);
+    layout.addWidget(&label);
+    
+    QComboBox combo(&dialog);
+    combo.addItem("📊 Reporte Completo (HTML)");
+    combo.addItem("📈 Reporte CSV");
+    combo.addItem("📝 Reporte de Texto");
+    combo.addItem("⚠️  Reporte de Stock Bajo (HTML)");
+    combo.setCurrentIndex(0);
+    layout.addWidget(&combo);
+    
+    // Opciones adicionales para stock bajo
+    QHBoxLayout thresholdLayout;
+    QLabel thresholdLabel("Umbral para stock bajo:", &dialog);
+    QSpinBox thresholdSpin(&dialog);
+    thresholdSpin.setRange(1, 100);
+    thresholdSpin.setValue(5);
+    thresholdSpin.setEnabled(false);  // Solo habilitar cuando sea relevante
+    
+    thresholdLayout.addWidget(&thresholdLabel);
+    thresholdLayout.addWidget(&thresholdSpin);
+    thresholdLayout.addStretch();
+    layout.addLayout(&thresholdLayout);
+    
+    // Conectar para habilitar/deshabilitar umbral
+    QObject::connect(&combo, QOverload<int>::of(&QComboBox::currentIndexChanged),
+                     [&](int index) {
+                         thresholdSpin.setEnabled(index == 3);  // Solo para reporte de stock bajo
+                     });
+    
+    QDialogButtonBox buttons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, &dialog);
+    layout.addWidget(&buttons);
+    
+    QObject::connect(&buttons, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
+    QObject::connect(&buttons, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
+    
+    if (dialog.exec() != QDialog::Accepted) {
+        return;
+    }
+    
+    // Preparar nombre de archivo por defecto
+    QString defaultDir = QDir::homePath() + "/Reportes_Inventario/";
+    QDir().mkpath(defaultDir);  // Crear directorio si no existe
+    
+    QString defaultName;
+    QString filter;
+    
+    switch (combo.currentIndex()) {
+        case 0:  // HTML completo
+            defaultName = defaultDir + "reporte_inventario_completo.html";
+            filter = "Archivos HTML (*.html *.htm)";
+            break;
+        case 1:  // CSV
+            defaultName = defaultDir + "reporte_inventario.csv";
+            filter = "Archivos CSV (*.csv)";
+            break;
+        case 2:  // Texto
+            defaultName = defaultDir + "reporte_inventario.txt";
+            filter = "Archivos de Texto (*.txt)";
+            break;
+        case 3:  // Stock bajo
+            defaultName = defaultDir + "alerta_stock_bajo.html";
+            filter = "Archivos HTML (*.html *.htm)";
+            break;
+    }
+    
+    // Diálogo para guardar archivo
+    QString fileName = QFileDialog::getSaveFileName(this,
+                                                    "Guardar Reporte",
+                                                    defaultName,
+                                                    filter);
+    
+    if (fileName.isEmpty()) {
+        return;
+    }
+    
+    bool success = false;
+    QString message;
+    
+    // Generar el reporte seleccionado
+    switch (combo.currentIndex()) {
+        case 0:  // HTML completo
+            success = ReportGenerator::generateHTMLReport(components, fileName.toStdString());
+            message = "Reporte HTML generado exitosamente";
+            break;
+            
+        case 1:  // CSV
+            success = ReportGenerator::generateCSVReport(components, fileName.toStdString());
+            message = "Reporte CSV generado exitosamente";
+            break;
+            
+        case 2:  // Texto
+            success = ReportGenerator::generateTextReport(components, fileName.toStdString());
+            message = "Reporte de texto generado exitosamente";
+            break;
+            
+        case 3:  // Stock bajo
+            success = ReportGenerator::generateLowStockReport(components, fileName.toStdString(), thresholdSpin.value());
+            message = "Reporte de stock bajo generado exitosamente";
+            break;
+    }
+    
+    if (success) {
+        // Mostrar mensaje de éxito
+        QMessageBox::information(this, "Éxito", 
+                                 QString("%1\n\nArchivo: %2\n\nTotal de componentes: %3")
+                                 .arg(message)
+                                 .arg(fileName)
+                                 .arg(components.size()));
+        
+        // Actualizar estado
+        statusLabel->setText(QString("✓ %1").arg(message));
+        statusLabel->setStyleSheet("padding: 5px; background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724;");
+        
+        // Preguntar si abrir el archivo
+        QMessageBox::StandardButton openFile = QMessageBox::question(this, "Abrir Reporte",
+                                                                     "¿Desea abrir el reporte generado?",
+                                                                     QMessageBox::Yes | QMessageBox::No);
+        
+        if (openFile == QMessageBox::Yes) {
+            // Intentar abrir el archivo con el visor predeterminado
+            QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
+        }
+        
+    } else {
+        QMessageBox::critical(this, "Error", 
+                              "No se pudo generar el reporte.\n"
+                              "Verifique los permisos de escritura o espacio en disco.");
+        statusLabel->setText("✗ Error al generar reporte");
+        statusLabel->setStyleSheet("padding: 5px; background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24;");
+    }
+}
 Component MainWindow::getFormData() const
 {
     // Obtener valores limpios
@@ -479,15 +641,12 @@ Component MainWindow::getFormData() const
     QString type = typeCombo->currentText().trimmed();
     QString location = locationEdit->text().trimmed();
     
-    // Debug detallado
-    std::cout << "\n=== DEBUG getFormData ===" << std::endl;
-    std::cout << "Campo Nombre (raw): '" << nameEdit->text().toStdString() << "'" << std::endl;
-    std::cout << "Campo Nombre (trimmed): '" << name.toStdString() << "'" << std::endl;
-    std::cout << "Campo Tipo (raw): '" << typeCombo->currentText().toStdString() << "'" << std::endl;
-    std::cout << "Campo Tipo (trimmed): '" << type.toStdString() << "'" << std::endl;
-    std::cout << "Campo Ubicación (raw): '" << locationEdit->text().toStdString() << "'" << std::endl;
-    std::cout << "Campo Ubicación (trimmed): '" << location.toStdString() << "'" << std::endl;
+    std::cout << "\n=== DEBUG getFormData (UPDATE) ===" << std::endl;
+    std::cout << "Nombre: '" << name.toStdString() << "'" << std::endl;
+    std::cout << "Tipo: '" << type.toStdString() << "'" << std::endl;
+    std::cout << "Ubicación: '" << location.toStdString() << "'" << std::endl;
     std::cout << "Cantidad: " << quantitySpin->value() << std::endl;
+    std::cout << "selectedId: " << selectedId << std::endl;
     
     // Convertir a std::string
     std::string nameStr = name.toStdString();

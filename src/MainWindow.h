@@ -11,20 +11,20 @@
 #include <QComboBox>
 #include <QMessageBox>
 #include <QGroupBox>
-#include <QTimer>       // ¡Agregado!
+#include <QTimer>
 #include "Component.h"
 #include "DatabaseManager.h"
 #include "InventoryManager.h"
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+    Q_OBJECT  // Macro necesaria para señales y slots de Qt
 
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
+private slots:  // Métodos que responden a eventos (señales)
     void addComponent();
     void updateComponent();
     void deleteComponent();
@@ -33,14 +33,15 @@ private slots:
     void generateReport();
     void checkLowStock();
 
-private:
+private:  // Métodos internos (implementación)
     void setupUI();
     void loadComponents();
     void clearForm();
     void populateForm(const Component& component);
     Component getFormData() const;
 
-    // Widgets
+private:  // Variables miembro (estado interno)
+    // Widgets de la interfaz
     QTableWidget *tableWidget;
     QLineEdit *nameEdit;
     QComboBox *typeCombo;
@@ -57,7 +58,7 @@ private:
     
     QLabel *statusLabel;
 
-    // Managers
+    // Managers para lógica de negocio
     DatabaseManager *dbManager;
     InventoryManager *inventoryManager;
     int selectedId;
