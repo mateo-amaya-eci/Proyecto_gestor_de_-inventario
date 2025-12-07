@@ -1,4 +1,5 @@
 #include "MainWindow.h"
+#include <iostream>      // ¡Agregado para std::cout!
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QFormLayout>
@@ -7,11 +8,11 @@
 #include <QGroupBox>
 #include <QTextStream>
 #include <QDir>
-#include <QTimer>      // ¡Agregado!
-#include <QFileInfo>   // ¡Agregado!
+#include <QTimer>
+#include <QFileInfo>
 #include <ctime>
 #include <algorithm>
-#include <iostream>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), selectedId(-1), dbManager(nullptr), inventoryManager(nullptr)
 {
@@ -57,16 +58,31 @@ void MainWindow::setupUI()
     QFormLayout *formLayout = new QFormLayout(formGroup);
     
     nameEdit = new QLineEdit(this);
+    nameEdit->setPlaceholderText("Ej: Resistor 1kΩ");
+    
     typeCombo = new QComboBox(this);
-    typeCombo->addItems({"Resistor", "Capacitor", "Transistor", "LED", "Microcontrolador", "Sensor", "Cable", "Otro"});
+    // Agregar items de forma más simple
+    typeCombo->addItem("Resistor");
+    typeCombo->addItem("Capacitor");
+    typeCombo->addItem("Transistor");
+    typeCombo->addItem("LED");
+    typeCombo->addItem("Microcontrolador");
+    typeCombo->addItem("Sensor");
+    typeCombo->addItem("Cable");
+    typeCombo->addItem("Otro");
+    
     quantitySpin = new QSpinBox(this);
     quantitySpin->setMinimum(0);
     quantitySpin->setMaximum(10000);
+    quantitySpin->setValue(1);
+    
     locationEdit = new QLineEdit(this);
+    locationEdit->setPlaceholderText("Ej: Cajón A, Estante 2");
+    
     dateEdit = new QDateEdit(this);
     dateEdit->setDate(QDate::currentDate());
     dateEdit->setCalendarPopup(true);
-    dateEdit->setDisplayFormat("yyyy-MM-dd");
+    dateEdit->setDisplayFormat("dd/MM/yyyy");
     
     formLayout->addRow("Nombre:", nameEdit);
     formLayout->addRow("Tipo:", typeCombo);
@@ -143,17 +159,27 @@ void MainWindow::loadComponents()
     tableWidget->setRowCount(0);
     
     auto components = inventoryManager->getAllComponents();
+    std::cout << "DEBUG - loadComponents: " << components.size() << " componentes" << std::endl;
+    
     for (const auto& component : components) {
         int row = tableWidget->rowCount();
         tableWidget->insertRow(row);
         
+        std::cout << "DEBUG - Component " << row << ":" << std::endl;
+        std::cout << "  ID: " << component.getId() << std::endl;
+        std::cout << "  Nombre: " << component.getName() << std::endl;
+        std::cout << "  Tipo: " << component.getType() << std::endl;
+        std::cout << "  Cantidad: " << component.getQuantity() << std::endl;
+        std::cout << "  Ubicación: " << component.getLocation() << std::endl;
+        
+        // Mostrar datos en la tabla SIN comillas adicionales
         tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(component.getId())));
         tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(component.getName())));
         tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(component.getType())));
         
         QTableWidgetItem *quantityItem = new QTableWidgetItem(QString::number(component.getQuantity()));
         if (component.isLowStock()) {
-            quantityItem->setBackground(QColor(255, 200, 200)); // Rojo claro para stock bajo
+            quantityItem->setBackground(QColor(255, 200, 200));
         }
         tableWidget->setItem(row, 3, quantityItem);
         
@@ -375,7 +401,7 @@ void MainWindow::clearForm()
 {
     nameEdit->clear();
     typeCombo->setCurrentIndex(0);
-    quantitySpin->setValue(0);
+    quantitySpin->setValue(1);
     locationEdit->clear();
     dateEdit->setDate(QDate::currentDate());
     selectedId = -1;
@@ -388,16 +414,27 @@ void MainWindow::clearForm()
 
 void MainWindow::populateForm(const Component& component)
 {
+    std::cout << "DEBUG - populateForm:" << std::endl;
+    std::cout << "  Component name: " << component.getName() << std::endl;
+    std::cout << "  Component type: " << component.getType() << std::endl;
+    std::cout << "  Component location: " << component.getLocation() << std::endl;
+    
+    // Establecer texto directamente, no usar fromStdString
     nameEdit->setText(QString::fromStdString(component.getName()));
     
-    // Buscar el tipo en el combo
-    int index = typeCombo->findText(QString::fromStdString(component.getType()));
+    // Para el combo, buscar exactamente
+    QString typeStr = QString::fromStdString(component.getType());
+    int index = typeCombo->findText(typeStr, Qt::MatchExactly);
+    
+    std::cout << "  Looking for type: " << typeStr.toStdString() << std::endl;
+    std::cout << "  Found at index: " << index << std::endl;
+    
     if (index != -1) {
         typeCombo->setCurrentIndex(index);
     } else {
-        // Si el tipo no está en la lista, agregarlo temporalmente
-        typeCombo->addItem(QString::fromStdString(component.getType()));
-        typeCombo->setCurrentText(QString::fromStdString(component.getType()));
+        // Si no está, agregarlo al final
+        typeCombo->addItem(typeStr);
+        typeCombo->setCurrentIndex(typeCombo->count() - 1);
     }
     
     quantitySpin->setValue(component.getQuantity());
@@ -417,20 +454,32 @@ void MainWindow::populateForm(const Component& component)
 }
 
 Component MainWindow::getFormData() const
-
 {
-    std::string name = nameEdit->text().trimmed().toStdString();
-    std::string type = typeCombo->currentText().trimmed().toStdString();
-    int quantity = quantitySpin->value();
-    std::string location = locationEdit->text().trimmed().toStdString();
-    
     std::cout << "DEBUG - getFormData():" << std::endl;
     std::cout << "  nameEdit text: " << nameEdit->text().toStdString() << std::endl;
-    std::cout << "  name (trimmed): " << name << std::endl;
     std::cout << "  typeCombo text: " << typeCombo->currentText().toStdString() << std::endl;
-    std::cout << "  type (trimmed): " << type << std::endl;
-    std::cout << "  quantity: " << quantity << std::endl;
-    std::cout << "  location: " << location << std::endl;
+    std::cout << "  location text: " << locationEdit->text().toStdString() << std::endl;
+    
+    // Obtener texto SIN comillas
+    QString nameQStr = nameEdit->text().trimmed();
+    QString typeQStr = typeCombo->currentText().trimmed();
+    QString locationQStr = locationEdit->text().trimmed();
+    
+    // Eliminar comillas dobles si las hay
+    nameQStr = nameQStr.replace("\"", "");
+    typeQStr = typeQStr.replace("\"", "");
+    locationQStr = locationQStr.replace("\"", "");
+    
+    std::string name = nameQStr.toStdString();
+    std::string type = typeQStr.toStdString();
+    int quantity = quantitySpin->value();
+    std::string location = locationQStr.toStdString();
+    
+    std::cout << "  After processing:" << std::endl;
+    std::cout << "    name: " << name << std::endl;
+    std::cout << "    type: " << type << std::endl;
+    std::cout << "    quantity: " << quantity << std::endl;
+    std::cout << "    location: " << location << std::endl;
     
     // Convertir QDate a time_t
     QDate qDate = dateEdit->date();
