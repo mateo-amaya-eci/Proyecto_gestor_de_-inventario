@@ -7,14 +7,21 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-# Solo necesitamos Widgets, no PrintSupport
+# Buscar paquetes necesarios
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
+
+# Buscar SQLite3 de forma correcta
 find_package(SQLite3 REQUIRED)
+
+# Mensaje de depuración
+message(STATUS "SQLite3 found: ${SQLite3_FOUND}")
+message(STATUS "SQLite3 include dir: ${SQLite3_INCLUDE_DIRS}")
+message(STATUS "SQLite3 libraries: ${SQLite3_LIBRARIES}")
 
 # Incluir directorios
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-# Archivos del proyecto SIN PDFGenerator
+# Archivos del proyecto
 set(SOURCES
     src/main.cpp
     src/MainWindow.cpp
@@ -35,14 +42,17 @@ set(HEADERS
 # Crear ejecutable
 add_executable(GestorInventario ${SOURCES} ${HEADERS})
 
-# Enlazar bibliotecas SIN PrintSupport
+# Enlazar bibliotecas - FORMA CORRECTA
 target_link_libraries(GestorInventario PRIVATE 
     Qt5::Widgets
-    ${SQLITE3_LIBRARY}
+    ${SQLite3_LIBRARIES}  # Usar la variable correcta
 )
 
-# Incluir directorios de SQLite3
-target_include_directories(GestorInventario PRIVATE ${SQLITE3_INCLUDE_DIR})
+# Incluir directorios
+target_include_directories(GestorInventario PRIVATE 
+    ${SQLite3_INCLUDE_DIRS}
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
 
 # Configuración para macOS
 if(APPLE)

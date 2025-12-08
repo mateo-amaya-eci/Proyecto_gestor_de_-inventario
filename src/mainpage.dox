@@ -1,0 +1,209 @@
+/**
+@mainpage Gestor de Inventario para Hogar/Laboratorio
+
+@tableofcontents
+
+@section introduccion Introducción
+
+El **Gestor de Inventario** es una aplicación desarrollada en C++ con Qt5 y SQLite3
+para la gestión de componentes electrónicos en entornos domésticos o de laboratorio.
+
+@section caracteristicas Características Principales
+
+- ✅ Gestión completa de componentes electrónicos
+- ✅ Interfaz gráfica intuitiva con Qt5
+- ✅ Base de datos embebida SQLite3
+- ✅ Búsqueda y filtrado avanzado
+- ✅ Alertas de stock bajo
+- ✅ Generación de reportes (HTML, CSV, Texto)
+- ✅ Diseño orientado a objetos
+
+@section arquitectura Arquitectura del Sistema
+
+El sistema está organizado en las siguientes capas:
+
+@dot
+digraph arquitectura {
+    rankdir=TB;
+    node [shape=box, style=filled, fillcolor=lightblue];
+    
+    "Capa de Presentación" -> "MainWindow (Qt)";
+    "Capa de Lógica" -> "InventoryManager";
+    "Capa de Persistencia" -> "DatabaseManager";
+    "Capa de Dominio" -> "Component";
+    
+    "MainWindow" -> "InventoryManager";
+    "InventoryManager" -> "DatabaseManager";
+    "DatabaseManager" -> "SQLite3";
+    "InventoryManager" -> "Component";
+}
+@enddot
+
+@section requisitos Requisitos del Sistema
+
+@subsection requisitos_software Requisitos de Software
+- Sistema operativo: Linux (Ubuntu/Debian recomendado)
+- Qt5: Versión 5.12 o superior
+- SQLite3: Versión 3.31 o superior
+- Compilador: GCC 7.5+ o Clang 6.0+
+
+@subsection requisitos_hardware Requisitos de Hardware
+- Procesador: x86_64 o ARM (compatible Raspberry Pi)
+- RAM: 512 MB mínimo, 1 GB recomendado
+- Almacenamiento: 100 MB libre
+
+@section instalacion Instalación y Configuración
+
+@subsection compilacion Compilación
+@code{.bash}
+# Clonar repositorio
+git clone [URL_DEL_REPOSITORIO]
+
+# Crear directorio de compilación
+mkdir build && cd build
+
+# Configurar con CMake
+cmake ..
+
+# Compilar
+make
+
+# Ejecutar
+./GestorInventario
+@endcode
+
+@subsection dependencias Dependencias
+@code{.bash}
+# Ubuntu/Debian
+sudo apt-get update
+sudo apt-get install qt5-default libsqlite3-dev build-essential cmake
+
+# Fedora
+sudo dnf install qt5-qtbase-devel sqlite-devel gcc-c++ cmake
+@endcode
+
+@section uso Guía de Uso
+
+@subsection agregar_componente Agregar Componente
+1. Complete el formulario con los datos del componente
+2. Haga clic en "Agregar"
+3. El componente aparecerá en la tabla principal
+
+@subsection buscar_componente Buscar Componente
+1. Escriba palabras clave en el campo de búsqueda
+2. Haga clic en "Buscar"
+3. Use "Mostrar Todos" para ver todos los componentes
+
+@subsection generar_reporte Generar Reporte
+1. Haga clic en "Generar Reporte"
+2. Seleccione el formato deseado (HTML, CSV, Texto)
+3. Elija ubicación para guardar el archivo
+
+@section estructura Estructura del Proyecto
+
+@verbatim
+GestorInventario/
+├── CMakeLists.txt          # Configuración de compilación
+├── src/
+│   ├── main.cpp            # Punto de entrada
+│   ├── MainWindow.h/cpp    # Interfaz gráfica
+│   ├── Component.h/cpp     # Entidad principal
+│   ├── DatabaseManager.h/cpp # Gestor de base de datos
+│   ├── InventoryManager.h/cpp # Gestor de inventario
+│   └── ReportGenerator.h/cpp # Generador de reportes
+├── build/                  # Archivos de compilación
+└── docs/                   # Documentación
+@endverbatim
+
+@section clases Principales Clases
+
+@li @ref Component - Representa un componente electrónico
+@li @ref DatabaseManager - Gestiona la base de datos SQLite
+@li @ref InventoryManager - Lógica de negocio del inventario
+@li @ref MainWindow - Interfaz gráfica principal
+@li @ref ReportGenerator - Generación de reportes
+
+@section diagramas Diagramas UML
+
+@subsection diagrama_clases Diagrama de Clases
+@image html class_diagram.png "Diagrama de Clases del Sistema"
+
+@subsection diagrama_secuencia Diagrama de Secuencia
+@dot
+digraph secuencia_agregar {
+    rankdir=LR;
+    node [shape=box];
+    
+    Usuario -> MainWindow [label="1. Llena formulario"];
+    MainWindow -> InventoryManager [label="2. addComponent()"];
+    InventoryManager -> DatabaseManager [label="3. addComponent()"];
+    DatabaseManager -> SQLite [label="4. INSERT"];
+    SQLite -> DatabaseManager [label="5. Confirmación"];
+    DatabaseManager -> InventoryManager [label="6. true"];
+    InventoryManager -> MainWindow [label="7. true"];
+    MainWindow -> Usuario [label="8. Mensaje éxito"];
+}
+@enddot
+
+@section base_datos Base de Datos
+
+La aplicación utiliza SQLite3 con la siguiente estructura:
+
+@code{.sql}
+CREATE TABLE components (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL,
+    quantity INTEGER NOT NULL DEFAULT 0,
+    location TEXT,
+    purchase_date INTEGER
+);
+@endcode
+
+@section desarrollo Desarrollo
+
+@subsection estilo_codigo Estilo de Código
+- Nomenclatura: camelCase para variables, PascalCase para clases
+- Comentarios: Doxygen para documentación de API
+- Indentación: 4 espacios (no tabs)
+- Límite de línea: 80 caracteres
+
+@subsection pruebas Pruebas
+Se recomienda:
+1. Pruebas unitarias para cada clase
+2. Pruebas de integración entre módulos
+3. Pruebas de interfaz de usuario
+
+@subsection contribuir Contribuir
+1. Fork el repositorio
+2. Cree una rama para su feature
+3. Realice commits descriptivos
+4. Envíe un Pull Request
+
+@section licencia Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT.
+
+@section contacto Contacto
+
+- **Autor:** [Tu Nombre]
+- **Email:** [tu-email@ejemplo.com]
+- **Repositorio:** [URL_DEL_REPOSITORIO]
+- **Documentación:** [URL_DOCUMENTACION]
+
+@page changelog Historial de Cambios
+
+@version 1.0.0 (Diciembre 2024)
+- Versión inicial del sistema
+- CRUD completo de componentes
+- Generación de reportes HTML/CSV/Texto
+- Interfaz gráfica con Qt5
+- Base de datos SQLite3 embebida
+
+@section referencias Referencias
+
+@li Documentación de Qt5: https://doc.qt.io/qt-5/
+@li Documentación de SQLite3: https://www.sqlite.org/docs.html
+@li Doxygen: https://www.doxygen.nl/
+*/
+EOF
