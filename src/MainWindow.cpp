@@ -22,6 +22,8 @@
 #include <QVBoxLayout>
 #include <QMessageBox>
 #include <QDialogButtonBox>
+#include "PDFGenerator.h" 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), selectedId(-1), dbManager(nullptr), inventoryManager(nullptr)
 {
@@ -367,19 +369,18 @@ void MainWindow::onTableSelectionChanged()
 
 void MainWindow::generateReport()
 {
-    // Obtener componentes actuales
     auto components = inventoryManager->getAllComponents();
     
     if (components.empty()) {
         QMessageBox::information(this, "Información", 
-                                 "No hay componentes en el inventario para generar un reporte.");
+                                 "No hay componentes para generar reporte.");
         return;
     }
     
-    // Diálogo para seleccionar tipo de reporte
+    // Diálogo con opciones COMPLETAS (incluye PDF)
     QDialog dialog(this);
     dialog.setWindowTitle("Generar Reporte");
-    dialog.setMinimumWidth(400);
+    dialog.setMinimumWidth(450);
     
     QVBoxLayout layout(&dialog);
     
@@ -391,26 +392,46 @@ void MainWindow::generateReport()
     combo.addItem("📈 Reporte CSV");
     combo.addItem("📝 Reporte de Texto");
     combo.addItem("⚠️  Reporte de Stock Bajo (HTML)");
+    combo.addItem("📄 Reporte PDF Completo");
+    combo.addItem("🚨 Alerta Stock Bajo (PDF)");
     combo.setCurrentIndex(0);
     layout.addWidget(&combo);
     
-    // Opciones adicionales para stock bajo
+    // Configuración para PDF (solo visible cuando se selecciona PDF)
+    QGroupBox pdfGroup("Opciones PDF", &dialog);
+    QVBoxLayout pdfLayout(&pdfGroup);
+    
+    QCheckBox landscapeCheck("Modo horizontal (apaisado)", &pdfGroup);
+    QCheckBox colorCheck("Imprimir en color", &pdfGroup);
+    colorCheck.setChecked(true);
+    
+    pdfLayout.addWidget(&landscapeCheck);
+    pdfLayout.addWidget(&colorCheck);
+    pdfGroup.setVisible(false); // Ocultar inicialmente
+    
+    layout.addWidget(&pdfGroup);
+    
+    // Umbral para stock bajo
     QHBoxLayout thresholdLayout;
     QLabel thresholdLabel("Umbral para stock bajo:", &dialog);
     QSpinBox thresholdSpin(&dialog);
     thresholdSpin.setRange(1, 100);
     thresholdSpin.setValue(5);
-    thresholdSpin.setEnabled(false);  // Solo habilitar cuando sea relevante
+    thresholdSpin.setEnabled(false);
     
     thresholdLayout.addWidget(&thresholdLabel);
     thresholdLayout.addWidget(&thresholdSpin);
     thresholdLayout.addStretch();
     layout.addLayout(&thresholdLayout);
     
-    // Conectar para habilitar/deshabilitar umbral
+    // Conectar para mostrar/ocultar opciones
     QObject::connect(&combo, QOverload<int>::of(&QComboBox::currentIndexChanged),
                      [&](int index) {
-                         thresholdSpin.setEnabled(index == 3);  // Solo para reporte de stock bajo
+                         bool isPDF = (index == 4 || index == 5);
+                         bool isLowStock = (index == 3 || index == 5);
+                         
+                         pdfGroup.setVisible(isPDF);
+                         thresholdSpin.setEnabled(isLowStock);
                      });
     
     QDialogButtonBox buttons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, &dialog);
@@ -423,33 +444,48 @@ void MainWindow::generateReport()
         return;
     }
     
-    // Preparar nombre de archivo por defecto
+    // Preparar nombre de archivo
     QString defaultDir = QDir::homePath() + "/Reportes_Inventario/";
-    QDir().mkpath(defaultDir);  // Crear directorio si no existe
+    QDir().mkpath(defaultDir);
     
     QString defaultName;
     QString filter;
+    QString extension;
     
     switch (combo.currentIndex()) {
         case 0:  // HTML completo
             defaultName = defaultDir + "reporte_inventario_completo.html";
             filter = "Archivos HTML (*.html *.htm)";
+            extension = ".html";
             break;
         case 1:  // CSV
             defaultName = defaultDir + "reporte_inventario.csv";
             filter = "Archivos CSV (*.csv)";
+            extension = ".csv";
             break;
         case 2:  // Texto
             defaultName = defaultDir + "reporte_inventario.txt";
             filter = "Archivos de Texto (*.txt)";
+            extension = ".txt";
             break;
-        case 3:  // Stock bajo
+        case 3:  // Stock bajo HTML
             defaultName = defaultDir + "alerta_stock_bajo.html";
             filter = "Archivos HTML (*.html *.htm)";
+            extension = ".html";
+            break;
+        case 4:  // PDF Completo
+            defaultName = defaultDir + "reporte_inventario_completo.pdf";
+            filter = "Documentos PDF (*.pdf)";
+            extension = ".pdf";
+            break;
+        case 5:  // PDF Stock bajo
+            defaultName = defaultDir + "alerta_stock_bajo.pdf";
+            filter = "Documentos PDF (*.pdf)";
+            extension = ".pdf";
             break;
     }
     
-    // Diálogo para guardar archivo
+    // Diálogo para guardar
     QString fileName = QFileDialog::getSaveFileName(this,
                                                     "Guardar Reporte",
                                                     defaultName,
@@ -459,41 +495,66 @@ void MainWindow::generateReport()
         return;
     }
     
+    // Asegurar extensión correcta
+    if (!fileName.endsWith(extension, Qt::CaseInsensitive)) {
+        fileName += extension;
+    }
+    
     bool success = false;
     QString message;
     
-    // Generar el reporte seleccionado
+    // Generar reporte según tipo seleccionado
     switch (combo.currentIndex()) {
         case 0:  // HTML completo
-            success = ReportGenerator::generateHTMLReport(components, fileName.toStdString());
+            success = ReportGenerator::generateHTMLReport(components, 
+                                                        fileName.toStdString());
             message = "Reporte HTML generado exitosamente";
             break;
             
         case 1:  // CSV
-            success = ReportGenerator::generateCSVReport(components, fileName.toStdString());
+            success = ReportGenerator::generateCSVReport(components, 
+                                                       fileName.toStdString());
             message = "Reporte CSV generado exitosamente";
             break;
             
         case 2:  // Texto
-            success = ReportGenerator::generateTextReport(components, fileName.toStdString());
+            success = ReportGenerator::generateTextReport(components, 
+                                                        fileName.toStdString());
             message = "Reporte de texto generado exitosamente";
             break;
             
-        case 3:  // Stock bajo
-            success = ReportGenerator::generateLowStockReport(components, fileName.toStdString(), thresholdSpin.value());
-            message = "Reporte de stock bajo generado exitosamente";
+        case 3:  // Stock bajo HTML
+            success = ReportGenerator::generateLowStockReport(components, 
+                                                            fileName.toStdString(), 
+                                                            thresholdSpin.value());
+            message = "Reporte de stock bajo (HTML) generado exitosamente";
+            break;
+            
+        case 4:  // PDF Completo
+            success = PDFGenerator::generatePDFReport(components, 
+                                                    fileName.toStdString(),
+                                                    landscapeCheck.isChecked(),
+                                                    colorCheck.isChecked());
+            message = "Reporte PDF generado exitosamente";
+            break;
+            
+        case 5:  // PDF Stock bajo
+            success = PDFGenerator::generateLowStockPDF(components, 
+                                                      fileName.toStdString(), 
+                                                      thresholdSpin.value(),
+                                                      landscapeCheck.isChecked(),
+                                                      colorCheck.isChecked());
+            message = "Alerta de stock bajo (PDF) generada exitosamente";
             break;
     }
     
     if (success) {
-        // Mostrar mensaje de éxito
         QMessageBox::information(this, "Éxito", 
                                  QString("%1\n\nArchivo: %2\n\nTotal de componentes: %3")
                                  .arg(message)
                                  .arg(fileName)
                                  .arg(components.size()));
         
-        // Actualizar estado
         statusLabel->setText(QString("✓ %1").arg(message));
         statusLabel->setStyleSheet("padding: 5px; background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724;");
         
@@ -503,7 +564,6 @@ void MainWindow::generateReport()
                                                                      QMessageBox::Yes | QMessageBox::No);
         
         if (openFile == QMessageBox::Yes) {
-            // Intentar abrir el archivo con el visor predeterminado
             QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
         }
         
@@ -513,32 +573,6 @@ void MainWindow::generateReport()
                               "Verifique los permisos de escritura o espacio en disco.");
         statusLabel->setText("✗ Error al generar reporte");
         statusLabel->setStyleSheet("padding: 5px; background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24;");
-    }
-}
-
-void MainWindow::checkLowStock()
-{
-    auto lowStock = inventoryManager->getLowStockComponents();
-    if (!lowStock.empty()) {
-        QString warningText = QString("¡ATENCIÓN! Hay %1 componentes con stock bajo").arg(lowStock.size());
-        statusLabel->setText(warningText);
-        statusLabel->setStyleSheet("padding: 5px; background-color: #fff3cd; border: 1px solid #ffeaa7; color: #856404; font-weight: bold;");
-        
-        // Mostrar notificación ocasionalmente
-        static int notificationCount = 0;
-        if (notificationCount % 10 == 0) { // Cada 5 minutos aproximadamente
-            QMessageBox::warning(this, "Stock Bajo", 
-                                QString("Hay %1 componentes con stock bajo.\nRevise el inventario.")
-                                .arg(lowStock.size()));
-        }
-        notificationCount++;
-    } else {
-        // Restaurar estilo normal si no hay stock bajo
-        if (!statusLabel->text().contains("Error") && 
-            !statusLabel->text().contains("generado") &&
-            !statusLabel->text().contains("encontrados")) {
-            statusLabel->setStyleSheet("padding: 5px; background-color: #f0f0f0; border: 1px solid #ccc;");
-        }
     }
 }
 

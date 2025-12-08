@@ -271,6 +271,33 @@ src/MainWindow.cpp.s:
 	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/MainWindow.cpp.s
 .PHONY : src/MainWindow.cpp.s
 
+src/PDFGenerator.o: src/PDFGenerator.cpp.o
+
+.PHONY : src/PDFGenerator.o
+
+# target to build an object file
+src/PDFGenerator.cpp.o:
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/PDFGenerator.cpp.o
+.PHONY : src/PDFGenerator.cpp.o
+
+src/PDFGenerator.i: src/PDFGenerator.cpp.i
+
+.PHONY : src/PDFGenerator.i
+
+# target to preprocess a source file
+src/PDFGenerator.cpp.i:
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/PDFGenerator.cpp.i
+.PHONY : src/PDFGenerator.cpp.i
+
+src/PDFGenerator.s: src/PDFGenerator.cpp.s
+
+.PHONY : src/PDFGenerator.s
+
+# target to generate assembly for a file
+src/PDFGenerator.cpp.s:
+	$(MAKE) -f CMakeFiles/GestorInventario.dir/build.make CMakeFiles/GestorInventario.dir/src/PDFGenerator.cpp.s
+.PHONY : src/PDFGenerator.cpp.s
+
 src/ReportGenerator.o: src/ReportGenerator.cpp.o
 
 .PHONY : src/ReportGenerator.o
@@ -350,6 +377,9 @@ help:
 	@echo "... src/MainWindow.o"
 	@echo "... src/MainWindow.i"
 	@echo "... src/MainWindow.s"
+	@echo "... src/PDFGenerator.o"
+	@echo "... src/PDFGenerator.i"
+	@echo "... src/PDFGenerator.s"
 	@echo "... src/ReportGenerator.o"
 	@echo "... src/ReportGenerator.i"
 	@echo "... src/ReportGenerator.s"
