@@ -1,13 +1,11 @@
 <map id="src/Component.h" name="src/Component.h">
 <area shape="rect" id="node1" title=" " alt="" coords="261,5,393,32"/>
 <area shape="rect" id="node2" href="$Component_8cpp.html" title=" " alt="" coords="5,80,152,107"/>
-<area shape="rect" id="node3" href="$DatabaseManager_8h.html" title=" " alt="" coords="177,80,351,107"/>
-<area shape="rect" id="node5" href="$InventoryManager_8h.html" title=" " alt="" coords="281,155,455,181"/>
-<area shape="rect" id="node10" href="$ReportGenerator_8h.html" title=" " alt="" coords="467,80,631,107"/>
-<area shape="rect" id="node4" href="$DatabaseManager_8cpp.html" title=" " alt="" coords="66,155,257,181"/>
-<area shape="rect" id="node6" href="$InventoryManager_8cpp.html" title=" " alt="" coords="178,229,369,256"/>
-<area shape="rect" id="node7" href="$MainWindow_8h.html" title=" " alt="" coords="393,229,533,256"/>
-<area shape="rect" id="node8" href="$main_8cpp.html" title=" " alt="" coords="333,304,438,331"/>
-<area shape="rect" id="node9" href="$MainWindow_8cpp.html" title=" " alt="" coords="461,304,616,331"/>
-<area shape="rect" id="node11" href="$ReportGenerator_8cpp.html" title=" " alt="" coords="480,155,659,181"/>
+<area shape="rect" id="node3" href="$InventoryManager_8h.html" title=" " alt="" coords="177,80,351,107"/>
+<area shape="rect" id="node5" href="$MainWindow_8h.html" title=" " alt="" coords="319,155,459,181"/>
+<area shape="rect" id="node8" href="$ReportGenerator_8h.html" title=" " alt="" coords="427,80,591,107"/>
+<area shape="rect" id="node4" href="$InventoryManager_8cpp.html" title=" " alt="" coords="105,155,295,181"/>
+<area shape="rect" id="node6" href="$main_8cpp.html" title=" " alt="" coords="298,229,403,256"/>
+<area shape="rect" id="node7" href="$MainWindow_8cpp.html" title=" " alt="" coords="427,229,581,256"/>
+<area shape="rect" id="node9" href="$ReportGenerator_8cpp.html" title=" " alt="" coords="541,155,720,181"/>
 </map>

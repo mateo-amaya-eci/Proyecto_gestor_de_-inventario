@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['onaddbuttonclicked_48',['onAddButtonClicked',['../classMainWindow.html#a21ef75eba70ede6f72d07ba0e4687bbb',1,'MainWindow']]],
-  ['ondeletebuttonclicked_49',['onDeleteButtonClicked',['../classMainWindow.html#af309049d419909943ec196cc87f9aa0a',1,'MainWindow']]],
-  ['ongeneratereportclicked_50',['onGenerateReportClicked',['../classMainWindow.html#a4ef5565b73a7a4f4dd2407b378ca89e6',1,'MainWindow']]],
-  ['onsearchtextchanged_51',['onSearchTextChanged',['../classMainWindow.html#a2723f6e19d4af680629f93de3825a894',1,'MainWindow']]],
-  ['ontableselectionchanged_52',['onTableSelectionChanged',['../classMainWindow.html#a60b2b3b38afa81232ad81a30c592caea',1,'MainWindow']]],
-  ['opendatabase_53',['openDatabase',['../classDatabaseManager.html#abf0518515ed9ec59c91bd4d3a39f7319',1,'DatabaseManager']]]
+  ['name_46',['name',['../classComponent.html#a46343549452bda5ee9752f7a9bc15efb',1,'Component']]],
+  ['nameedit_47',['nameEdit',['../classMainWindow.html#acb93ba9ef6d5162b7882592517a237a8',1,'MainWindow']]]
 ];

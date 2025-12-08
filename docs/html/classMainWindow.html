@@ -111,10 +111,9 @@ Diagrama de colaboración para MainWindow:</div>
 <div class="dyncontent">
 <div class="center"><img src="classMainWindow__coll__graph.png" border="0" usemap="#MainWindow_coll__map" alt="Collaboration graph"/></div>
 <map name="MainWindow_coll__map" id="MainWindow_coll__map">
-<area shape="rect" title="Representa la ventana principal de la aplicación de gestión de inventario." alt="" coords="31,184,138,211"/>
-<area shape="rect" title=" " alt="" coords="5,95,121,121"/>
-<area shape="rect" href="classInventoryManager.html" title="Gestiona el inventario de componentes y su interacción con la base de datos." alt="" coords="146,95,287,121"/>
-<area shape="rect" href="classDatabaseManager.html" title="Gestiona la conexión y operaciones con la base de datos SQLite." alt="" coords="146,5,287,32"/>
+<area shape="rect" title="Representa la ventana principal de la aplicación de gestión de inventario." alt="" coords="86,95,193,121"/>
+<area shape="rect" title=" " alt="" coords="5,5,121,32"/>
+<area shape="rect" href="classInventoryManager.html" title="Gestiona el inventario de componentes y su interacción con la base de datos." alt="" coords="146,5,287,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">significado de colores y flechas</a>]</span></center></div>
 <table class="memberdecls">
@@ -129,67 +128,84 @@ Métodos públicos</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-slots"></a>
 Slots privados</h2></td></tr>
-<tr class="memitem:a21ef75eba70ede6f72d07ba0e4687bbb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a21ef75eba70ede6f72d07ba0e4687bbb">onAddButtonClicked</a> ()</td></tr>
-<tr class="memdesc:a21ef75eba70ede6f72d07ba0e4687bbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot que se ejecuta cuando se presiona el botón de agregar.  <a href="classMainWindow.html#a21ef75eba70ede6f72d07ba0e4687bbb">Más...</a><br /></td></tr>
-<tr class="separator:a21ef75eba70ede6f72d07ba0e4687bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af309049d419909943ec196cc87f9aa0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#af309049d419909943ec196cc87f9aa0a">onDeleteButtonClicked</a> ()</td></tr>
-<tr class="memdesc:af309049d419909943ec196cc87f9aa0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot que se ejecuta cuando se presiona el botón de eliminar.  <a href="classMainWindow.html#af309049d419909943ec196cc87f9aa0a">Más...</a><br /></td></tr>
-<tr class="separator:af309049d419909943ec196cc87f9aa0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2723f6e19d4af680629f93de3825a894"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a2723f6e19d4af680629f93de3825a894">onSearchTextChanged</a> ()</td></tr>
-<tr class="memdesc:a2723f6e19d4af680629f93de3825a894"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot que se ejecuta cuando el texto de búsqueda cambia.  <a href="classMainWindow.html#a2723f6e19d4af680629f93de3825a894">Más...</a><br /></td></tr>
-<tr class="separator:a2723f6e19d4af680629f93de3825a894"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ef5565b73a7a4f4dd2407b378ca89e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a4ef5565b73a7a4f4dd2407b378ca89e6">onGenerateReportClicked</a> ()</td></tr>
-<tr class="memdesc:a4ef5565b73a7a4f4dd2407b378ca89e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot que se ejecuta cuando se presiona el botón de generar reporte.  <a href="classMainWindow.html#a4ef5565b73a7a4f4dd2407b378ca89e6">Más...</a><br /></td></tr>
-<tr class="separator:a4ef5565b73a7a4f4dd2407b378ca89e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac2ddfa574c394d0d3077e5ef1629834"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#aac2ddfa574c394d0d3077e5ef1629834">addComponent</a> ()</td></tr>
+<tr class="memdesc:aac2ddfa574c394d0d3077e5ef1629834"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot que se ejecuta cuando se presiona el botón de agregar.  <a href="classMainWindow.html#aac2ddfa574c394d0d3077e5ef1629834">Más...</a><br /></td></tr>
+<tr class="separator:aac2ddfa574c394d0d3077e5ef1629834"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad77e039539b1c939853d5718fe38630b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ad77e039539b1c939853d5718fe38630b">updateComponent</a> ()</td></tr>
+<tr class="memdesc:ad77e039539b1c939853d5718fe38630b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot que se ejecuta cuando se presiona el botón de actualizar.  <a href="classMainWindow.html#ad77e039539b1c939853d5718fe38630b">Más...</a><br /></td></tr>
+<tr class="separator:ad77e039539b1c939853d5718fe38630b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d08d8fee15872708dc142d0cfc73896"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a2d08d8fee15872708dc142d0cfc73896">deleteComponent</a> ()</td></tr>
+<tr class="memdesc:a2d08d8fee15872708dc142d0cfc73896"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot que se ejecuta cuando se presiona el botón de eliminar.  <a href="classMainWindow.html#a2d08d8fee15872708dc142d0cfc73896">Más...</a><br /></td></tr>
+<tr class="separator:a2d08d8fee15872708dc142d0cfc73896"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4acc611812a6cc320c186cb7e8ae52b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a4acc611812a6cc320c186cb7e8ae52b1">searchComponents</a> ()</td></tr>
+<tr class="memdesc:a4acc611812a6cc320c186cb7e8ae52b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot que se ejecuta cuando se presiona el botón de buscar.  <a href="classMainWindow.html#a4acc611812a6cc320c186cb7e8ae52b1">Más...</a><br /></td></tr>
+<tr class="separator:a4acc611812a6cc320c186cb7e8ae52b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60b2b3b38afa81232ad81a30c592caea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a60b2b3b38afa81232ad81a30c592caea">onTableSelectionChanged</a> ()</td></tr>
 <tr class="memdesc:a60b2b3b38afa81232ad81a30c592caea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot que se ejecuta cuando cambia la selección en la tabla.  <a href="classMainWindow.html#a60b2b3b38afa81232ad81a30c592caea">Más...</a><br /></td></tr>
 <tr class="separator:a60b2b3b38afa81232ad81a30c592caea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6318e2c9b252f9f512005ef320b55f57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a6318e2c9b252f9f512005ef320b55f57">generateReport</a> ()</td></tr>
+<tr class="memdesc:a6318e2c9b252f9f512005ef320b55f57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot que se ejecuta cuando se presiona el botón de generar reporte.  <a href="classMainWindow.html#a6318e2c9b252f9f512005ef320b55f57">Más...</a><br /></td></tr>
+<tr class="separator:a6318e2c9b252f9f512005ef320b55f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4d30d09b74c32a119ab2358aa19638e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#af4d30d09b74c32a119ab2358aa19638e">checkLowStock</a> ()</td></tr>
+<tr class="memdesc:af4d30d09b74c32a119ab2358aa19638e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot que verifica si hay componentes con bajo stock.  <a href="classMainWindow.html#af4d30d09b74c32a119ab2358aa19638e">Más...</a><br /></td></tr>
+<tr class="separator:af4d30d09b74c32a119ab2358aa19638e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Métodos privados</h2></td></tr>
 <tr class="memitem:a3a304253c9e7caeef028f75358bf1fd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a3a304253c9e7caeef028f75358bf1fd5">setupUI</a> ()</td></tr>
 <tr class="memdesc:a3a304253c9e7caeef028f75358bf1fd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configura la interfaz gráfica de la ventana principal.  <a href="classMainWindow.html#a3a304253c9e7caeef028f75358bf1fd5">Más...</a><br /></td></tr>
 <tr class="separator:a3a304253c9e7caeef028f75358bf1fd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36f4b8cdb66bfe8365359935cb7f7fdc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a36f4b8cdb66bfe8365359935cb7f7fdc">refreshTable</a> ()</td></tr>
-<tr class="memdesc:a36f4b8cdb66bfe8365359935cb7f7fdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza la tabla con los componentes del inventario.  <a href="classMainWindow.html#a36f4b8cdb66bfe8365359935cb7f7fdc">Más...</a><br /></td></tr>
-<tr class="separator:a36f4b8cdb66bfe8365359935cb7f7fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dfdfd6612e116fad344b17d35272c11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a3dfdfd6612e116fad344b17d35272c11">loadComponents</a> ()</td></tr>
+<tr class="memdesc:a3dfdfd6612e116fad344b17d35272c11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carga los componentes desde la base de datos al inventario.  <a href="classMainWindow.html#a3dfdfd6612e116fad344b17d35272c11">Más...</a><br /></td></tr>
+<tr class="separator:a3dfdfd6612e116fad344b17d35272c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa98c34025c53d523c1581d39caaf46ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#aa98c34025c53d523c1581d39caaf46ac">clearForm</a> ()</td></tr>
 <tr class="memdesc:aa98c34025c53d523c1581d39caaf46ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limpia los campos del formulario.  <a href="classMainWindow.html#aa98c34025c53d523c1581d39caaf46ac">Más...</a><br /></td></tr>
 <tr class="separator:aa98c34025c53d523c1581d39caaf46ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab85526eb9e1dc48c58e441a63cbd67d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ab85526eb9e1dc48c58e441a63cbd67d7">showLowStockAlert</a> ()</td></tr>
-<tr class="memdesc:ab85526eb9e1dc48c58e441a63cbd67d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Muestra una alerta si hay componentes con bajo stock.  <a href="classMainWindow.html#ab85526eb9e1dc48c58e441a63cbd67d7">Más...</a><br /></td></tr>
-<tr class="separator:ab85526eb9e1dc48c58e441a63cbd67d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf06d719fd632bf0e7a300cbb827cefb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#aaf06d719fd632bf0e7a300cbb827cefb">populateForm</a> (const <a class="el" href="classComponent.html">Component</a> &amp;component)</td></tr>
+<tr class="memdesc:aaf06d719fd632bf0e7a300cbb827cefb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Llena los campos del formulario con los datos de un componente.  <a href="classMainWindow.html#aaf06d719fd632bf0e7a300cbb827cefb">Más...</a><br /></td></tr>
+<tr class="separator:aaf06d719fd632bf0e7a300cbb827cefb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4ccb031dcbd986709b6c440dfcf5c3c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classComponent.html">Component</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#aa4ccb031dcbd986709b6c440dfcf5c3c">getFormData</a> () const</td></tr>
+<tr class="memdesc:aa4ccb031dcbd986709b6c440dfcf5c3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene los datos ingresados en el formulario como un objeto <a class="el" href="classComponent.html" title="Representa un componente en el sistema de inventario.">Component</a>.  <a href="classMainWindow.html#aa4ccb031dcbd986709b6c440dfcf5c3c">Más...</a><br /></td></tr>
+<tr class="separator:aa4ccb031dcbd986709b6c440dfcf5c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Atributos privados</h2></td></tr>
-<tr class="memitem:a35466a70ed47252a0191168126a352a5"><td class="memItemLeft" align="right" valign="top">Ui::MainWindow *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a35466a70ed47252a0191168126a352a5">ui</a></td></tr>
-<tr class="separator:a35466a70ed47252a0191168126a352a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3af24499a5348312dfbfe81c1ed20c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classInventoryManager.html">InventoryManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ac3af24499a5348312dfbfe81c1ed20c1">inventoryManager</a></td></tr>
-<tr class="separator:ac3af24499a5348312dfbfe81c1ed20c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab66cb4b82c7dd914c104b27fecf5d815"><td class="memItemLeft" align="right" valign="top">QTableWidget *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ab66cb4b82c7dd914c104b27fecf5d815">tableWidget</a></td></tr>
 <tr class="separator:ab66cb4b82c7dd914c104b27fecf5d815"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb93ba9ef6d5162b7882592517a237a8"><td class="memItemLeft" align="right" valign="top">QLineEdit *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#acb93ba9ef6d5162b7882592517a237a8">nameEdit</a></td></tr>
 <tr class="separator:acb93ba9ef6d5162b7882592517a237a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7012c4914ec38d6ac07c4d86cb2b1d79"><td class="memItemLeft" align="right" valign="top">QLineEdit *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a7012c4914ec38d6ac07c4d86cb2b1d79">typeEdit</a></td></tr>
-<tr class="separator:a7012c4914ec38d6ac07c4d86cb2b1d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae10140b563b968b59d3ff0f3adf4392d"><td class="memItemLeft" align="right" valign="top">QComboBox *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ae10140b563b968b59d3ff0f3adf4392d">typeCombo</a></td></tr>
+<tr class="separator:ae10140b563b968b59d3ff0f3adf4392d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8619b3932028635f961d1f9397980685"><td class="memItemLeft" align="right" valign="top">QSpinBox *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a8619b3932028635f961d1f9397980685">quantitySpin</a></td></tr>
 <tr class="separator:a8619b3932028635f961d1f9397980685"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd0c5d834d0e91ea5fbb81cec45ddc80"><td class="memItemLeft" align="right" valign="top">QLineEdit *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#acd0c5d834d0e91ea5fbb81cec45ddc80">locationEdit</a></td></tr>
 <tr class="separator:acd0c5d834d0e91ea5fbb81cec45ddc80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f3603a351496b6bb0040d6262032db4"><td class="memItemLeft" align="right" valign="top">QDateEdit *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a4f3603a351496b6bb0040d6262032db4">dateEdit</a></td></tr>
 <tr class="separator:a4f3603a351496b6bb0040d6262032db4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91bcb8c81d8c2174422dd044c346a1d7"><td class="memItemLeft" align="right" valign="top">QLineEdit *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a91bcb8c81d8c2174422dd044c346a1d7">searchEdit</a></td></tr>
-<tr class="separator:a91bcb8c81d8c2174422dd044c346a1d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88426182160bfc200ad67e302053c88a"><td class="memItemLeft" align="right" valign="top">QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a88426182160bfc200ad67e302053c88a">addButton</a></td></tr>
 <tr class="separator:a88426182160bfc200ad67e302053c88a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac91c721b31de2479fb1d369786411abe"><td class="memItemLeft" align="right" valign="top">QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ac91c721b31de2479fb1d369786411abe">updateButton</a></td></tr>
+<tr class="separator:ac91c721b31de2479fb1d369786411abe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe1d6b7411d8566c4fb20192a101bf6d"><td class="memItemLeft" align="right" valign="top">QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#afe1d6b7411d8566c4fb20192a101bf6d">deleteButton</a></td></tr>
 <tr class="separator:afe1d6b7411d8566c4fb20192a101bf6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38bc0d17f2060d491e72d946151844bd"><td class="memItemLeft" align="right" valign="top">QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a38bc0d17f2060d491e72d946151844bd">searchButton</a></td></tr>
+<tr class="separator:a38bc0d17f2060d491e72d946151844bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69dedbf6433476b53633a7fe9ccec560"><td class="memItemLeft" align="right" valign="top">QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a69dedbf6433476b53633a7fe9ccec560">reportButton</a></td></tr>
 <tr class="separator:a69dedbf6433476b53633a7fe9ccec560"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91bcb8c81d8c2174422dd044c346a1d7"><td class="memItemLeft" align="right" valign="top">QLineEdit *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a91bcb8c81d8c2174422dd044c346a1d7">searchEdit</a></td></tr>
+<tr class="separator:a91bcb8c81d8c2174422dd044c346a1d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac68fb8d23913c7e25906ad05d0e9d218"><td class="memItemLeft" align="right" valign="top">QLabel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ac68fb8d23913c7e25906ad05d0e9d218">statusLabel</a></td></tr>
+<tr class="separator:ac68fb8d23913c7e25906ad05d0e9d218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad95a6e56bdd250ac133f01a45ce14d41"><td class="memItemLeft" align="right" valign="top">DatabaseManager *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#ad95a6e56bdd250ac133f01a45ce14d41">dbManager</a></td></tr>
+<tr class="separator:ad95a6e56bdd250ac133f01a45ce14d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa82adaac7d77c276af18b95b2a2a9f8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classInventoryManager.html">InventoryManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#aa82adaac7d77c276af18b95b2a2a9f8a">inventoryManager</a></td></tr>
+<tr class="separator:aa82adaac7d77c276af18b95b2a2a9f8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42472131f2bb3ae70f093dae81b1e286"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMainWindow.html#a42472131f2bb3ae70f093dae81b1e286">selectedId</a></td></tr>
+<tr class="separator:a42472131f2bb3ae70f093dae81b1e286"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
 <div class="textblock"><p>Representa la ventana principal de la aplicación de gestión de inventario. </p>
-<p>La clase <a class="el" href="classMainWindow.html" title="Representa la ventana principal de la aplicación de gestión de inventario.">MainWindow</a> proporciona una interfaz gráfica para interactuar con el inventario, permitiendo agregar, eliminar, buscar componentes y generar reportes. </p>
+<p>La clase <a class="el" href="classMainWindow.html" title="Representa la ventana principal de la aplicación de gestión de inventario.">MainWindow</a> proporciona una interfaz gráfica para interactuar con el inventario, permitiendo agregar, actualizar, eliminar, buscar componentes y generar reportes. </p>
 </div><h2 class="groupheader">Documentación del constructor y destructor</h2>
 <a id="a996c5a2b6f77944776856f08ec30858d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a996c5a2b6f77944776856f08ec30858d">&#9670;&nbsp;</a></span>MainWindow()</h2>
@@ -239,6 +255,62 @@ Atributos privados</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Documentación de las funciones miembro</h2>
+<a id="aac2ddfa574c394d0d3077e5ef1629834"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac2ddfa574c394d0d3077e5ef1629834">&#9670;&nbsp;</a></span>addComponent</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::addComponent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Slot que se ejecuta cuando se presiona el botón de agregar. </p>
+<p>Agrega un nuevo componente al inventario. </p>
+
+</div>
+</div>
+<a id="af4d30d09b74c32a119ab2358aa19638e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4d30d09b74c32a119ab2358aa19638e">&#9670;&nbsp;</a></span>checkLowStock</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::checkLowStock </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Slot que verifica si hay componentes con bajo stock. </p>
+<p>Muestra una alerta si se detectan componentes con bajo stock. </p>
+
+</div>
+</div>
 <a id="aa98c34025c53d523c1581d39caaf46ac"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa98c34025c53d523c1581d39caaf46ac">&#9670;&nbsp;</a></span>clearForm()</h2>
 
@@ -266,8 +338,8 @@ Atributos privados</h2></td></tr>
 
 </div>
 </div>
-<a id="a21ef75eba70ede6f72d07ba0e4687bbb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21ef75eba70ede6f72d07ba0e4687bbb">&#9670;&nbsp;</a></span>onAddButtonClicked</h2>
+<a id="a2d08d8fee15872708dc142d0cfc73896"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d08d8fee15872708dc142d0cfc73896">&#9670;&nbsp;</a></span>deleteComponent</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -276,35 +348,7 @@ Atributos privados</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MainWindow::onAddButtonClicked </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Slot que se ejecuta cuando se presiona el botón de agregar. </p>
-<p>Agrega un nuevo componente al inventario. </p>
-
-</div>
-</div>
-<a id="af309049d419909943ec196cc87f9aa0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af309049d419909943ec196cc87f9aa0a">&#9670;&nbsp;</a></span>onDeleteButtonClicked</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MainWindow::onDeleteButtonClicked </td>
+          <td class="memname">void MainWindow::deleteComponent </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -322,8 +366,8 @@ Atributos privados</h2></td></tr>
 
 </div>
 </div>
-<a id="a4ef5565b73a7a4f4dd2407b378ca89e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4ef5565b73a7a4f4dd2407b378ca89e6">&#9670;&nbsp;</a></span>onGenerateReportClicked</h2>
+<a id="a6318e2c9b252f9f512005ef320b55f57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6318e2c9b252f9f512005ef320b55f57">&#9670;&nbsp;</a></span>generateReport</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -332,7 +376,7 @@ Atributos privados</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MainWindow::onGenerateReportClicked </td>
+          <td class="memname">void MainWindow::generateReport </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -350,8 +394,8 @@ Atributos privados</h2></td></tr>
 
 </div>
 </div>
-<a id="a2723f6e19d4af680629f93de3825a894"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2723f6e19d4af680629f93de3825a894">&#9670;&nbsp;</a></span>onSearchTextChanged</h2>
+<a id="aa4ccb031dcbd986709b6c440dfcf5c3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4ccb031dcbd986709b6c440dfcf5c3c">&#9670;&nbsp;</a></span>getFormData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -360,7 +404,35 @@ Atributos privados</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MainWindow::onSearchTextChanged </td>
+          <td class="memname"><a class="el" href="classComponent.html">Component</a> MainWindow::getFormData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Obtiene los datos ingresados en el formulario como un objeto <a class="el" href="classComponent.html" title="Representa un componente en el sistema de inventario.">Component</a>. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Objeto <a class="el" href="classComponent.html" title="Representa un componente en el sistema de inventario.">Component</a> con los datos del formulario. </dd></dl>
+
+</div>
+</div>
+<a id="a3dfdfd6612e116fad344b17d35272c11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3dfdfd6612e116fad344b17d35272c11">&#9670;&nbsp;</a></span>loadComponents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::loadComponents </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -368,13 +440,12 @@ Atributos privados</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Slot que se ejecuta cuando el texto de búsqueda cambia. </p>
-<p>Filtra los componentes en la tabla según el texto ingresado. </p>
+<p>Carga los componentes desde la base de datos al inventario. </p>
 
 </div>
 </div>
@@ -406,8 +477,8 @@ Atributos privados</h2></td></tr>
 
 </div>
 </div>
-<a id="a36f4b8cdb66bfe8365359935cb7f7fdc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a36f4b8cdb66bfe8365359935cb7f7fdc">&#9670;&nbsp;</a></span>refreshTable()</h2>
+<a id="aaf06d719fd632bf0e7a300cbb827cefb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf06d719fd632bf0e7a300cbb827cefb">&#9670;&nbsp;</a></span>populateForm()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -416,9 +487,10 @@ Atributos privados</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MainWindow::refreshTable </td>
+          <td class="memname">void MainWindow::populateForm </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="classComponent.html">Component</a> &amp;&#160;</td>
+          <td class="paramname"><em>component</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -429,7 +501,41 @@ Atributos privados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Actualiza la tabla con los componentes del inventario. </p>
+<p>Llena los campos del formulario con los datos de un componente. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component</td><td>Componente cuyos datos se usarán para llenar el formulario. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4acc611812a6cc320c186cb7e8ae52b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4acc611812a6cc320c186cb7e8ae52b1">&#9670;&nbsp;</a></span>searchComponents</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::searchComponents </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Slot que se ejecuta cuando se presiona el botón de buscar. </p>
+<p>Busca componentes en el inventario según el texto ingresado. </p>
 
 </div>
 </div>
@@ -460,8 +566,8 @@ Atributos privados</h2></td></tr>
 
 </div>
 </div>
-<a id="ab85526eb9e1dc48c58e441a63cbd67d7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab85526eb9e1dc48c58e441a63cbd67d7">&#9670;&nbsp;</a></span>showLowStockAlert()</h2>
+<a id="ad77e039539b1c939853d5718fe38630b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad77e039539b1c939853d5718fe38630b">&#9670;&nbsp;</a></span>updateComponent</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -470,7 +576,7 @@ Atributos privados</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MainWindow::showLowStockAlert </td>
+          <td class="memname">void MainWindow::updateComponent </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -478,12 +584,13 @@ Atributos privados</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Muestra una alerta si hay componentes con bajo stock. </p>
+<p>Slot que se ejecuta cuando se presiona el botón de actualizar. </p>
+<p>Actualiza el componente seleccionado en el inventario. </p>
 
 </div>
 </div>
@@ -534,6 +641,29 @@ Atributos privados</h2></td></tr>
 
 </div>
 </div>
+<a id="ad95a6e56bdd250ac133f01a45ce14d41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad95a6e56bdd250ac133f01a45ce14d41">&#9670;&nbsp;</a></span>dbManager</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DatabaseManager* MainWindow::dbManager</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gestor de la base de datos para manejar los componentes. </p>
+
+</div>
+</div>
 <a id="afe1d6b7411d8566c4fb20192a101bf6d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afe1d6b7411d8566c4fb20192a101bf6d">&#9670;&nbsp;</a></span>deleteButton</h2>
 
@@ -557,8 +687,8 @@ Atributos privados</h2></td></tr>
 
 </div>
 </div>
-<a id="ac3af24499a5348312dfbfe81c1ed20c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3af24499a5348312dfbfe81c1ed20c1">&#9670;&nbsp;</a></span>inventoryManager</h2>
+<a id="aa82adaac7d77c276af18b95b2a2a9f8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa82adaac7d77c276af18b95b2a2a9f8a">&#9670;&nbsp;</a></span>inventoryManager</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -567,7 +697,7 @@ Atributos privados</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classInventoryManager.html">InventoryManager</a> MainWindow::inventoryManager</td>
+          <td class="memname"><a class="el" href="classInventoryManager.html">InventoryManager</a>* MainWindow::inventoryManager</td>
         </tr>
       </table>
   </td>
@@ -672,6 +802,29 @@ Atributos privados</h2></td></tr>
 
 </div>
 </div>
+<a id="a38bc0d17f2060d491e72d946151844bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38bc0d17f2060d491e72d946151844bd">&#9670;&nbsp;</a></span>searchButton</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QPushButton* MainWindow::searchButton</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Botón para buscar componentes en el inventario. </p>
+
+</div>
+</div>
 <a id="a91bcb8c81d8c2174422dd044c346a1d7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a91bcb8c81d8c2174422dd044c346a1d7">&#9670;&nbsp;</a></span>searchEdit</h2>
 
@@ -692,6 +845,52 @@ Atributos privados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Campo de texto para buscar componentes. </p>
+
+</div>
+</div>
+<a id="a42472131f2bb3ae70f093dae81b1e286"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42472131f2bb3ae70f093dae81b1e286">&#9670;&nbsp;</a></span>selectedId</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MainWindow::selectedId</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>ID del componente actualmente seleccionado en la tabla. </p>
+
+</div>
+</div>
+<a id="ac68fb8d23913c7e25906ad05d0e9d218"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac68fb8d23913c7e25906ad05d0e9d218">&#9670;&nbsp;</a></span>statusLabel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QLabel* MainWindow::statusLabel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Etiqueta para mostrar el estado de la aplicación. </p>
 
 </div>
 </div>
@@ -718,8 +917,8 @@ Atributos privados</h2></td></tr>
 
 </div>
 </div>
-<a id="a7012c4914ec38d6ac07c4d86cb2b1d79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7012c4914ec38d6ac07c4d86cb2b1d79">&#9670;&nbsp;</a></span>typeEdit</h2>
+<a id="ae10140b563b968b59d3ff0f3adf4392d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae10140b563b968b59d3ff0f3adf4392d">&#9670;&nbsp;</a></span>typeCombo</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -728,7 +927,7 @@ Atributos privados</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">QLineEdit* MainWindow::typeEdit</td>
+          <td class="memname">QComboBox* MainWindow::typeCombo</td>
         </tr>
       </table>
   </td>
@@ -737,12 +936,12 @@ Atributos privados</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Campo de texto para ingresar el tipo del componente. </p>
+<p>ComboBox para seleccionar el tipo del componente. </p>
 
 </div>
 </div>
-<a id="a35466a70ed47252a0191168126a352a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35466a70ed47252a0191168126a352a5">&#9670;&nbsp;</a></span>ui</h2>
+<a id="ac91c721b31de2479fb1d369786411abe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac91c721b31de2479fb1d369786411abe">&#9670;&nbsp;</a></span>updateButton</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -751,7 +950,7 @@ Atributos privados</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Ui::MainWindow* MainWindow::ui</td>
+          <td class="memname">QPushButton* MainWindow::updateButton</td>
         </tr>
       </table>
   </td>
@@ -760,7 +959,7 @@ Atributos privados</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Puntero a la interfaz gráfica generada por Qt Designer. </p>
+<p>Botón para actualizar el componente seleccionado. </p>
 
 </div>
 </div>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['quantity_55',['quantity',['../classComponent.html#a3a21168b7574fb579486e7465a459645',1,'Component']]],
-  ['quantityspin_56',['quantitySpin',['../classMainWindow.html#a8619b3932028635f961d1f9397980685',1,'MainWindow']]]
+  ['populateform_49',['populateForm',['../classMainWindow.html#aaf06d719fd632bf0e7a300cbb827cefb',1,'MainWindow']]],
+  ['purchasedate_50',['purchaseDate',['../classComponent.html#aa783a24f4a861ba5b364ee278fe526b0',1,'Component']]]
 ];

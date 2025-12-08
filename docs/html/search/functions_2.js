@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['databasemanager_107',['DatabaseManager',['../classDatabaseManager.html#ad30427087c5f294073f8bc369b4a0a02',1,'DatabaseManager']]],
-  ['deletecomponent_108',['deleteComponent',['../classDatabaseManager.html#ab5e6986d9d1317af0fe8d90d8ab3ecdb',1,'DatabaseManager']]]
+  ['deletecomponent_96',['deleteComponent',['../classInventoryManager.html#a9df15a774e51300f68471b73c52f5056',1,'InventoryManager::deleteComponent()'],['../classMainWindow.html#a2d08d8fee15872708dc142d0cfc73896',1,'MainWindow::deleteComponent()']]]
 ];

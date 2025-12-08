@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['findcomponentbyid_18',['findComponentById',['../classInventoryManager.html#a531ceb0d6572476fdd7c177d0fc92ca9',1,'InventoryManager']]],
-  ['findcomponentsbylocation_19',['findComponentsByLocation',['../classInventoryManager.html#a3fc06b1d140f109f8ac1d4b6734b2612',1,'InventoryManager']]],
-  ['findcomponentsbyname_20',['findComponentsByName',['../classInventoryManager.html#a1ee264f0fef051f2d4dd412f040d177c',1,'InventoryManager']]],
-  ['findcomponentsbytype_21',['findComponentsByType',['../classInventoryManager.html#ae8b0ed4b72037008013f54d7be2efe6d',1,'InventoryManager']]]
+  ['escapecsv_13',['escapeCSV',['../classReportGenerator.html#a7064068835e085e7c508f38b66192c0b',1,'ReportGenerator']]],
+  ['escapehtml_14',['escapeHTML',['../classReportGenerator.html#a2139e72ba60022d866869abb0fd42706',1,'ReportGenerator']]]
 ];

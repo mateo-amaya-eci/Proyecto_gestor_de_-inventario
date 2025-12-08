@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['id_161',['id',['../classComponent.html#a7b51904172e22f13a182eb16b7de4aaf',1,'Component']]],
-  ['inventorymanager_162',['inventoryManager',['../classMainWindow.html#ac3af24499a5348312dfbfe81c1ed20c1',1,'MainWindow']]]
+  ['location_142',['location',['../classComponent.html#ae1f8ee232cb5700fca368b55a121f3c8',1,'Component']]],
+  ['locationedit_143',['locationEdit',['../classMainWindow.html#acd0c5d834d0e91ea5fbb81cec45ddc80',1,'MainWindow']]]
 ];

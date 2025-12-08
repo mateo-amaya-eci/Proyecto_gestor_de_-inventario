@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['name_165',['name',['../classComponent.html#a46343549452bda5ee9752f7a9bc15efb',1,'Component']]],
-  ['nameedit_166',['nameEdit',['../classMainWindow.html#acb93ba9ef6d5162b7882592517a237a8',1,'MainWindow']]]
+  ['purchasedate_146',['purchaseDate',['../classComponent.html#aa783a24f4a861ba5b364ee278fe526b0',1,'Component']]]
 ];

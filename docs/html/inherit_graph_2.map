@@ -1,3 +1,4 @@
 <map id="Representación gráfica de la clase" name="Representación gráfica de la clase">
-<area shape="rect" id="node1" href="$classInventoryManager.html" title="Gestiona el inventario de componentes y su interacción con la base de datos." alt="" coords="5,5,147,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,121,32"/>
+<area shape="rect" id="node2" href="$classMainWindow.html" title="Representa la ventana principal de la aplicación de gestión de inventario." alt="" coords="169,5,276,32"/>
 </map>

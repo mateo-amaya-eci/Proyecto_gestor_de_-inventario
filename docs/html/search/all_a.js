@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['purchase_5fdate_54',['purchase_date',['../classComponent.html#a9dfb175254e446a16d682ce4314807d0',1,'Component']]]
+  ['ontableselectionchanged_48',['onTableSelectionChanged',['../classMainWindow.html#a60b2b3b38afa81232ad81a30c592caea',1,'MainWindow']]]
 ];

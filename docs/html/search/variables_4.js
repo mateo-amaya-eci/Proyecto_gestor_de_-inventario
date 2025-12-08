@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['location_163',['location',['../classComponent.html#ae1f8ee232cb5700fca368b55a121f3c8',1,'Component']]],
-  ['locationedit_164',['locationEdit',['../classMainWindow.html#acd0c5d834d0e91ea5fbb81cec45ddc80',1,'MainWindow']]]
+  ['name_144',['name',['../classComponent.html#a46343549452bda5ee9752f7a9bc15efb',1,'Component']]],
+  ['nameedit_145',['nameEdit',['../classMainWindow.html#acb93ba9ef6d5162b7882592517a237a8',1,'MainWindow']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['updatecomponent_151',['updateComponent',['../classDatabaseManager.html#ade951f0e1c52117ce0bc510427a0b52e',1,'DatabaseManager::updateComponent()'],['../classInventoryManager.html#acd306b8e4f3166620d9b23687cc38ca7',1,'InventoryManager::updateComponent()']]]
+  ['updatecomponent_133',['updateComponent',['../classInventoryManager.html#adce8983cba552c3c2490bec21b48e5c4',1,'InventoryManager::updateComponent()'],['../classMainWindow.html#ad77e039539b1c939853d5718fe38630b',1,'MainWindow::updateComponent()']]]
 ];

@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['main_41',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
-  ['main_2ecpp_42',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['mainwindow_43',['MainWindow',['../classMainWindow.html',1,'MainWindow'],['../classMainWindow.html#a996c5a2b6f77944776856f08ec30858d',1,'MainWindow::MainWindow()']]],
-  ['mainwindow_2ecpp_44',['MainWindow.cpp',['../MainWindow_8cpp.html',1,'']]],
-  ['mainwindow_2eh_45',['MainWindow.h',['../MainWindow_8h.html',1,'']]]
+  ['loadcomponents_38',['loadComponents',['../classMainWindow.html#a3dfdfd6612e116fad344b17d35272c11',1,'MainWindow']]],
+  ['location_39',['location',['../classComponent.html#ae1f8ee232cb5700fca368b55a121f3c8',1,'Component']]],
+  ['locationedit_40',['locationEdit',['../classMainWindow.html#acd0c5d834d0e91ea5fbb81cec45ddc80',1,'MainWindow']]]
 ];

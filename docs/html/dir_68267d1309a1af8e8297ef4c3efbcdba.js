@@ -4,9 +4,9 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "Component.h", "Component_8h.html", [
       [ "Component", "classComponent.html", "classComponent" ]
     ] ],
-    [ "DatabaseManager.cpp", "DatabaseManager_8cpp.html", "DatabaseManager_8cpp" ],
+    [ "DatabaseManager.cpp", "DatabaseManager_8cpp.html", null ],
     [ "DatabaseManager.h", "DatabaseManager_8h.html", [
-      [ "DatabaseManager", "classDatabaseManager.html", "classDatabaseManager" ]
+      [ "Component", "classComponent.html", "classComponent" ]
     ] ],
     [ "InventoryManager.cpp", "InventoryManager_8cpp.html", null ],
     [ "InventoryManager.h", "InventoryManager_8h.html", [

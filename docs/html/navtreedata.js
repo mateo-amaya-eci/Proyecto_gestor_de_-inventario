@@ -23,9 +23,6 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "Gestor de Inventario", "index.html", [
-    [ "Namespaces", "namespaces.html", [
-      [ "Lista de 'namespaces'", "namespaces.html", "namespaces_dup" ]
-    ] ],
     [ "Clases", "annotated.html", [
       [ "Lista de clases", "annotated.html", "annotated_dup" ],
       [ "Índice de clases", "classes.html", null ],

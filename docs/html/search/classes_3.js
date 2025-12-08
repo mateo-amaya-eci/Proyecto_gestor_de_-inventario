@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mainwindow_88',['MainWindow',['../classMainWindow.html',1,'']]]
+  ['reportgenerator_80',['ReportGenerator',['../classReportGenerator.html',1,'']]]
 ];

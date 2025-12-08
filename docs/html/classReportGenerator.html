@@ -84,6 +84,7 @@ $(document).ready(function(){initNavTree('classReportGenerator.html',''); initRe
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Métodos públicos estáticos</a> &#124;
+<a href="#pri-static-methods">Métodos privados estáticos</a> &#124;
 <a href="classReportGenerator-members.html">Lista de todos los miembros</a>  </div>
   <div class="headertitle">
 <div class="title">Referencia de la Clase ReportGenerator</div>  </div>
@@ -98,19 +99,153 @@ $(document).ready(function(){initNavTree('classReportGenerator.html',''); initRe
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Métodos públicos estáticos</h2></td></tr>
 <tr class="memitem:a26dc740cd71731e5f56028509ce25900"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportGenerator.html#a26dc740cd71731e5f56028509ce25900">generateCSVReport</a> (const std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt; &amp;components, const std::string &amp;filename)</td></tr>
-<tr class="memdesc:a26dc740cd71731e5f56028509ce25900"><td class="mdescLeft">&#160;</td><td class="mdescRight">Genera un reporte en formato CSV con los componentes proporcionados.  <a href="classReportGenerator.html#a26dc740cd71731e5f56028509ce25900">Más...</a><br /></td></tr>
+<tr class="memdesc:a26dc740cd71731e5f56028509ce25900"><td class="mdescLeft">&#160;</td><td class="mdescRight">Genera un reporte en formato CSV.  <a href="classReportGenerator.html#a26dc740cd71731e5f56028509ce25900">Más...</a><br /></td></tr>
 <tr class="separator:a26dc740cd71731e5f56028509ce25900"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed04c6da51e6c432adbfe43f0398c1e7"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportGenerator.html#aed04c6da51e6c432adbfe43f0398c1e7">generateHTMLReport</a> (const std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt; &amp;components, const std::string &amp;filename)</td></tr>
-<tr class="memdesc:aed04c6da51e6c432adbfe43f0398c1e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Genera un reporte en formato HTML con los componentes proporcionados.  <a href="classReportGenerator.html#aed04c6da51e6c432adbfe43f0398c1e7">Más...</a><br /></td></tr>
-<tr class="separator:aed04c6da51e6c432adbfe43f0398c1e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77e4a84ff188988cdb33c87b4ed54a01"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportGenerator.html#a77e4a84ff188988cdb33c87b4ed54a01">generateLowStockReport</a> (const std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt; &amp;components, const std::string &amp;filename, int threshold=5)</td></tr>
-<tr class="memdesc:a77e4a84ff188988cdb33c87b4ed54a01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Genera un reporte de componentes con bajo stock en formato CSV.  <a href="classReportGenerator.html#a77e4a84ff188988cdb33c87b4ed54a01">Más...</a><br /></td></tr>
-<tr class="separator:a77e4a84ff188988cdb33c87b4ed54a01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a320996820eaa6ee403efb61cf187199f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportGenerator.html#a320996820eaa6ee403efb61cf187199f">generateHTMLReport</a> (const std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt; &amp;components, const std::string &amp;filename)</td></tr>
+<tr class="memdesc:a320996820eaa6ee403efb61cf187199f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Genera un reporte en formato HTML.  <a href="classReportGenerator.html#a320996820eaa6ee403efb61cf187199f">Más...</a><br /></td></tr>
+<tr class="separator:a320996820eaa6ee403efb61cf187199f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d0c0121446aeeb5069d65c026b9b62e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportGenerator.html#a8d0c0121446aeeb5069d65c026b9b62e">generateTextReport</a> (const std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt; &amp;components, const std::string &amp;filename)</td></tr>
+<tr class="memdesc:a8d0c0121446aeeb5069d65c026b9b62e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Genera un reporte en formato de texto plano.  <a href="classReportGenerator.html#a8d0c0121446aeeb5069d65c026b9b62e">Más...</a><br /></td></tr>
+<tr class="separator:a8d0c0121446aeeb5069d65c026b9b62e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afecf29b16a0dd78da510ed826b1260a0"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportGenerator.html#afecf29b16a0dd78da510ed826b1260a0">generateLowStockReport</a> (const std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt; &amp;components, const std::string &amp;filename, int threshold=5)</td></tr>
+<tr class="memdesc:afecf29b16a0dd78da510ed826b1260a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Genera un reporte específico de componentes con stock bajo.  <a href="classReportGenerator.html#afecf29b16a0dd78da510ed826b1260a0">Más...</a><br /></td></tr>
+<tr class="separator:afecf29b16a0dd78da510ed826b1260a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Métodos privados estáticos</h2></td></tr>
+<tr class="memitem:a6c695fbba9cd615c62f68a20d77b707a"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportGenerator.html#a6c695fbba9cd615c62f68a20d77b707a">getCurrentDateTime</a> ()</td></tr>
+<tr class="memdesc:a6c695fbba9cd615c62f68a20d77b707a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene la fecha y hora actual formateada.  <a href="classReportGenerator.html#a6c695fbba9cd615c62f68a20d77b707a">Más...</a><br /></td></tr>
+<tr class="separator:a6c695fbba9cd615c62f68a20d77b707a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7064068835e085e7c508f38b66192c0b"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportGenerator.html#a7064068835e085e7c508f38b66192c0b">escapeCSV</a> (const std::string &amp;input)</td></tr>
+<tr class="memdesc:a7064068835e085e7c508f38b66192c0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escapa comillas dobles en un string para CSV.  <a href="classReportGenerator.html#a7064068835e085e7c508f38b66192c0b">Más...</a><br /></td></tr>
+<tr class="separator:a7064068835e085e7c508f38b66192c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2139e72ba60022d866869abb0fd42706"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportGenerator.html#a2139e72ba60022d866869abb0fd42706">escapeHTML</a> (const std::string &amp;input)</td></tr>
+<tr class="memdesc:a2139e72ba60022d866869abb0fd42706"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escapa caracteres HTML especiales.  <a href="classReportGenerator.html#a2139e72ba60022d866869abb0fd42706">Más...</a><br /></td></tr>
+<tr class="separator:a2139e72ba60022d866869abb0fd42706"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ffc4aac8c8afbc7d1688990a8b93f72"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReportGenerator.html#a8ffc4aac8c8afbc7d1688990a8b93f72">formatQuantity</a> (int quantity, bool isLowStock)</td></tr>
+<tr class="memdesc:a8ffc4aac8c8afbc7d1688990a8b93f72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Formatea una cantidad para resaltar stock bajo.  <a href="classReportGenerator.html#a8ffc4aac8c8afbc7d1688990a8b93f72">Más...</a><br /></td></tr>
+<tr class="separator:a8ffc4aac8c8afbc7d1688990a8b93f72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
 <div class="textblock"><p>Genera diferentes tipos de reportes para los componentes del inventario. </p>
-<p>La clase <a class="el" href="classReportGenerator.html" title="Genera diferentes tipos de reportes para los componentes del inventario.">ReportGenerator</a> proporciona métodos estáticos para generar reportes en formatos CSV, HTML, y reportes específicos de bajo stock. </p>
+<p>La clase <a class="el" href="classReportGenerator.html" title="Genera diferentes tipos de reportes para los componentes del inventario.">ReportGenerator</a> proporciona métodos estáticos para generar reportes en formatos CSV, HTML, texto plano y reportes específicos de bajo stock. </p>
 </div><h2 class="groupheader">Documentación de las funciones miembro</h2>
+<a id="a7064068835e085e7c508f38b66192c0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7064068835e085e7c508f38b66192c0b">&#9670;&nbsp;</a></span>escapeCSV()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ReportGenerator::escapeCSV </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Escapa comillas dobles en un string para CSV. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>String a escapar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>String con comillas escapadas. </dd></dl>
+
+</div>
+</div>
+<a id="a2139e72ba60022d866869abb0fd42706"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2139e72ba60022d866869abb0fd42706">&#9670;&nbsp;</a></span>escapeHTML()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ReportGenerator::escapeHTML </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Escapa caracteres HTML especiales. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">input</td><td>String a escapar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>String con caracteres HTML escapados. </dd></dl>
+
+</div>
+</div>
+<a id="a8ffc4aac8c8afbc7d1688990a8b93f72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ffc4aac8c8afbc7d1688990a8b93f72">&#9670;&nbsp;</a></span>formatQuantity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::string ReportGenerator::formatQuantity </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>quantity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isLowStock</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Formatea una cantidad para resaltar stock bajo. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">quantity</td><td>Cantidad a formatear. </td></tr>
+    <tr><td class="paramname">isLowStock</td><td>Indica si es stock bajo. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>String formateado. </dd></dl>
+
+</div>
+</div>
 <a id="a26dc740cd71731e5f56028509ce25900"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a26dc740cd71731e5f56028509ce25900">&#9670;&nbsp;</a></span>generateCSVReport()</h2>
 
@@ -145,20 +280,20 @@ Métodos públicos estáticos</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Genera un reporte en formato CSV con los componentes proporcionados. </p>
+<p>Genera un reporte en formato CSV. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">components</td><td>Vector de componentes a incluir en el reporte. </td></tr>
-    <tr><td class="paramname">filename</td><td>Nombre del archivo donde se guardará el reporte. </td></tr>
+    <tr><td class="paramname">filename</td><td>Ruta del archivo donde guardar el reporte. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Devuelve</dt><dd>true si el reporte se genera correctamente, false en caso contrario. </dd></dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si se generó correctamente, false en caso contrario. </dd></dl>
 
 </div>
 </div>
-<a id="aed04c6da51e6c432adbfe43f0398c1e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed04c6da51e6c432adbfe43f0398c1e7">&#9670;&nbsp;</a></span>generateHTMLReport()</h2>
+<a id="a320996820eaa6ee403efb61cf187199f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a320996820eaa6ee403efb61cf187199f">&#9670;&nbsp;</a></span>generateHTMLReport()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -167,7 +302,7 @@ Métodos públicos estáticos</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static bool ReportGenerator::generateHTMLReport </td>
+          <td class="memname">bool ReportGenerator::generateHTMLReport </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>components</em>, </td>
@@ -191,20 +326,20 @@ Métodos públicos estáticos</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Genera un reporte en formato HTML con los componentes proporcionados. </p>
+<p>Genera un reporte en formato HTML. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">components</td><td>Vector de componentes a incluir en el reporte. </td></tr>
-    <tr><td class="paramname">filename</td><td>Nombre del archivo donde se guardará el reporte. </td></tr>
+    <tr><td class="paramname">filename</td><td>Ruta del archivo donde guardar el reporte. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Devuelve</dt><dd>true si el reporte se genera correctamente, false en caso contrario. </dd></dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si se generó correctamente, false en caso contrario. </dd></dl>
 
 </div>
 </div>
-<a id="a77e4a84ff188988cdb33c87b4ed54a01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77e4a84ff188988cdb33c87b4ed54a01">&#9670;&nbsp;</a></span>generateLowStockReport()</h2>
+<a id="afecf29b16a0dd78da510ed826b1260a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afecf29b16a0dd78da510ed826b1260a0">&#9670;&nbsp;</a></span>generateLowStockReport()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -213,7 +348,7 @@ Métodos públicos estáticos</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static bool ReportGenerator::generateLowStockReport </td>
+          <td class="memname">bool ReportGenerator::generateLowStockReport </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>components</em>, </td>
@@ -243,16 +378,90 @@ Métodos públicos estáticos</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Genera un reporte de componentes con bajo stock en formato CSV. </p>
+<p>Genera un reporte específico de componentes con stock bajo. </p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">components</td><td>Vector de componentes a analizar. </td></tr>
-    <tr><td class="paramname">filename</td><td>Nombre del archivo donde se guardará el reporte. </td></tr>
-    <tr><td class="paramname">threshold</td><td>Umbral de stock bajo (por defecto es 5). </td></tr>
+    <tr><td class="paramname">components</td><td>Vector de componentes a verificar. </td></tr>
+    <tr><td class="paramname">filename</td><td>Ruta del archivo donde guardar el reporte. </td></tr>
+    <tr><td class="paramname">threshold</td><td>Umbral para considerar stock bajo (por defecto 5). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Devuelve</dt><dd>true si el reporte se genera correctamente, false en caso contrario. </dd></dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si se generó correctamente, false en caso contrario. </dd></dl>
+
+</div>
+</div>
+<a id="a8d0c0121446aeeb5069d65c026b9b62e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d0c0121446aeeb5069d65c026b9b62e">&#9670;&nbsp;</a></span>generateTextReport()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ReportGenerator::generateTextReport </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>components</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>filename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Genera un reporte en formato de texto plano. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">components</td><td>Vector de componentes a incluir en el reporte. </td></tr>
+    <tr><td class="paramname">filename</td><td>Ruta del archivo donde guardar el reporte. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si se generó correctamente, false en caso contrario. </dd></dl>
+
+</div>
+</div>
+<a id="a6c695fbba9cd615c62f68a20d77b707a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c695fbba9cd615c62f68a20d77b707a">&#9670;&nbsp;</a></span>getCurrentDateTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ReportGenerator::getCurrentDateTime </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Obtiene la fecha y hora actual formateada. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>String con la fecha y hora actual. </dd></dl>
 
 </div>
 </div>

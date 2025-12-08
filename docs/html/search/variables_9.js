@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['searchedit_171',['searchEdit',['../classMainWindow.html#a91bcb8c81d8c2174422dd044c346a1d7',1,'MainWindow']]]
+  ['tablewidget_154',['tableWidget',['../classMainWindow.html#ab66cb4b82c7dd914c104b27fecf5d815',1,'MainWindow']]],
+  ['type_155',['type',['../classComponent.html#a98f4fc628f5f4fcf0294097e7a26aa29',1,'Component']]],
+  ['typecombo_156',['typeCombo',['../classMainWindow.html#ae10140b563b968b59d3ff0f3adf4392d',1,'MainWindow']]]
 ];

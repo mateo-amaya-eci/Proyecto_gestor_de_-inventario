@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['purchase_5fdate_167',['purchase_date',['../classComponent.html#a9dfb175254e446a16d682ce4314807d0',1,'Component']]]
+  ['quantity_147',['quantity',['../classComponent.html#a3a21168b7574fb579486e7465a459645',1,'Component']]],
+  ['quantityspin_148',['quantitySpin',['../classMainWindow.html#a8619b3932028635f961d1f9397980685',1,'MainWindow']]]
 ];

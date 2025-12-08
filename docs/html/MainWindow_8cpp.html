@@ -87,35 +87,68 @@ $(document).ready(function(){initNavTree('MainWindow_8cpp.html',''); initResizab
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="MainWindow_8h_source.html">MainWindow.h</a>&quot;</code><br />
-<code>#include &quot;ui_MainWindow.h&quot;</code><br />
+<code>#include &lt;QVBoxLayout&gt;</code><br />
+<code>#include &lt;QHBoxLayout&gt;</code><br />
+<code>#include &lt;QFormLayout&gt;</code><br />
 <code>#include &lt;QHeaderView&gt;</code><br />
+<code>#include &lt;QFileDialog&gt;</code><br />
+<code>#include &lt;QGroupBox&gt;</code><br />
+<code>#include &lt;QTextStream&gt;</code><br />
+<code>#include &lt;QDir&gt;</code><br />
+<code>#include &lt;QTimer&gt;</code><br />
+<code>#include &lt;QFileInfo&gt;</code><br />
+<code>#include &lt;QDialog&gt;</code><br />
+<code>#include &lt;QLabel&gt;</code><br />
+<code>#include &lt;QComboBox&gt;</code><br />
+<code>#include &lt;QSpinBox&gt;</code><br />
+<code>#include &lt;QDialogButtonBox&gt;</code><br />
+<code>#include &lt;QDesktopServices&gt;</code><br />
+<code>#include &lt;QUrl&gt;</code><br />
 <code>#include &lt;QMessageBox&gt;</code><br />
-<code>#include &lt;QDate&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;ctime&gt;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
+<code>#include &quot;<a class="el" href="ReportGenerator_8h_source.html">ReportGenerator.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Dependencia gráfica adjunta para MainWindow.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="MainWindow_8cpp__incl.png" border="0" usemap="#src_2MainWindow_8cpp" alt=""/></div>
 <map name="src_2MainWindow_8cpp" id="src_2MainWindow_8cpp">
-<area shape="rect" title=" " alt="" coords="710,5,865,32"/>
-<area shape="rect" href="MainWindow_8h.html" title=" " alt="" coords="430,80,547,107"/>
-<area shape="rect" title=" " alt="" coords="571,80,707,107"/>
-<area shape="rect" title=" " alt="" coords="732,80,843,107"/>
-<area shape="rect" title=" " alt="" coords="867,80,982,107"/>
-<area shape="rect" title=" " alt="" coords="1007,80,1069,107"/>
-<area shape="rect" title=" " alt="" coords="5,155,121,181"/>
-<area shape="rect" title=" " alt="" coords="146,155,258,181"/>
-<area shape="rect" title=" " alt="" coords="283,155,367,181"/>
-<area shape="rect" title=" " alt="" coords="391,155,477,181"/>
-<area shape="rect" title=" " alt="" coords="501,155,589,181"/>
-<area shape="rect" title=" " alt="" coords="613,155,719,181"/>
-<area shape="rect" title=" " alt="" coords="743,155,810,181"/>
-<area shape="rect" href="InventoryManager_8h.html" title=" " alt="" coords="834,155,986,181"/>
-<area shape="rect" href="Component_8h.html" title=" " alt="" coords="714,304,823,331"/>
-<area shape="rect" href="DatabaseManager_8h.html" title=" " alt="" coords="834,229,986,256"/>
-<area shape="rect" title=" " alt="" coords="1001,304,1064,331"/>
-<area shape="rect" title=" " alt="" coords="831,379,890,405"/>
-<area shape="rect" title=" " alt="" coords="727,379,807,405"/>
-<area shape="rect" title=" " alt="" coords="899,304,977,331"/>
+<area shape="rect" title=" " alt="" coords="1497,5,1652,32"/>
+<area shape="rect" href="MainWindow_8h.html" title=" " alt="" coords="770,80,888,107"/>
+<area shape="rect" title=" " alt="" coords="28,155,113,181"/>
+<area shape="rect" title=" " alt="" coords="137,155,204,181"/>
+<area shape="rect" title=" " alt="" coords="1135,155,1238,181"/>
+<area shape="rect" title=" " alt="" coords="1262,155,1377,181"/>
+<area shape="rect" title=" " alt="" coords="1401,155,1497,181"/>
+<area shape="rect" title=" " alt="" coords="1522,155,1592,181"/>
+<area shape="rect" title=" " alt="" coords="828,304,886,331"/>
+<area shape="rect" title=" " alt="" coords="1115,80,1226,107"/>
+<area shape="rect" title=" " alt="" coords="1250,80,1360,107"/>
+<area shape="rect" title=" " alt="" coords="1385,80,1494,107"/>
+<area shape="rect" title=" " alt="" coords="1519,80,1630,107"/>
+<area shape="rect" title=" " alt="" coords="1654,80,1751,107"/>
+<area shape="rect" title=" " alt="" coords="1776,80,1882,107"/>
+<area shape="rect" title=" " alt="" coords="1906,80,1957,107"/>
+<area shape="rect" title=" " alt="" coords="1981,80,2061,107"/>
+<area shape="rect" title=" " alt="" coords="2085,80,2160,107"/>
+<area shape="rect" title=" " alt="" coords="2184,80,2327,107"/>
+<area shape="rect" title=" " alt="" coords="2352,80,2493,107"/>
+<area shape="rect" title=" " alt="" coords="2517,80,2568,107"/>
+<area shape="rect" title=" " alt="" coords="2592,80,2672,107"/>
+<area shape="rect" title=" " alt="" coords="2696,80,2781,107"/>
+<area shape="rect" href="ReportGenerator_8h.html" title=" " alt="" coords="1617,155,1758,181"/>
+<area shape="rect" title=" " alt="" coords="228,155,344,181"/>
+<area shape="rect" title=" " alt="" coords="369,155,481,181"/>
+<area shape="rect" title=" " alt="" coords="505,155,612,181"/>
+<area shape="rect" title=" " alt="" coords="636,155,720,181"/>
+<area shape="rect" title=" " alt="" coords="745,155,833,181"/>
+<area shape="rect" href="Component_8h.html" title=" " alt="" coords="1058,229,1168,256"/>
+<area shape="rect" href="DatabaseManager_8h.html" title=" " alt="" coords="781,229,933,256"/>
+<area shape="rect" href="InventoryManager_8h.html" title=" " alt="" coords="908,155,1060,181"/>
+<area shape="rect" title=" " alt="" coords="1084,304,1142,331"/>
+<area shape="rect" title=" " alt="" coords="1395,229,1458,256"/>
+<area shape="rect" title=" " alt="" coords="957,229,1034,256"/>
 </map>
 </div>
 </div></div><!-- contents -->
