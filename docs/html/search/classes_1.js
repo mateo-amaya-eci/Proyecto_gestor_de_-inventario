@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['inventorymanager_78',['InventoryManager',['../classInventoryManager.html',1,'']]]
+  ['databasemanager_94',['DatabaseManager',['../classDatabaseManager.html',1,'']]]
 ];

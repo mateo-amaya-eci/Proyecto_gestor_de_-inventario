@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mainwindow_79',['MainWindow',['../classMainWindow.html',1,'']]]
+  ['inventorymanager_95',['InventoryManager',['../classInventoryManager.html',1,'']]]
 ];

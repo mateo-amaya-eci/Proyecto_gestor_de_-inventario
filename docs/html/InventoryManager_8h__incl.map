@@ -1,9 +1,10 @@
 <map id="src/InventoryManager.h" name="src/InventoryManager.h">
-<area shape="rect" id="node1" title=" " alt="" coords="103,5,277,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,68,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="93,80,170,107"/>
-<area shape="rect" id="node4" href="$Component_8h.html" title=" " alt="" coords="194,80,303,107"/>
-<area shape="rect" id="node7" href="$DatabaseManager_8h.html" title=" " alt="" coords="327,80,479,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="255,155,314,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="355,155,414,181"/>
+<area shape="rect" id="node1" title=" " alt="" coords="43,5,218,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="11,155,74,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="23,80,100,107"/>
+<area shape="rect" id="node4" href="$Component_8h.html" title=" " alt="" coords="259,155,368,181"/>
+<area shape="rect" id="node7" href="$DatabaseManager_8h.html" title=" " alt="" coords="124,80,276,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="243,229,301,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="325,229,384,256"/>
+<area shape="rect" id="node8" title=" " alt="" coords="155,155,234,181"/>
 </map>

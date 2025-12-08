@@ -1,149 +1,187 @@
-#ifndef COMPONENT_H
-#define COMPONENT_H
+#ifndef DATABASEMANAGER_H
+#define DATABASEMANAGER_H
 
-#include <string>
-#include <ctime>
+#include <vector>
+#include <sqlite3.h>
+#include "Component.h"
 
 /**
- * @class Component
- * @brief Representa un componente en el sistema de inventario.
+ * @class DatabaseManager
+ * @brief Gestiona la conexión y operaciones con la base de datos SQLite.
  * 
- * La clase Component almacena información sobre un componente, incluyendo su ID, nombre, tipo, cantidad, ubicación y fecha de compra.
+ * La clase DatabaseManager proporciona métodos para interactuar con la base de datos,
+ * incluyendo operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para los componentes.
  */
-class Component
+class DatabaseManager
 {
 private:
-    int id; /**< Identificador único del componente. */
-    std::string name; /**< Nombre del componente. */
-    std::string type; /**< Tipo del componente. */
-    int quantity; /**< Cantidad disponible del componente. */
-    std::string location; /**< Ubicación del componente en el inventario. */
-    std::time_t purchaseDate; /**< Fecha de compra del componente. */
+    sqlite3* db; /**< Puntero a la base de datos SQLite. */
+    std::string databasePath; /**< Ruta del archivo de la base de datos. */
+
+    /**
+     * @brief Ejecuta una consulta SQL en la base de datos.
+     * 
+     * @param query Consulta SQL a ejecutar.
+     * @return true si la consulta se ejecuta correctamente, false en caso contrario.
+     */
+    bool executeQuery(const std::string& query);
+
+    /**
+     * @brief Inicializa la base de datos creando las tablas necesarias.
+     * 
+     * @return true si la base de datos se inicializa correctamente, false en caso contrario.
+     */
+    bool initializeDatabase();
 
 public:
     /**
      * @brief Constructor por defecto.
      * 
-     * Inicializa un objeto Component con valores predeterminados.
+     * Inicializa el gestor de base de datos sin una ruta específica.
      */
-    Component();
-    
+    DatabaseManager();
+
     /**
      * @brief Constructor parametrizado.
      * 
-     * Inicializa un objeto Component con los valores proporcionados.
+     * Inicializa el gestor de base de datos con la ruta especificada.
      * 
-     * @param name Nombre del componente.
-     * @param type Tipo del componente.
-     * @param quantity Cantidad disponible del componente.
-     * @param location Ubicación del componente en el inventario.
-     * @param purchaseDate Fecha de compra del componente.
+     * @param path Ruta del archivo de la base de datos.
      */
-    Component(const std::string& name, const std::string& type, 
-              int quantity, const std::string& location, 
-              std::time_t purchaseDate);
-    
+    DatabaseManager(const std::string& path);
+
     /**
-     * @brief Constructor parametrizado con ID.
+     * @brief Destructor de la clase DatabaseManager.
      * 
-     * Inicializa un objeto Component con los valores proporcionados, incluyendo el ID.
+     * Cierra la conexión con la base de datos si está abierta.
+     */
+    ~DatabaseManager();
+
+    /**
+     * @brief Conecta a la base de datos usando la ruta especificada en el constructor.
      * 
-     * @param id Identificador único del componente.
-     * @param name Nombre del componente.
-     * @param type Tipo del componente.
-     * @param quantity Cantidad disponible del componente.
-     * @param location Ubicación del componente en el inventario.
-     * @param purchaseDate Fecha de compra del componente.
+     * @return true si la conexión se establece correctamente, false en caso contrario.
      */
-    Component(int id, const std::string& name, const std::string& type, 
-              int quantity, const std::string& location, 
-              std::time_t purchaseDate);
-    
-    /**
-     * @brief Obtiene el ID del componente.
-     * @return ID del componente.
-     */
-    int getId() const;
+    bool connect();
 
     /**
-     * @brief Obtiene el nombre del componente.
-     * @return Nombre del componente.
+     * @brief Conecta a la base de datos usando una ruta específica.
+     * 
+     * @param path Ruta del archivo de la base de datos.
+     * @return true si la conexión se establece correctamente, false en caso contrario.
      */
-    std::string getName() const;
+    bool connect(const std::string& path);
 
     /**
-     * @brief Obtiene el tipo del componente.
-     * @return Tipo del componente.
+     * @brief Desconecta de la base de datos.
      */
-    std::string getType() const;
+    void disconnect();
 
     /**
-     * @brief Obtiene la cantidad disponible del componente.
-     * @return Cantidad disponible del componente.
+     * @brief Verifica si la conexión con la base de datos está activa.
+     * 
+     * @return true si la conexión está activa, false en caso contrario.
      */
-    int getQuantity() const;
+    bool isConnected() const;
+
+    // Operaciones CRUD
 
     /**
-     * @brief Obtiene la ubicación del componente en el inventario.
-     * @return Ubicación del componente.
+     * @brief Agrega un componente a la base de datos.
+     * 
+     * @param component Componente a agregar.
+     * @return true si el componente se agrega correctamente, false en caso contrario.
      */
-    std::string getLocation() const;
+    bool addComponent(const Component& component);
 
     /**
-     * @brief Obtiene la fecha de compra del componente.
-     * @return Fecha de compra del componente como un objeto std::time_t.
+     * @brief Actualiza un componente en la base de datos.
+     * 
+     * @param component Componente con los datos actualizados.
+     * @return true si el componente se actualiza correctamente, false en caso contrario.
      */
-    std::time_t getPurchaseDate() const;
+    bool updateComponent(const Component& component);
 
     /**
-     * @brief Obtiene la fecha de compra del componente como una cadena de texto.
-     * @return Fecha de compra del componente en formato legible.
+     * @brief Elimina un componente de la base de datos por su ID.
+     * 
+     * @param id ID del componente a eliminar.
+     * @return true si el componente se elimina correctamente, false en caso contrario.
      */
-    std::string getPurchaseDateString() const;
-    
-    /**
-     * @brief Establece el ID del componente.
-     * @param newId Nuevo ID del componente.
-     */
-    void setId(int newId);
+    bool deleteComponent(int id);
 
     /**
-     * @brief Establece el nombre del componente.
-     * @param newName Nuevo nombre del componente.
+     * @brief Obtiene un componente de la base de datos por su ID.
+     * 
+     * @param id ID del componente a obtener.
+     * @return Componente con el ID especificado, o un objeto vacío si no se encuentra.
      */
-    void setName(const std::string& newName);
+    Component getComponent(int id);
 
     /**
-     * @brief Establece el tipo del componente.
-     * @param newType Nuevo tipo del componente.
+     * @brief Obtiene todos los componentes de la base de datos.
+     * 
+     * @return Vector con todos los componentes almacenados en la base de datos.
      */
-    void setType(const std::string& newType);
+    std::vector<Component> getAllComponents();
 
     /**
-     * @brief Establece la cantidad disponible del componente.
-     * @param newQuantity Nueva cantidad del componente.
+     * @brief Busca componentes en la base de datos que coincidan con una palabra clave.
+     * 
+     * @param keyword Palabra clave para buscar en los componentes.
+     * @return Vector con los componentes que coinciden con la palabra clave.
      */
-    void setQuantity(int newQuantity);
+    std::vector<Component> searchComponents(const std::string& keyword);
 
     /**
-     * @brief Establece la ubicación del componente en el inventario.
-     * @param newLocation Nueva ubicación del componente.
-     */
-    void setLocation(const std::string& newLocation);
-
-    /**
-     * @brief Establece la fecha de compra del componente.
-     * @param newDate Nueva fecha de compra del componente como un objeto std::time_t.
-     */
-    void setPurchaseDate(std::time_t newDate);
-    
-    /**
-     * @brief Verifica si el stock del componente es bajo.
+     * @brief Obtiene los componentes con bajo stock.
      * 
      * @param threshold Umbral de stock bajo (por defecto es 5).
-     * @return true si el stock es menor o igual al umbral, false en caso contrario.
+     * @return Vector con los componentes cuyo stock es menor o igual al umbral.
      */
-    bool isLowStock(int threshold = 5) const;
+    std::vector<Component> getLowStockComponents(int threshold = 5);
+
+    // Métodos utilitarios
+
+    /**
+     * @brief Obtiene el número total de componentes en la base de datos.
+     * 
+     * @return Número total de componentes.
+     */
+    int getComponentCount() const;
+
+    /**
+     * @brief Obtiene los tipos de componentes únicos en la base de datos.
+     * 
+     * @return Vector con los tipos de componentes únicos.
+     */
+    std::vector<std::string> getComponentTypes() const;
+
+    /**
+     * @brief Muestra información de depuración sobre las tablas de la base de datos.
+     */
+    void debugTableInfo();
+
+    /**
+     * @brief Recrea la tabla de componentes en la base de datos.
+     * 
+     * @return true si la tabla se recrea correctamente, false en caso contrario.
+     */
+    bool recreateTable();
+
+    /**
+     * @brief Verifica la información del último componente insertado en la base de datos.
+     */
+    void verifyLastInsert();
+
+private:
+    /**
+     * @brief Crea un objeto Component a partir de una fila de la base de datos.
+     * 
+     * @param stmt Puntero al objeto sqlite3_stmt que contiene la fila de datos.
+     * @return Objeto Component creado a partir de la fila.
+     */
+    Component createComponentFromRow(sqlite3_stmt* stmt);
 };
 
-#endif // COMPONENT_H
+#endif // DATABASEMANAGER_H

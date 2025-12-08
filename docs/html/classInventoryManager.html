@@ -95,13 +95,22 @@ $(document).ready(function(){initNavTree('classInventoryManager.html',''); initR
  <a href="classInventoryManager.html#details">Más...</a></p>
 
 <p><code>#include &lt;<a class="el" href="InventoryManager_8h_source.html">InventoryManager.h</a>&gt;</code></p>
+<div class="dynheader">
+Diagrama de colaboración para InventoryManager:</div>
+<div class="dyncontent">
+<div class="center"><img src="classInventoryManager__coll__graph.png" border="0" usemap="#InventoryManager_coll__map" alt="Collaboration graph"/></div>
+<map name="InventoryManager_coll__map" id="InventoryManager_coll__map">
+<area shape="rect" title="Gestiona el inventario de componentes y su interacción con la base de datos." alt="" coords="5,95,147,121"/>
+<area shape="rect" href="classDatabaseManager.html" title="Gestiona la conexión y operaciones con la base de datos SQLite." alt="" coords="5,5,147,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">significado de colores y flechas</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Métodos públicos</h2></td></tr>
 <tr class="memitem:ad962e4282b5a2c6521f1268ac018bd50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#ad962e4282b5a2c6521f1268ac018bd50">InventoryManager</a> ()</td></tr>
 <tr class="memdesc:ad962e4282b5a2c6521f1268ac018bd50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor por defecto.  <a href="classInventoryManager.html#ad962e4282b5a2c6521f1268ac018bd50">Más...</a><br /></td></tr>
 <tr class="separator:ad962e4282b5a2c6521f1268ac018bd50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0494fffbd4bc14bad8ce02837f93cbca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#a0494fffbd4bc14bad8ce02837f93cbca">InventoryManager</a> (DatabaseManager *<a class="el" href="classInventoryManager.html#a796dc4b636da3de8f06f8a076d19a635">dbManager</a>)</td></tr>
+<tr class="memitem:a0494fffbd4bc14bad8ce02837f93cbca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#a0494fffbd4bc14bad8ce02837f93cbca">InventoryManager</a> (<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *<a class="el" href="classInventoryManager.html#a796dc4b636da3de8f06f8a076d19a635">dbManager</a>)</td></tr>
 <tr class="memdesc:a0494fffbd4bc14bad8ce02837f93cbca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor parametrizado.  <a href="classInventoryManager.html#a0494fffbd4bc14bad8ce02837f93cbca">Más...</a><br /></td></tr>
 <tr class="separator:a0494fffbd4bc14bad8ce02837f93cbca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a512a0bfc118080463aabc42267b28036"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#a512a0bfc118080463aabc42267b28036">~InventoryManager</a> ()</td></tr>
@@ -125,16 +134,16 @@ Métodos públicos</h2></td></tr>
 <tr class="memitem:a7ef2c19695b2016a55be4029e2a4b026"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#a7ef2c19695b2016a55be4029e2a4b026">getLowStockComponents</a> (int threshold=5)</td></tr>
 <tr class="memdesc:a7ef2c19695b2016a55be4029e2a4b026"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene los componentes con bajo stock.  <a href="classInventoryManager.html#a7ef2c19695b2016a55be4029e2a4b026">Más...</a><br /></td></tr>
 <tr class="separator:a7ef2c19695b2016a55be4029e2a4b026"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1743355c620d531e266e75425323d5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#ae1743355c620d531e266e75425323d5a">setDatabaseManager</a> (DatabaseManager *<a class="el" href="classInventoryManager.html#a796dc4b636da3de8f06f8a076d19a635">dbManager</a>)</td></tr>
+<tr class="memitem:ae1743355c620d531e266e75425323d5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#ae1743355c620d531e266e75425323d5a">setDatabaseManager</a> (<a class="el" href="classDatabaseManager.html">DatabaseManager</a> *<a class="el" href="classInventoryManager.html#a796dc4b636da3de8f06f8a076d19a635">dbManager</a>)</td></tr>
 <tr class="memdesc:ae1743355c620d531e266e75425323d5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establece el gestor de base de datos.  <a href="classInventoryManager.html#ae1743355c620d531e266e75425323d5a">Más...</a><br /></td></tr>
 <tr class="separator:ae1743355c620d531e266e75425323d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcb10713cfad9ac50288f464ad4924f3"><td class="memItemLeft" align="right" valign="top">DatabaseManager *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#abcb10713cfad9ac50288f464ad4924f3">getDatabaseManager</a> () const</td></tr>
+<tr class="memitem:abcb10713cfad9ac50288f464ad4924f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDatabaseManager.html">DatabaseManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#abcb10713cfad9ac50288f464ad4924f3">getDatabaseManager</a> () const</td></tr>
 <tr class="memdesc:abcb10713cfad9ac50288f464ad4924f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene el gestor de base de datos.  <a href="classInventoryManager.html#abcb10713cfad9ac50288f464ad4924f3">Más...</a><br /></td></tr>
 <tr class="separator:abcb10713cfad9ac50288f464ad4924f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Atributos privados</h2></td></tr>
-<tr class="memitem:a796dc4b636da3de8f06f8a076d19a635"><td class="memItemLeft" align="right" valign="top">DatabaseManager *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#a796dc4b636da3de8f06f8a076d19a635">dbManager</a></td></tr>
+<tr class="memitem:a796dc4b636da3de8f06f8a076d19a635"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDatabaseManager.html">DatabaseManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classInventoryManager.html#a796dc4b636da3de8f06f8a076d19a635">dbManager</a></td></tr>
 <tr class="separator:a796dc4b636da3de8f06f8a076d19a635"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
@@ -170,7 +179,7 @@ Atributos privados</h2></td></tr>
         <tr>
           <td class="memname">InventoryManager::InventoryManager </td>
           <td>(</td>
-          <td class="paramtype">DatabaseManager *&#160;</td>
+          <td class="paramtype"><a class="el" href="classDatabaseManager.html">DatabaseManager</a> *&#160;</td>
           <td class="paramname"><em>dbManager</em></td><td>)</td>
           <td></td>
         </tr>
@@ -290,7 +299,7 @@ Atributos privados</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">DatabaseManager * InventoryManager::getDatabaseManager </td>
+          <td class="memname"><a class="el" href="classDatabaseManager.html">DatabaseManager</a> * InventoryManager::getDatabaseManager </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -366,7 +375,7 @@ Atributos privados</h2></td></tr>
         <tr>
           <td class="memname">void InventoryManager::setDatabaseManager </td>
           <td>(</td>
-          <td class="paramtype">DatabaseManager *&#160;</td>
+          <td class="paramtype"><a class="el" href="classDatabaseManager.html">DatabaseManager</a> *&#160;</td>
           <td class="paramname"><em>dbManager</em></td><td>)</td>
           <td></td>
         </tr>
@@ -421,7 +430,7 @@ Atributos privados</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">DatabaseManager* InventoryManager::dbManager</td>
+          <td class="memname"><a class="el" href="classDatabaseManager.html">DatabaseManager</a>* InventoryManager::dbManager</td>
         </tr>
       </table>
   </td>

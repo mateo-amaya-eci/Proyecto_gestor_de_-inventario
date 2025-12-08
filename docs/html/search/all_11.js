@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['_7einventorymanager_75',['~InventoryManager',['../classInventoryManager.html#a512a0bfc118080463aabc42267b28036',1,'InventoryManager']]],
-  ['_7emainwindow_76',['~MainWindow',['../classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7',1,'MainWindow']]]
+  ['verifylastinsert_89',['verifyLastInsert',['../classDatabaseManager.html#aa662134dc465aec6d69c416798bc9f95',1,'DatabaseManager']]]
 ];

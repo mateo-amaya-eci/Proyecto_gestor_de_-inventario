@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['_7einventorymanager_134',['~InventoryManager',['../classInventoryManager.html#a512a0bfc118080463aabc42267b28036',1,'InventoryManager']]],
-  ['_7emainwindow_135',['~MainWindow',['../classMainWindow.html#ae98d00a93bc118200eeef9f9bba1dba7',1,'MainWindow']]]
+  ['updatecomponent_162',['updateComponent',['../classDatabaseManager.html#ade951f0e1c52117ce0bc510427a0b52e',1,'DatabaseManager::updateComponent()'],['../classInventoryManager.html#adce8983cba552c3c2490bec21b48e5c4',1,'InventoryManager::updateComponent()'],['../classMainWindow.html#ad77e039539b1c939853d5718fe38630b',1,'MainWindow::updateComponent()']]]
 ];

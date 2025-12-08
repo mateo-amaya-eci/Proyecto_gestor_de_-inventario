@@ -84,6 +84,7 @@ $(document).ready(function(){initNavTree('classDatabaseManager.html',''); initRe
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Métodos públicos</a> &#124;
+<a href="#pri-methods">Métodos privados</a> &#124;
 <a href="#pri-attribs">Atributos privados</a> &#124;
 <a href="classDatabaseManager-members.html">Lista de todos los miembros</a>  </div>
   <div class="headertitle">
@@ -98,53 +99,89 @@ $(document).ready(function(){initNavTree('classDatabaseManager.html',''); initRe
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Métodos públicos</h2></td></tr>
-<tr class="memitem:ad30427087c5f294073f8bc369b4a0a02"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ad30427087c5f294073f8bc369b4a0a02">DatabaseManager</a> (std::string path=&quot;inventory.db&quot;)</td></tr>
-<tr class="memdesc:ad30427087c5f294073f8bc369b4a0a02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor de la clase <a class="el" href="classDatabaseManager.html" title="Gestiona la conexión y operaciones con la base de datos SQLite.">DatabaseManager</a>.  <a href="classDatabaseManager.html#ad30427087c5f294073f8bc369b4a0a02">Más...</a><br /></td></tr>
-<tr class="separator:ad30427087c5f294073f8bc369b4a0a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa162d97472e6c31a4e873adda435dbb6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#aa162d97472e6c31a4e873adda435dbb6">DatabaseManager</a> ()</td></tr>
+<tr class="memdesc:aa162d97472e6c31a4e873adda435dbb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor por defecto.  <a href="classDatabaseManager.html#aa162d97472e6c31a4e873adda435dbb6">Más...</a><br /></td></tr>
+<tr class="separator:aa162d97472e6c31a4e873adda435dbb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab475ae4c71f9a9af8ff9dbac5433c389"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ab475ae4c71f9a9af8ff9dbac5433c389">DatabaseManager</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:ab475ae4c71f9a9af8ff9dbac5433c389"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor parametrizado.  <a href="classDatabaseManager.html#ab475ae4c71f9a9af8ff9dbac5433c389">Más...</a><br /></td></tr>
+<tr class="separator:ab475ae4c71f9a9af8ff9dbac5433c389"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9b3a5da1e04fbb00faf8a034da1d063"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ae9b3a5da1e04fbb00faf8a034da1d063">~DatabaseManager</a> ()</td></tr>
 <tr class="memdesc:ae9b3a5da1e04fbb00faf8a034da1d063"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor de la clase <a class="el" href="classDatabaseManager.html" title="Gestiona la conexión y operaciones con la base de datos SQLite.">DatabaseManager</a>.  <a href="classDatabaseManager.html#ae9b3a5da1e04fbb00faf8a034da1d063">Más...</a><br /></td></tr>
 <tr class="separator:ae9b3a5da1e04fbb00faf8a034da1d063"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf0518515ed9ec59c91bd4d3a39f7319"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#abf0518515ed9ec59c91bd4d3a39f7319">openDatabase</a> ()</td></tr>
-<tr class="memdesc:abf0518515ed9ec59c91bd4d3a39f7319"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abre la conexión con la base de datos.  <a href="classDatabaseManager.html#abf0518515ed9ec59c91bd4d3a39f7319">Más...</a><br /></td></tr>
-<tr class="separator:abf0518515ed9ec59c91bd4d3a39f7319"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad95de729a1eba5e3dd35a8df0fb87f37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ad95de729a1eba5e3dd35a8df0fb87f37">closeDatabase</a> ()</td></tr>
-<tr class="memdesc:ad95de729a1eba5e3dd35a8df0fb87f37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cierra la conexión con la base de datos.  <a href="classDatabaseManager.html#ad95de729a1eba5e3dd35a8df0fb87f37">Más...</a><br /></td></tr>
-<tr class="separator:ad95de729a1eba5e3dd35a8df0fb87f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8c802b566ce699996fa1264dc0d79c9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ad8c802b566ce699996fa1264dc0d79c9">createTable</a> ()</td></tr>
-<tr class="memdesc:ad8c802b566ce699996fa1264dc0d79c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea la tabla de componentes en la base de datos.  <a href="classDatabaseManager.html#ad8c802b566ce699996fa1264dc0d79c9">Más...</a><br /></td></tr>
-<tr class="separator:ad8c802b566ce699996fa1264dc0d79c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a075daa937e364098e1e490b28fb9a8ee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a075daa937e364098e1e490b28fb9a8ee">insertComponent</a> (const <a class="el" href="classComponent.html">Component</a> &amp;component)</td></tr>
-<tr class="memdesc:a075daa937e364098e1e490b28fb9a8ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserta un componente en la base de datos.  <a href="classDatabaseManager.html#a075daa937e364098e1e490b28fb9a8ee">Más...</a><br /></td></tr>
-<tr class="separator:a075daa937e364098e1e490b28fb9a8ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5e6986d9d1317af0fe8d90d8ab3ecdb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ab5e6986d9d1317af0fe8d90d8ab3ecdb">deleteComponent</a> (int id)</td></tr>
-<tr class="memdesc:ab5e6986d9d1317af0fe8d90d8ab3ecdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elimina un componente de la base de datos por su ID.  <a href="classDatabaseManager.html#ab5e6986d9d1317af0fe8d90d8ab3ecdb">Más...</a><br /></td></tr>
-<tr class="separator:ab5e6986d9d1317af0fe8d90d8ab3ecdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cbc0c691ef2b9e7851a33959817dee6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a3cbc0c691ef2b9e7851a33959817dee6">connect</a> ()</td></tr>
+<tr class="memdesc:a3cbc0c691ef2b9e7851a33959817dee6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conecta a la base de datos usando la ruta especificada en el constructor.  <a href="classDatabaseManager.html#a3cbc0c691ef2b9e7851a33959817dee6">Más...</a><br /></td></tr>
+<tr class="separator:a3cbc0c691ef2b9e7851a33959817dee6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a246fad29731b6b5a745ace130fedf528"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a246fad29731b6b5a745ace130fedf528">connect</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:a246fad29731b6b5a745ace130fedf528"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conecta a la base de datos usando una ruta específica.  <a href="classDatabaseManager.html#a246fad29731b6b5a745ace130fedf528">Más...</a><br /></td></tr>
+<tr class="separator:a246fad29731b6b5a745ace130fedf528"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5da4f201fd5f9fe8f02ea9d64da9a803"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a5da4f201fd5f9fe8f02ea9d64da9a803">disconnect</a> ()</td></tr>
+<tr class="memdesc:a5da4f201fd5f9fe8f02ea9d64da9a803"><td class="mdescLeft">&#160;</td><td class="mdescRight">Desconecta de la base de datos.  <a href="classDatabaseManager.html#a5da4f201fd5f9fe8f02ea9d64da9a803">Más...</a><br /></td></tr>
+<tr class="separator:a5da4f201fd5f9fe8f02ea9d64da9a803"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4191649a436b20af9d2151e141ee148"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#aa4191649a436b20af9d2151e141ee148">isConnected</a> () const</td></tr>
+<tr class="memdesc:aa4191649a436b20af9d2151e141ee148"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica si la conexión con la base de datos está activa.  <a href="classDatabaseManager.html#aa4191649a436b20af9d2151e141ee148">Más...</a><br /></td></tr>
+<tr class="separator:aa4191649a436b20af9d2151e141ee148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac81e200d31ca2d7e3ebe67b842dafbd6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ac81e200d31ca2d7e3ebe67b842dafbd6">addComponent</a> (const <a class="el" href="classComponent.html">Component</a> &amp;component)</td></tr>
+<tr class="memdesc:ac81e200d31ca2d7e3ebe67b842dafbd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Agrega un componente a la base de datos.  <a href="classDatabaseManager.html#ac81e200d31ca2d7e3ebe67b842dafbd6">Más...</a><br /></td></tr>
+<tr class="separator:ac81e200d31ca2d7e3ebe67b842dafbd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade951f0e1c52117ce0bc510427a0b52e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ade951f0e1c52117ce0bc510427a0b52e">updateComponent</a> (const <a class="el" href="classComponent.html">Component</a> &amp;component)</td></tr>
 <tr class="memdesc:ade951f0e1c52117ce0bc510427a0b52e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actualiza un componente en la base de datos.  <a href="classDatabaseManager.html#ade951f0e1c52117ce0bc510427a0b52e">Más...</a><br /></td></tr>
 <tr class="separator:ade951f0e1c52117ce0bc510427a0b52e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a025bb3a8df0f002b5fba04e713742ade"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a025bb3a8df0f002b5fba04e713742ade">selectAllComponents</a> ()</td></tr>
-<tr class="memdesc:a025bb3a8df0f002b5fba04e713742ade"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selecciona todos los componentes de la base de datos.  <a href="classDatabaseManager.html#a025bb3a8df0f002b5fba04e713742ade">Más...</a><br /></td></tr>
-<tr class="separator:a025bb3a8df0f002b5fba04e713742ade"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48e397d0dea2e34121e4317e0f2dec67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classComponent.html">Component</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a48e397d0dea2e34121e4317e0f2dec67">selectComponentById</a> (int id)</td></tr>
-<tr class="memdesc:a48e397d0dea2e34121e4317e0f2dec67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selecciona un componente de la base de datos por su ID.  <a href="classDatabaseManager.html#a48e397d0dea2e34121e4317e0f2dec67">Más...</a><br /></td></tr>
-<tr class="separator:a48e397d0dea2e34121e4317e0f2dec67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4c4c07e09facf5335142d580df00054"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ab4c4c07e09facf5335142d580df00054">searchComponents</a> (std::string keyword)</td></tr>
-<tr class="memdesc:ab4c4c07e09facf5335142d580df00054"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busca componentes en la base de datos que coincidan con una palabra clave.  <a href="classDatabaseManager.html#ab4c4c07e09facf5335142d580df00054">Más...</a><br /></td></tr>
-<tr class="separator:ab4c4c07e09facf5335142d580df00054"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5e6986d9d1317af0fe8d90d8ab3ecdb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ab5e6986d9d1317af0fe8d90d8ab3ecdb">deleteComponent</a> (int id)</td></tr>
+<tr class="memdesc:ab5e6986d9d1317af0fe8d90d8ab3ecdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elimina un componente de la base de datos por su ID.  <a href="classDatabaseManager.html#ab5e6986d9d1317af0fe8d90d8ab3ecdb">Más...</a><br /></td></tr>
+<tr class="separator:ab5e6986d9d1317af0fe8d90d8ab3ecdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00ff334bc127ed0b8305b87114b011c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classComponent.html">Component</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a00ff334bc127ed0b8305b87114b011c4">getComponent</a> (int id)</td></tr>
+<tr class="memdesc:a00ff334bc127ed0b8305b87114b011c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene un componente de la base de datos por su ID.  <a href="classDatabaseManager.html#a00ff334bc127ed0b8305b87114b011c4">Más...</a><br /></td></tr>
+<tr class="separator:a00ff334bc127ed0b8305b87114b011c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03c932002d0a2d0e961b86b5bf74cfbc"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a03c932002d0a2d0e961b86b5bf74cfbc">getAllComponents</a> ()</td></tr>
+<tr class="memdesc:a03c932002d0a2d0e961b86b5bf74cfbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene todos los componentes de la base de datos.  <a href="classDatabaseManager.html#a03c932002d0a2d0e961b86b5bf74cfbc">Más...</a><br /></td></tr>
+<tr class="separator:a03c932002d0a2d0e961b86b5bf74cfbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5667c96467d780b7f37d5df92f7762d3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a5667c96467d780b7f37d5df92f7762d3">searchComponents</a> (const std::string &amp;keyword)</td></tr>
+<tr class="memdesc:a5667c96467d780b7f37d5df92f7762d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Busca componentes en la base de datos que coincidan con una palabra clave.  <a href="classDatabaseManager.html#a5667c96467d780b7f37d5df92f7762d3">Más...</a><br /></td></tr>
+<tr class="separator:a5667c96467d780b7f37d5df92f7762d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7419193fc1857438a9fe824301eb24dc"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a7419193fc1857438a9fe824301eb24dc">getLowStockComponents</a> (int threshold=5)</td></tr>
+<tr class="memdesc:a7419193fc1857438a9fe824301eb24dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene los componentes con bajo stock.  <a href="classDatabaseManager.html#a7419193fc1857438a9fe824301eb24dc">Más...</a><br /></td></tr>
+<tr class="separator:a7419193fc1857438a9fe824301eb24dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade097a9b47909a34b64611f7dc7d6cdf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#ade097a9b47909a34b64611f7dc7d6cdf">getComponentCount</a> () const</td></tr>
+<tr class="memdesc:ade097a9b47909a34b64611f7dc7d6cdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene el número total de componentes en la base de datos.  <a href="classDatabaseManager.html#ade097a9b47909a34b64611f7dc7d6cdf">Más...</a><br /></td></tr>
+<tr class="separator:ade097a9b47909a34b64611f7dc7d6cdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7900fe061f1fbbebd074fac7f6e4c7d8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a7900fe061f1fbbebd074fac7f6e4c7d8">getComponentTypes</a> () const</td></tr>
+<tr class="memdesc:a7900fe061f1fbbebd074fac7f6e4c7d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene los tipos de componentes únicos en la base de datos.  <a href="classDatabaseManager.html#a7900fe061f1fbbebd074fac7f6e4c7d8">Más...</a><br /></td></tr>
+<tr class="separator:a7900fe061f1fbbebd074fac7f6e4c7d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a023a03a280b67486963aa68308ba48fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a023a03a280b67486963aa68308ba48fa">debugTableInfo</a> ()</td></tr>
+<tr class="memdesc:a023a03a280b67486963aa68308ba48fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Muestra información de depuración sobre las tablas de la base de datos.  <a href="classDatabaseManager.html#a023a03a280b67486963aa68308ba48fa">Más...</a><br /></td></tr>
+<tr class="separator:a023a03a280b67486963aa68308ba48fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af66630b3c492c5bdccb636ff338c790c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#af66630b3c492c5bdccb636ff338c790c">recreateTable</a> ()</td></tr>
+<tr class="memdesc:af66630b3c492c5bdccb636ff338c790c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recrea la tabla de componentes en la base de datos.  <a href="classDatabaseManager.html#af66630b3c492c5bdccb636ff338c790c">Más...</a><br /></td></tr>
+<tr class="separator:af66630b3c492c5bdccb636ff338c790c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa662134dc465aec6d69c416798bc9f95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#aa662134dc465aec6d69c416798bc9f95">verifyLastInsert</a> ()</td></tr>
+<tr class="memdesc:aa662134dc465aec6d69c416798bc9f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica la información del último componente insertado en la base de datos.  <a href="classDatabaseManager.html#aa662134dc465aec6d69c416798bc9f95">Más...</a><br /></td></tr>
+<tr class="separator:aa662134dc465aec6d69c416798bc9f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Métodos privados</h2></td></tr>
+<tr class="memitem:a7cdc82fb2f6329642f587b7a5148f8b2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a7cdc82fb2f6329642f587b7a5148f8b2">executeQuery</a> (const std::string &amp;query)</td></tr>
+<tr class="memdesc:a7cdc82fb2f6329642f587b7a5148f8b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ejecuta una consulta SQL en la base de datos.  <a href="classDatabaseManager.html#a7cdc82fb2f6329642f587b7a5148f8b2">Más...</a><br /></td></tr>
+<tr class="separator:a7cdc82fb2f6329642f587b7a5148f8b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b6ac41f722bd89a74e08a106aea902d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a2b6ac41f722bd89a74e08a106aea902d">initializeDatabase</a> ()</td></tr>
+<tr class="memdesc:a2b6ac41f722bd89a74e08a106aea902d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa la base de datos creando las tablas necesarias.  <a href="classDatabaseManager.html#a2b6ac41f722bd89a74e08a106aea902d">Más...</a><br /></td></tr>
+<tr class="separator:a2b6ac41f722bd89a74e08a106aea902d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c4fdc4be34f785bf4dcc166061ccce4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classComponent.html">Component</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a5c4fdc4be34f785bf4dcc166061ccce4">createComponentFromRow</a> (sqlite3_stmt *stmt)</td></tr>
+<tr class="memdesc:a5c4fdc4be34f785bf4dcc166061ccce4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un objeto <a class="el" href="classComponent.html" title="Representa un componente en el sistema de inventario.">Component</a> a partir de una fila de la base de datos.  <a href="classDatabaseManager.html#a5c4fdc4be34f785bf4dcc166061ccce4">Más...</a><br /></td></tr>
+<tr class="separator:a5c4fdc4be34f785bf4dcc166061ccce4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Atributos privados</h2></td></tr>
 <tr class="memitem:a5341532377ae75614a5e9ccf81e18355"><td class="memItemLeft" align="right" valign="top">sqlite3 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a5341532377ae75614a5e9ccf81e18355">db</a></td></tr>
 <tr class="separator:a5341532377ae75614a5e9ccf81e18355"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2973954fb8d72a5bc1e0e8dc82d825c0"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a2973954fb8d72a5bc1e0e8dc82d825c0">dbPath</a></td></tr>
-<tr class="separator:a2973954fb8d72a5bc1e0e8dc82d825c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d033a970def8b08e670457737f2b715"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseManager.html#a0d033a970def8b08e670457737f2b715">databasePath</a></td></tr>
+<tr class="separator:a0d033a970def8b08e670457737f2b715"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
 <div class="textblock"><p>Gestiona la conexión y operaciones con la base de datos SQLite. </p>
 <p>La clase <a class="el" href="classDatabaseManager.html" title="Gestiona la conexión y operaciones con la base de datos SQLite.">DatabaseManager</a> proporciona métodos para interactuar con la base de datos, incluyendo operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para los componentes. </p>
 </div><h2 class="groupheader">Documentación del constructor y destructor</h2>
-<a id="ad30427087c5f294073f8bc369b4a0a02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad30427087c5f294073f8bc369b4a0a02">&#9670;&nbsp;</a></span>DatabaseManager()</h2>
+<a id="aa162d97472e6c31a4e873adda435dbb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa162d97472e6c31a4e873adda435dbb6">&#9670;&nbsp;</a></span>DatabaseManager() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -152,18 +189,38 @@ Atributos privados</h2></td></tr>
         <tr>
           <td class="memname">DatabaseManager::DatabaseManager </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>path</em> = <code>&quot;inventory.db&quot;</code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor de la clase <a class="el" href="classDatabaseManager.html" title="Gestiona la conexión y operaciones con la base de datos SQLite.">DatabaseManager</a>. </p>
+<p>Constructor por defecto. </p>
+<p>Inicializa el gestor de base de datos sin una ruta específica. </p>
+
+</div>
+</div>
+<a id="ab475ae4c71f9a9af8ff9dbac5433c389"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab475ae4c71f9a9af8ff9dbac5433c389">&#9670;&nbsp;</a></span>DatabaseManager() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DatabaseManager::DatabaseManager </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor parametrizado. </p>
 <p>Inicializa el gestor de base de datos con la ruta especificada.</p>
 <dl class="params"><dt>Parámetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">path</td><td>Ruta del archivo de la base de datos. Por defecto es "inventory.db". </td></tr>
+    <tr><td class="paramname">path</td><td>Ruta del archivo de la base de datos. </td></tr>
   </table>
   </dd>
 </dl>
@@ -191,14 +248,41 @@ Atributos privados</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Documentación de las funciones miembro</h2>
-<a id="ad95de729a1eba5e3dd35a8df0fb87f37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad95de729a1eba5e3dd35a8df0fb87f37">&#9670;&nbsp;</a></span>closeDatabase()</h2>
+<a id="ac81e200d31ca2d7e3ebe67b842dafbd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac81e200d31ca2d7e3ebe67b842dafbd6">&#9670;&nbsp;</a></span>addComponent()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void DatabaseManager::closeDatabase </td>
+          <td class="memname">bool DatabaseManager::addComponent </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classComponent.html">Component</a> &amp;&#160;</td>
+          <td class="paramname"><em>component</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Agrega un componente a la base de datos. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">component</td><td>Componente a agregar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si el componente se agrega correctamente, false en caso contrario. </dd></dl>
+
+</div>
+</div>
+<a id="a3cbc0c691ef2b9e7851a33959817dee6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cbc0c691ef2b9e7851a33959817dee6">&#9670;&nbsp;</a></span>connect() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseManager::connect </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -206,18 +290,81 @@ Atributos privados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Cierra la conexión con la base de datos. </p>
+<p>Conecta a la base de datos usando la ruta especificada en el constructor. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>true si la conexión se establece correctamente, false en caso contrario. </dd></dl>
 
 </div>
 </div>
-<a id="ad8c802b566ce699996fa1264dc0d79c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad8c802b566ce699996fa1264dc0d79c9">&#9670;&nbsp;</a></span>createTable()</h2>
+<a id="a246fad29731b6b5a745ace130fedf528"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a246fad29731b6b5a745ace130fedf528">&#9670;&nbsp;</a></span>connect() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool DatabaseManager::createTable </td>
+          <td class="memname">bool DatabaseManager::connect </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Conecta a la base de datos usando una ruta específica. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Ruta del archivo de la base de datos. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si la conexión se establece correctamente, false en caso contrario. </dd></dl>
+
+</div>
+</div>
+<a id="a5c4fdc4be34f785bf4dcc166061ccce4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c4fdc4be34f785bf4dcc166061ccce4">&#9670;&nbsp;</a></span>createComponentFromRow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classComponent.html">Component</a> DatabaseManager::createComponentFromRow </td>
+          <td>(</td>
+          <td class="paramtype">sqlite3_stmt *&#160;</td>
+          <td class="paramname"><em>stmt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Crea un objeto <a class="el" href="classComponent.html" title="Representa un componente en el sistema de inventario.">Component</a> a partir de una fila de la base de datos. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stmt</td><td>Puntero al objeto sqlite3_stmt que contiene la fila de datos. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Objeto <a class="el" href="classComponent.html" title="Representa un componente en el sistema de inventario.">Component</a> creado a partir de la fila. </dd></dl>
+
+</div>
+</div>
+<a id="a023a03a280b67486963aa68308ba48fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a023a03a280b67486963aa68308ba48fa">&#9670;&nbsp;</a></span>debugTableInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DatabaseManager::debugTableInfo </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -225,8 +372,7 @@ Atributos privados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Crea la tabla de componentes en la base de datos. </p>
-<dl class="section return"><dt>Devuelve</dt><dd>true si la tabla se crea correctamente, false en caso contrario. </dd></dl>
+<p>Muestra información de depuración sobre las tablas de la base de datos. </p>
 
 </div>
 </div>
@@ -257,41 +403,14 @@ Atributos privados</h2></td></tr>
 
 </div>
 </div>
-<a id="a075daa937e364098e1e490b28fb9a8ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a075daa937e364098e1e490b28fb9a8ee">&#9670;&nbsp;</a></span>insertComponent()</h2>
+<a id="a5da4f201fd5f9fe8f02ea9d64da9a803"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5da4f201fd5f9fe8f02ea9d64da9a803">&#9670;&nbsp;</a></span>disconnect()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool DatabaseManager::insertComponent </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classComponent.html">Component</a> &amp;&#160;</td>
-          <td class="paramname"><em>component</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Inserta un componente en la base de datos. </p>
-<dl class="params"><dt>Parámetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">component</td><td>Componente a insertar. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Devuelve</dt><dd>true si el componente se inserta correctamente, false en caso contrario. </dd></dl>
-
-</div>
-</div>
-<a id="abf0518515ed9ec59c91bd4d3a39f7319"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf0518515ed9ec59c91bd4d3a39f7319">&#9670;&nbsp;</a></span>openDatabase()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool DatabaseManager::openDatabase </td>
+          <td class="memname">void DatabaseManager::disconnect </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -299,21 +418,237 @@ Atributos privados</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Abre la conexión con la base de datos. </p>
-<dl class="section return"><dt>Devuelve</dt><dd>true si la conexión se abre correctamente, false en caso contrario. </dd></dl>
+<p>Desconecta de la base de datos. </p>
 
 </div>
 </div>
-<a id="ab4c4c07e09facf5335142d580df00054"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4c4c07e09facf5335142d580df00054">&#9670;&nbsp;</a></span>searchComponents()</h2>
+<a id="a7cdc82fb2f6329642f587b7a5148f8b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cdc82fb2f6329642f587b7a5148f8b2">&#9670;&nbsp;</a></span>executeQuery()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseManager::executeQuery </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>query</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ejecuta una consulta SQL en la base de datos. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>Consulta SQL a ejecutar. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>true si la consulta se ejecuta correctamente, false en caso contrario. </dd></dl>
+
+</div>
+</div>
+<a id="a03c932002d0a2d0e961b86b5bf74cfbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03c932002d0a2d0e961b86b5bf74cfbc">&#9670;&nbsp;</a></span>getAllComponents()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="classComponent.html">Component</a>&gt; DatabaseManager::searchComponents </td>
+          <td class="memname">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt; DatabaseManager::getAllComponents </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obtiene todos los componentes de la base de datos. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Vector con todos los componentes almacenados en la base de datos. </dd></dl>
+
+</div>
+</div>
+<a id="a00ff334bc127ed0b8305b87114b011c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00ff334bc127ed0b8305b87114b011c4">&#9670;&nbsp;</a></span>getComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classComponent.html">Component</a> DatabaseManager::getComponent </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obtiene un componente de la base de datos por su ID. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID del componente a obtener. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Componente con el ID especificado, o un objeto vacío si no se encuentra. </dd></dl>
+
+</div>
+</div>
+<a id="ade097a9b47909a34b64611f7dc7d6cdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade097a9b47909a34b64611f7dc7d6cdf">&#9670;&nbsp;</a></span>getComponentCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DatabaseManager::getComponentCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obtiene el número total de componentes en la base de datos. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Número total de componentes. </dd></dl>
+
+</div>
+</div>
+<a id="a7900fe061f1fbbebd074fac7f6e4c7d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7900fe061f1fbbebd074fac7f6e4c7d8">&#9670;&nbsp;</a></span>getComponentTypes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; DatabaseManager::getComponentTypes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obtiene los tipos de componentes únicos en la base de datos. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>Vector con los tipos de componentes únicos. </dd></dl>
+
+</div>
+</div>
+<a id="a7419193fc1857438a9fe824301eb24dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7419193fc1857438a9fe824301eb24dc">&#9670;&nbsp;</a></span>getLowStockComponents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt; DatabaseManager::getLowStockComponents </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>threshold</em> = <code>5</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obtiene los componentes con bajo stock. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">threshold</td><td>Umbral de stock bajo (por defecto es 5). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>Vector con los componentes cuyo stock es menor o igual al umbral. </dd></dl>
+
+</div>
+</div>
+<a id="a2b6ac41f722bd89a74e08a106aea902d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b6ac41f722bd89a74e08a106aea902d">&#9670;&nbsp;</a></span>initializeDatabase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseManager::initializeDatabase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Inicializa la base de datos creando las tablas necesarias. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>true si la base de datos se inicializa correctamente, false en caso contrario. </dd></dl>
+
+</div>
+</div>
+<a id="aa4191649a436b20af9d2151e141ee148"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4191649a436b20af9d2151e141ee148">&#9670;&nbsp;</a></span>isConnected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseManager::isConnected </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verifica si la conexión con la base de datos está activa. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>true si la conexión está activa, false en caso contrario. </dd></dl>
+
+</div>
+</div>
+<a id="af66630b3c492c5bdccb636ff338c790c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af66630b3c492c5bdccb636ff338c790c">&#9670;&nbsp;</a></span>recreateTable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseManager::recreateTable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Recrea la tabla de componentes en la base de datos. </p>
+<dl class="section return"><dt>Devuelve</dt><dd>true si la tabla se recrea correctamente, false en caso contrario. </dd></dl>
+
+</div>
+</div>
+<a id="a5667c96467d780b7f37d5df92f7762d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5667c96467d780b7f37d5df92f7762d3">&#9670;&nbsp;</a></span>searchComponents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt; DatabaseManager::searchComponents </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>keyword</em></td><td>)</td>
           <td></td>
         </tr>
@@ -328,53 +663,6 @@ Atributos privados</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Devuelve</dt><dd>Vector con los componentes que coinciden con la palabra clave. </dd></dl>
-
-</div>
-</div>
-<a id="a025bb3a8df0f002b5fba04e713742ade"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a025bb3a8df0f002b5fba04e713742ade">&#9670;&nbsp;</a></span>selectAllComponents()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="classComponent.html">Component</a> &gt; DatabaseManager::selectAllComponents </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Selecciona todos los componentes de la base de datos. </p>
-<dl class="section return"><dt>Devuelve</dt><dd>Vector con todos los componentes almacenados en la base de datos. </dd></dl>
-
-</div>
-</div>
-<a id="a48e397d0dea2e34121e4317e0f2dec67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48e397d0dea2e34121e4317e0f2dec67">&#9670;&nbsp;</a></span>selectComponentById()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classComponent.html">Component</a> DatabaseManager::selectComponentById </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>id</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Selecciona un componente de la base de datos por su ID. </p>
-<dl class="params"><dt>Parámetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">id</td><td>ID del componente a seleccionar. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Devuelve</dt><dd>Componente con el ID especificado, o un objeto vacío si no se encuentra. </dd></dl>
 
 </div>
 </div>
@@ -405,7 +693,49 @@ Atributos privados</h2></td></tr>
 
 </div>
 </div>
+<a id="aa662134dc465aec6d69c416798bc9f95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa662134dc465aec6d69c416798bc9f95">&#9670;&nbsp;</a></span>verifyLastInsert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DatabaseManager::verifyLastInsert </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verifica la información del último componente insertado en la base de datos. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Documentación de los datos miembro</h2>
+<a id="a0d033a970def8b08e670457737f2b715"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d033a970def8b08e670457737f2b715">&#9670;&nbsp;</a></span>databasePath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string DatabaseManager::databasePath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Ruta del archivo de la base de datos. </p>
+
+</div>
+</div>
 <a id="a5341532377ae75614a5e9ccf81e18355"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5341532377ae75614a5e9ccf81e18355">&#9670;&nbsp;</a></span>db</h2>
 
@@ -426,29 +756,6 @@ Atributos privados</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Puntero a la base de datos SQLite. </p>
-
-</div>
-</div>
-<a id="a2973954fb8d72a5bc1e0e8dc82d825c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2973954fb8d72a5bc1e0e8dc82d825c0">&#9670;&nbsp;</a></span>dbPath</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string DatabaseManager::dbPath</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Ruta del archivo de la base de datos. </p>
 
 </div>
 </div>
