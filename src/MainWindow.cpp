@@ -1,5 +1,4 @@
 #include "MainWindow.h"
-#include <iostream>      // ¡Agregado para std::cout!
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QFormLayout>
@@ -10,19 +9,18 @@
 #include <QDir>
 #include <QTimer>
 #include <QFileInfo>
+#include <QDialog>
+#include <QLabel>
+#include <QComboBox>
+#include <QSpinBox>
+#include <QDialogButtonBox>
+#include <QDesktopServices>
+#include <QUrl>
+#include <QMessageBox>
+#include <iostream>
 #include <ctime>
 #include <algorithm>
 #include "ReportGenerator.h"
-#include <QDialog>
-#include <QComboBox>
-#include <QSpinBox>
-#include <QDesktopServices>
-#include <QUrl>
-#include <QDialog>
-#include <QVBoxLayout>
-#include <QMessageBox>
-#include <QDialogButtonBox>
-#include "PDFGenerator.h" 
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), selectedId(-1), dbManager(nullptr), inventoryManager(nullptr)
@@ -31,11 +29,6 @@ MainWindow::MainWindow(QWidget *parent)
     dbManager = new DatabaseManager();
     if (!dbManager->connect()) {
         QMessageBox::critical(this, "Error", "No se pudo conectar a la base de datos");
-    } else {
-        // DEPURACIÓN: Ver información de la tabla
-        std::cout << "\n=== INICIO DEPURACIÓN ===" << std::endl;
-        dbManager->debugTableInfo();
-        std::cout << "=== FIN DEPURACIÓN INICIAL ===\n" << std::endl;
     }
     
     inventoryManager = new InventoryManager(dbManager);
@@ -77,7 +70,6 @@ void MainWindow::setupUI()
     nameEdit->setPlaceholderText("Ej: Resistor 1kΩ");
     
     typeCombo = new QComboBox(this);
-    // Agregar items de forma más simple
     typeCombo->addItem("Resistor");
     typeCombo->addItem("Capacitor");
     typeCombo->addItem("Transistor");
@@ -170,52 +162,44 @@ void MainWindow::setupUI()
     timer->start(30000); // Cada 30 segundos
 }
 
-// En la función loadComponents(), modifica la depuración:
 void MainWindow::loadComponents()
 {
     tableWidget->setRowCount(0);
     
     auto components = inventoryManager->getAllComponents();
-    std::cout << "\n=== DEBUG loadComponents ===" << std::endl;
-    std::cout << "Número de componentes: " << components.size() << std::endl;
     
-    for (size_t i = 0; i < components.size(); i++) {
-        const auto& component = components[i];
-        std::cout << "\nComponente " << i << ":" << std::endl;
-        std::cout << "  ID: '" << component.getId() << "'" << std::endl;
-        std::cout << "  Nombre: '" << component.getName() << "'" << std::endl;
-        std::cout << "  Tipo: '" << component.getType() << "'" << std::endl;
-        std::cout << "  Cantidad: '" << component.getQuantity() << "'" << std::endl;
-        std::cout << "  Ubicación: '" << component.getLocation() << "'" << std::endl;
-        
+    for (const auto& component : components) {
         int row = tableWidget->rowCount();
         tableWidget->insertRow(row);
         
-        // Asegurarnos de que los datos se muestren correctamente
-        QString idStr = QString::number(component.getId());
-        QString nameStr = QString::fromStdString(component.getName());
-        QString typeStr = QString::fromStdString(component.getType());
-        QString quantityStr = QString::number(component.getQuantity());
-        QString locationStr = QString::fromStdString(component.getLocation());
-        QString dateStr = QString::fromStdString(component.getPurchaseDateString());
+        // ID
+        tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(component.getId())));
         
-        std::cout << "  Para tabla:" << std::endl;
-        std::cout << "    ID string: '" << idStr.toStdString() << "'" << std::endl;
-        std::cout << "    Nombre string: '" << nameStr.toStdString() << "'" << std::endl;
+        // Nombre
+        QTableWidgetItem *nameItem = new QTableWidgetItem(QString::fromStdString(component.getName()));
+        tableWidget->setItem(row, 1, nameItem);
         
-        tableWidget->setItem(row, 0, new QTableWidgetItem(idStr));
-        tableWidget->setItem(row, 1, new QTableWidgetItem(nameStr));
-        tableWidget->setItem(row, 2, new QTableWidgetItem(typeStr));
+        // Tipo
+        tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(component.getType())));
         
-        QTableWidgetItem *quantityItem = new QTableWidgetItem(quantityStr);
+        // Cantidad con color para stock bajo
+        QTableWidgetItem *quantityItem = new QTableWidgetItem(QString::number(component.getQuantity()));
         if (component.isLowStock()) {
-            quantityItem->setBackground(QColor(255, 200, 200));
+            quantityItem->setBackground(QColor(255, 200, 200));  // Rojo claro
+            quantityItem->setForeground(Qt::red);
+            nameItem->setForeground(Qt::red);  // También marcar el nombre
         }
         tableWidget->setItem(row, 3, quantityItem);
         
-        tableWidget->setItem(row, 4, new QTableWidgetItem(locationStr));
-        tableWidget->setItem(row, 5, new QTableWidgetItem(dateStr));
+        // Ubicación
+        tableWidget->setItem(row, 4, new QTableWidgetItem(QString::fromStdString(component.getLocation())));
+        
+        // Fecha
+        tableWidget->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(component.getPurchaseDateString())));
     }
+    
+    // Ajustar columnas al contenido
+    tableWidget->resizeColumnsToContents();
     
     statusLabel->setText(QString("Cargados %1 componentes").arg(components.size()));
     checkLowStock();
@@ -224,14 +208,6 @@ void MainWindow::loadComponents()
 void MainWindow::addComponent()
 {
     Component component = getFormData();
-    
-    // DEPURACIÓN: Mostrar los datos capturados
-    std::cout << "DEBUG - Datos capturados:" << std::endl;
-    std::cout << "  Nombre: " << component.getName() << std::endl;
-    std::cout << "  Tipo: " << component.getType() << std::endl;
-    std::cout << "  Cantidad: " << component.getQuantity() << std::endl;
-    std::cout << "  Ubicación: " << component.getLocation() << std::endl;
-    std::cout << "  Fecha: " << component.getPurchaseDateString() << std::endl;
     
     if (component.getName().empty()) {
         QMessageBox::warning(this, "Advertencia", "El nombre es requerido");
@@ -322,12 +298,17 @@ void MainWindow::searchComponents()
         tableWidget->insertRow(row);
         
         tableWidget->setItem(row, 0, new QTableWidgetItem(QString::number(component.getId())));
-        tableWidget->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(component.getName())));
+        
+        QTableWidgetItem *nameItem = new QTableWidgetItem(QString::fromStdString(component.getName()));
+        tableWidget->setItem(row, 1, nameItem);
+        
         tableWidget->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(component.getType())));
         
         QTableWidgetItem *quantityItem = new QTableWidgetItem(QString::number(component.getQuantity()));
         if (component.isLowStock()) {
             quantityItem->setBackground(QColor(255, 200, 200));
+            quantityItem->setForeground(Qt::red);
+            nameItem->setForeground(Qt::red);
         }
         tableWidget->setItem(row, 3, quantityItem);
         
@@ -348,11 +329,7 @@ void MainWindow::onTableSelectionChanged()
     }
     
     int row = selectedItems.first()->row();
-    selectedId = tableWidget->item(row, 0)->text().toInt();  // Asegúrate de esto
-    
-    std::cout << "\n=== DEBUG onTableSelectionChanged ===" << std::endl;
-    std::cout << "Fila seleccionada: " << row << std::endl;
-    std::cout << "ID seleccionado: " << selectedId << std::endl;
+    selectedId = tableWidget->item(row, 0)->text().toInt();
     
     // Buscar el componente por ID
     auto components = inventoryManager->getAllComponents();
@@ -360,10 +337,7 @@ void MainWindow::onTableSelectionChanged()
                           [this](const Component& c) { return c.getId() == selectedId; });
     
     if (it != components.end()) {
-        std::cout << "Componente encontrado, llenando formulario..." << std::endl;
         populateForm(*it);
-    } else {
-        std::cout << "Componente NO encontrado para ID: " << selectedId << std::endl;
     }
 }
 
@@ -377,10 +351,10 @@ void MainWindow::generateReport()
         return;
     }
     
-    // Diálogo con opciones COMPLETAS (incluye PDF)
+    // Diálogo para seleccionar tipo de reporte
     QDialog dialog(this);
     dialog.setWindowTitle("Generar Reporte");
-    dialog.setMinimumWidth(450);
+    dialog.setMinimumWidth(400);
     
     QVBoxLayout layout(&dialog);
     
@@ -392,24 +366,8 @@ void MainWindow::generateReport()
     combo.addItem("📈 Reporte CSV");
     combo.addItem("📝 Reporte de Texto");
     combo.addItem("⚠️  Reporte de Stock Bajo (HTML)");
-    combo.addItem("📄 Reporte PDF Completo");
-    combo.addItem("🚨 Alerta Stock Bajo (PDF)");
     combo.setCurrentIndex(0);
     layout.addWidget(&combo);
-    
-    // Configuración para PDF (solo visible cuando se selecciona PDF)
-    QGroupBox pdfGroup("Opciones PDF", &dialog);
-    QVBoxLayout pdfLayout(&pdfGroup);
-    
-    QCheckBox landscapeCheck("Modo horizontal (apaisado)", &pdfGroup);
-    QCheckBox colorCheck("Imprimir en color", &pdfGroup);
-    colorCheck.setChecked(true);
-    
-    pdfLayout.addWidget(&landscapeCheck);
-    pdfLayout.addWidget(&colorCheck);
-    pdfGroup.setVisible(false); // Ocultar inicialmente
-    
-    layout.addWidget(&pdfGroup);
     
     // Umbral para stock bajo
     QHBoxLayout thresholdLayout;
@@ -424,14 +382,10 @@ void MainWindow::generateReport()
     thresholdLayout.addStretch();
     layout.addLayout(&thresholdLayout);
     
-    // Conectar para mostrar/ocultar opciones
+    // Conectar para habilitar/deshabilitar umbral
     QObject::connect(&combo, QOverload<int>::of(&QComboBox::currentIndexChanged),
                      [&](int index) {
-                         bool isPDF = (index == 4 || index == 5);
-                         bool isLowStock = (index == 3 || index == 5);
-                         
-                         pdfGroup.setVisible(isPDF);
-                         thresholdSpin.setEnabled(isLowStock);
+                         thresholdSpin.setEnabled(index == 3); // Solo para reporte de stock bajo
                      });
     
     QDialogButtonBox buttons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, &dialog);
@@ -450,38 +404,23 @@ void MainWindow::generateReport()
     
     QString defaultName;
     QString filter;
-    QString extension;
     
     switch (combo.currentIndex()) {
         case 0:  // HTML completo
             defaultName = defaultDir + "reporte_inventario_completo.html";
             filter = "Archivos HTML (*.html *.htm)";
-            extension = ".html";
             break;
         case 1:  // CSV
             defaultName = defaultDir + "reporte_inventario.csv";
             filter = "Archivos CSV (*.csv)";
-            extension = ".csv";
             break;
         case 2:  // Texto
             defaultName = defaultDir + "reporte_inventario.txt";
             filter = "Archivos de Texto (*.txt)";
-            extension = ".txt";
             break;
         case 3:  // Stock bajo HTML
             defaultName = defaultDir + "alerta_stock_bajo.html";
             filter = "Archivos HTML (*.html *.htm)";
-            extension = ".html";
-            break;
-        case 4:  // PDF Completo
-            defaultName = defaultDir + "reporte_inventario_completo.pdf";
-            filter = "Documentos PDF (*.pdf)";
-            extension = ".pdf";
-            break;
-        case 5:  // PDF Stock bajo
-            defaultName = defaultDir + "alerta_stock_bajo.pdf";
-            filter = "Documentos PDF (*.pdf)";
-            extension = ".pdf";
             break;
     }
     
@@ -493,11 +432,6 @@ void MainWindow::generateReport()
     
     if (fileName.isEmpty()) {
         return;
-    }
-    
-    // Asegurar extensión correcta
-    if (!fileName.endsWith(extension, Qt::CaseInsensitive)) {
-        fileName += extension;
     }
     
     bool success = false;
@@ -529,23 +463,6 @@ void MainWindow::generateReport()
                                                             thresholdSpin.value());
             message = "Reporte de stock bajo (HTML) generado exitosamente";
             break;
-            
-        case 4:  // PDF Completo
-            success = PDFGenerator::generatePDFReport(components, 
-                                                    fileName.toStdString(),
-                                                    landscapeCheck.isChecked(),
-                                                    colorCheck.isChecked());
-            message = "Reporte PDF generado exitosamente";
-            break;
-            
-        case 5:  // PDF Stock bajo
-            success = PDFGenerator::generateLowStockPDF(components, 
-                                                      fileName.toStdString(), 
-                                                      thresholdSpin.value(),
-                                                      landscapeCheck.isChecked(),
-                                                      colorCheck.isChecked());
-            message = "Alerta de stock bajo (PDF) generada exitosamente";
-            break;
     }
     
     if (success) {
@@ -576,6 +493,32 @@ void MainWindow::generateReport()
     }
 }
 
+void MainWindow::checkLowStock()
+{
+    auto lowStock = inventoryManager->getLowStockComponents();
+    if (!lowStock.empty()) {
+        QString warningText = QString("¡ATENCIÓN! Hay %1 componentes con stock bajo").arg(lowStock.size());
+        statusLabel->setText(warningText);
+        statusLabel->setStyleSheet("padding: 5px; background-color: #fff3cd; border: 1px solid #ffeaa7; color: #856404; font-weight: bold;");
+        
+        // Mostrar notificación ocasionalmente
+        static int notificationCount = 0;
+        if (notificationCount % 10 == 0) { // Cada 5 minutos aproximadamente
+            QMessageBox::warning(this, "Stock Bajo", 
+                                QString("Hay %1 componentes con stock bajo.\nRevise el inventario.")
+                                .arg(lowStock.size()));
+        }
+        notificationCount++;
+    } else {
+        // Restaurar estilo normal si no hay stock bajo
+        if (!statusLabel->text().contains("Error") && 
+            !statusLabel->text().contains("generado") &&
+            !statusLabel->text().contains("encontrados")) {
+            statusLabel->setStyleSheet("padding: 5px; background-color: #f0f0f0; border: 1px solid #ccc;");
+        }
+    }
+}
+
 void MainWindow::clearForm()
 {
     nameEdit->clear();
@@ -593,27 +536,16 @@ void MainWindow::clearForm()
 
 void MainWindow::populateForm(const Component& component)
 {
-    std::cout << "DEBUG - populateForm:" << std::endl;
-    std::cout << "  Component name: " << component.getName() << std::endl;
-    std::cout << "  Component type: " << component.getType() << std::endl;
-    std::cout << "  Component location: " << component.getLocation() << std::endl;
-    
-    // Establecer texto directamente, no usar fromStdString
     nameEdit->setText(QString::fromStdString(component.getName()));
     
-    // Para el combo, buscar exactamente
-    QString typeStr = QString::fromStdString(component.getType());
-    int index = typeCombo->findText(typeStr, Qt::MatchExactly);
-    
-    std::cout << "  Looking for type: " << typeStr.toStdString() << std::endl;
-    std::cout << "  Found at index: " << index << std::endl;
-    
+    // Buscar el tipo en el combo
+    int index = typeCombo->findText(QString::fromStdString(component.getType()));
     if (index != -1) {
         typeCombo->setCurrentIndex(index);
     } else {
-        // Si no está, agregarlo al final
-        typeCombo->addItem(typeStr);
-        typeCombo->setCurrentIndex(typeCombo->count() - 1);
+        // Si el tipo no está en la lista, agregarlo temporalmente
+        typeCombo->addItem(QString::fromStdString(component.getType()));
+        typeCombo->setCurrentText(QString::fromStdString(component.getType()));
     }
     
     quantitySpin->setValue(component.getQuantity());
@@ -638,13 +570,6 @@ Component MainWindow::getFormData() const
     QString name = nameEdit->text().trimmed();
     QString type = typeCombo->currentText().trimmed();
     QString location = locationEdit->text().trimmed();
-    
-    std::cout << "\n=== DEBUG getFormData (UPDATE) ===" << std::endl;
-    std::cout << "Nombre: '" << name.toStdString() << "'" << std::endl;
-    std::cout << "Tipo: '" << type.toStdString() << "'" << std::endl;
-    std::cout << "Ubicación: '" << location.toStdString() << "'" << std::endl;
-    std::cout << "Cantidad: " << quantitySpin->value() << std::endl;
-    std::cout << "selectedId: " << selectedId << std::endl;
     
     // Convertir a std::string
     std::string nameStr = name.toStdString();

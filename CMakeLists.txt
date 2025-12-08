@@ -7,14 +7,14 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-# Buscar paquetes necesarios - ¡AGREGAR PrintSupport!
-find_package(Qt5 COMPONENTS Widgets PrintSupport REQUIRED)
+# Solo necesitamos Widgets, no PrintSupport
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(SQLite3 REQUIRED)
 
 # Incluir directorios
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-# Archivos del proyecto
+# Archivos del proyecto SIN PDFGenerator
 set(SOURCES
     src/main.cpp
     src/MainWindow.cpp
@@ -22,7 +22,6 @@ set(SOURCES
     src/DatabaseManager.cpp
     src/InventoryManager.cpp
     src/ReportGenerator.cpp
-    src/PDFGenerator.cpp  # ¡Nuevo archivo!
 )
 
 set(HEADERS
@@ -31,18 +30,25 @@ set(HEADERS
     src/DatabaseManager.h
     src/InventoryManager.h
     src/ReportGenerator.h
-    src/PDFGenerator.h    # ¡Nuevo archivo!
 )
 
 # Crear ejecutable
 add_executable(GestorInventario ${SOURCES} ${HEADERS})
 
-# Enlazar bibliotecas - ¡AGREGAR PrintSupport!
+# Enlazar bibliotecas SIN PrintSupport
 target_link_libraries(GestorInventario PRIVATE 
     Qt5::Widgets
-    Qt5::PrintSupport      # ¡Importante!
     ${SQLITE3_LIBRARY}
 )
 
 # Incluir directorios de SQLite3
 target_include_directories(GestorInventario PRIVATE ${SQLITE3_INCLUDE_DIR})
+
+# Configuración para macOS
+if(APPLE)
+    set_target_properties(GestorInventario PROPERTIES
+        MACOSX_BUNDLE TRUE
+        MACOSX_BUNDLE_GUI_IDENTIFIER "com.gestor.inventario"
+        MACOSX_BUNDLE_BUNDLE_NAME "Gestor de Inventario"
+    )
+endif()
