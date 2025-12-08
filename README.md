@@ -2,7 +2,7 @@
 ### *Participantes:*
 - *Mateo Felipe Amaya Novoa*
 - *Jesus Estiven Vargas Alvarez*
-- *Daniel Alejandro Valderrama Lopez*
+- *Daniel Valderrama Lopez*
 
 
 ## Proyecto 3.3  Gestor de Inventario para Hogar o Laboratorio
