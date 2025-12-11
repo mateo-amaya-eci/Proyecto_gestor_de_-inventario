@@ -1,12 +1,18 @@
 # Proyecto de Algoritmos en sistemas electrónicos
 ### *Participantes:*
 - *Mateo Felipe Amaya Novoa*
+<<<<<<< HEAD
 - *Jesus Estiven Vargas Calderon*
 - *Daniel Andres Valderrama Lopez*
+=======
+- *Jesus Estiven Vargas Calderón*
+- *Daniel Valderrama Lopez*
+>>>>>>> a1da1bd6f07c433da9f7bf051bb82148042a5824
 
 
 ## Proyecto 3.3  Gestor de Inventario para Hogar o Laboratorio
 ### Descripción General
+<<<<<<< HEAD
 Sistema de inventario para administrar componentes electr´onicos o dispositivos del hogar/laboratorio. Implementado en C++ con Qt y base de datos SQLite, orientado a dispositivos de bajo consumo como Raspberry Pi
 ### Características Principales
 - Ingreso de art´ıculos: nombre, tipo, cantidad, ubicaci´on, fecha de adquisición.
@@ -25,3 +31,7 @@ Sistema de inventario para administrar componentes electr´onicos o dispositivos
   - Tabla de componentes.
   - Formulario para agregar/editar artículos
   - Filtro de búsqueda rápida.
+=======
+Validar los conocimientos aprendidos sobre programación orientada a objetos en C++ y sobre el desarrollo de aplicaciones en computadores de recursos
+limitados como los utilizados en las aplicaciones de IoT (Internet of Thinngs)
+>>>>>>> a1da1bd6f07c433da9f7bf051bb82148042a5824
